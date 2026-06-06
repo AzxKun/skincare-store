@@ -28,13 +28,10 @@ async function fetchProducts(forceRefresh = false) {
 
 function parseSheetData(table) {
     if (!table || !table.cols || !table.rows || table.rows.length === 0) {
-        return []; // no data
+        return [];
     }
 
-    // Headers come from the "cols" array, not from a row
     const headers = table.cols.map(col => col.label ? String(col.label).trim().toLowerCase().replace(/ /g, '_') : '');
-
-    // All rows are data rows (no header row in rows)
     const dataRows = table.rows;
 
     return dataRows.map(row => {
@@ -46,7 +43,7 @@ function parseSheetData(table) {
             obj[key] = value;
         });
 
-        // Normalise important fields
+        // Normalise fields
         obj.product_code = obj.product_code || '';
         obj.id = obj.id || obj.product_code;
         obj.name = obj.name || '';
@@ -64,7 +61,7 @@ function parseSheetData(table) {
         obj.size = obj.size || '';
         obj.country_of_origin = obj.country_of_origin || '';
 
-        // Images (image1 … image12)
+        // Images
         obj.images = [];
         for (let i = 1; i <= 12; i++) {
             const imgKey = 'image' + i;
@@ -73,17 +70,24 @@ function parseSheetData(table) {
             }
             delete obj[imgKey];
         }
-        // Fallback to single image1 field (if present in sheet but not captured as image1-12)
         if (obj.images.length === 0 && obj.image1) obj.images = [obj.image1];
 
-        // Discount fields
+        // Discount fields & auto‑calculation
         obj.discount_percent = parseFloat(obj.discount_percent) || 0;
         obj.original_price = parseFloat(obj.original_price) || 0;
         obj.discount_end = obj.discount_end || null;
-        if (obj.discount_percent > 0 && obj.original_price === 0) {
-            obj.original_price = obj.price / ((100 - obj.discount_percent) / 100);
+
+        if (obj.discount_percent > 0) {
+            if (obj.original_price > 0 && obj.price === 0) {
+                // Auto‑calculate discounted price
+                obj.price = Math.round(obj.original_price * (1 - obj.discount_percent / 100));
+            } else if (obj.original_price === 0 && obj.price > 0) {
+                // Auto‑calculate original price
+                obj.original_price = Math.round(obj.price / (1 - obj.discount_percent / 100));
+            }
         }
 
         return obj;
     });
 }
+

@@ -1,4 +1,4 @@
-// ui.js – Render products, detail page, filters, countdown
+// ui.js – Render products, detail page with slideshow, filters, countdown
 function renderProducts(productArray, containerId = 'featured-section') {
     const container = document.getElementById(containerId);
     if (!container) return;
@@ -59,6 +59,7 @@ function attachCardClickEvents() {
     });
 }
 
+/* ========== PRODUCT DETAIL PAGE (with slideshow) ========== */
 function renderProductDetail(product) {
     const root = document.getElementById('product-detail-root');
     if (!root) return;
@@ -66,9 +67,10 @@ function renderProductDetail(product) {
     const images = product.images.length > 0 ? product.images : ['assets/placeholder.jpg'];
     const mainImg = images[0];
     const thumbnails = images.map((img, idx) => `
-        <img src="${img}" alt="thumbnail ${idx+1}" class="thumbnail ${idx === 0 ? 'active' : ''}" onclick="setMainImage('${img}', this)">
+        <img src="${img}" alt="thumbnail ${idx+1}" class="thumbnail ${idx === 0 ? 'active' : ''}" onclick="setMainImage(${idx})">
     `).join('');
 
+    // Price display
     let priceBlock = '';
     if (product.discount_percent > 0) {
         priceBlock = `
@@ -83,6 +85,7 @@ function renderProductDetail(product) {
         priceBlock = `<div class="detail-price">${Math.round(product.price).toLocaleString()} MMK</div>`;
     }
 
+    // Stock status
     let stockStatus = '';
     if (product.stock_quantity > 10) stockStatus = '<span class="stock-badge in-stock">ရှိသည် (In Stock)</span>';
     else if (product.stock_quantity > 0) stockStatus = '<span class="stock-badge low-stock">နောက်ဆုံးကျန် (Low Stock)</span>';
@@ -91,7 +94,13 @@ function renderProductDetail(product) {
     root.innerHTML = `
         <div class="product-detail-container">
             <div class="product-gallery">
-                <img src="${mainImg}" alt="${product.name}" class="main-image" id="mainImage">
+                <div class="main-image-wrapper">
+                    <img src="${mainImg}" alt="${product.name}" class="main-image" id="mainImage">
+                    ${images.length > 1 ? `
+                        <button class="slideshow-btn prev" onclick="slideImage(-1)" aria-label="Previous">❮</button>
+                        <button class="slideshow-btn next" onclick="slideImage(1)" aria-label="Next">❯</button>
+                    ` : ''}
+                </div>
                 <div class="thumbnail-list">${thumbnails}</div>
             </div>
             <div class="detail-info">
@@ -129,10 +138,17 @@ function renderProductDetail(product) {
         </div>
     `;
 
-    window.setMainImage = function(src, el) {
-        document.getElementById('mainImage').src = src;
-        document.querySelectorAll('.thumbnail').forEach(t => t.classList.remove('active'));
-        el.classList.add('active');
+    // Slideshow state
+    window.productImages = images;
+    window.currentImageIndex = 0;
+    window.setMainImage = function(index) {
+        window.currentImageIndex = index;
+        document.getElementById('mainImage').src = window.productImages[index];
+        document.querySelectorAll('.thumbnail').forEach((t, i) => t.classList.toggle('active', i === index));
+    };
+    window.slideImage = function(delta) {
+        const newIndex = (window.currentImageIndex + delta + window.productImages.length) % window.productImages.length;
+        setMainImage(newIndex);
     };
     window.changeQty = function(delta) {
         const input = document.getElementById('qtyInput');
@@ -144,6 +160,7 @@ function renderProductDetail(product) {
         if (val > max) val = max;
         input.value = val;
     };
+
     startAllCountdowns();
 }
 
@@ -155,7 +172,6 @@ function filterProducts({ category = null, skin_type = null, maxPrice = null } =
     renderProducts(filtered);
 }
 
-/* ======= COUNTDOWN TIMER ======= */
 function startAllCountdowns() {
     document.querySelectorAll('.countdown[data-end]').forEach(el => {
         const endDateStr = el.getAttribute('data-end');
@@ -179,4 +195,3 @@ function startAllCountdowns() {
         el.setAttribute('data-interval-id', interval);
     });
 }
-
