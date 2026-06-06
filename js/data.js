@@ -27,20 +27,26 @@ async function fetchProducts(forceRefresh = false) {
 }
 
 function parseSheetData(table) {
-    if (!table || !table.rows || table.rows.length < 2) return [];
-    const headers = table.rows[0].c.map(cell => cell ? String(cell.v).trim().toLowerCase().replace(/ /g, '_') : '');
-    const dataRows = table.rows.slice(1);
+    if (!table || !table.cols || !table.rows || table.rows.length === 0) {
+        return []; // no data
+    }
+
+    // Headers come from the "cols" array, not from a row
+    const headers = table.cols.map(col => col.label ? String(col.label).trim().toLowerCase().replace(/ /g, '_') : '');
+
+    // All rows are data rows (no header row in rows)
+    const dataRows = table.rows;
 
     return dataRows.map(row => {
         const obj = {};
         row.c.forEach((cell, index) => {
             if (cell === null || cell === undefined) return;
             const value = cell.v;
-            const key = headers[index] ? headers[index] : `col_${index}`;
+            const key = headers[index] || `col_${index}`;
             obj[key] = value;
         });
 
-        // Normalise fields
+        // Normalise important fields
         obj.product_code = obj.product_code || '';
         obj.id = obj.id || obj.product_code;
         obj.name = obj.name || '';
