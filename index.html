@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="my">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Glow Haven | အသားအရေထိန်းပစ္စည်းများ</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header class="site-header">
+        <div class="container">
+            <a href="index.html" class="brand-logo">✨ Glow Haven</a>
+            <div class="search-box">
+                <input type="text" id="searchInput" placeholder="ပစ္စည်းကုဒ် / အမည် ရှာရန်... (SKU or Name)" autocomplete="off">
+                <button id="searchBtn" aria-label="ရှာမည်">🔍</button>
+            </div>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="container">
+            <h2>သင့်အသားအရေအတွက် အကောင်းဆုံးပစ္စည်းများ</h2>
+            <p>အရည်အသွေးမြင့် Skincare များကို မြန်မာနိုင်ငံအတွင်း အိမ်အရောက်ပို့ဆောင်ပေးပါမည်။ (Premium skincare delivered across Myanmar.)</p>
+        </div>
+    </section>
+
+    <main class="container">
+        <div class="filter-bar" id="filterBar">
+            <button class="filter-chip active" data-filter="all">အားလုံး (All)</button>
+            <button class="filter-chip" data-filter="Cleanser">ဆပ်ပြာ (Cleanser)</button>
+            <button class="filter-chip" data-filter="Serum">ဆီရမ် (Serum)</button>
+            <button class="filter-chip" data-filter="Toner">တိုနာ (Toner)</button>
+            <button class="filter-chip" data-filter="Moisturizer">Moisturizer</button>
+            <button class="filter-chip" data-filter="Sunscreen">နေရောင်ကာ (Sunscreen)</button>
+        </div>
+
+        <section id="featured-section" class="product-grid">
+            <div class="loading-spinner">
+                <div class="spinner"></div>
+                <p>ပစ္စည်းများကို ရယူနေသည်... (Loading products)</p>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container">
+            <p>© 2026 Glow Haven Myanmar</p>
+        </div>
+    </footer>
+
+    <script src="js/config.js"></script>
+    <script src="js/data.js"></script>
+    <script src="js/search.js"></script>
+    <script src="js/ui.js"></script>
+    <script src="js/telegram.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', async () => {
+            try {
+                await fetchProducts();
+                const featured = products.filter(p => p.featured).length ? products.filter(p => p.featured) : products;
+                renderProducts(featured);
+            } catch (e) {
+                document.getElementById('featured-section').innerHTML = '<p class="empty-state">အင်တာနက်ဆက်သွယ်မှုအား စစ်ဆေးပါ။ (Check your connection.)</p>';
+            }
+
+            // Filter buttons
+            document.querySelectorAll('.filter-chip').forEach(chip => {
+                chip.addEventListener('click', () => {
+                    document.querySelectorAll('.filter-chip').forEach(c => c.classList.remove('active'));
+                    chip.classList.add('active');
+                    const cat = chip.getAttribute('data-filter');
+                    if (cat === 'all') {
+                        renderProducts(products);
+                    } else {
+                        filterProducts({ category: cat });
+                    }
+                });
+            });
+
+            // Search
+            const searchInput = document.getElementById('searchInput');
+            const searchBtn = document.getElementById('searchBtn');
+            function performSearch() { handleSearch(searchInput.value); }
+            searchBtn.addEventListener('click', performSearch);
+            let debounce;
+            searchInput.addEventListener('input', () => {
+                clearTimeout(debounce);
+                debounce = setTimeout(performSearch, 300);
+            });
+            searchInput.addEventListener('keypress', (e) => {
+                if (e.key === 'Enter') { clearTimeout(debounce); performSearch(); }
+            });
+        });
+    </script>
+</body>
+</html>
