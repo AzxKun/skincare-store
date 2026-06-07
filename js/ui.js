@@ -70,7 +70,6 @@ function renderProductDetail(product) {
         <img src="${img}" alt="thumbnail ${idx+1}" class="thumbnail ${idx === 0 ? 'active' : ''}" onclick="setMainImage(${idx})">
     `).join('');
 
-    // Video section
     let videoHTML = '';
     if (product.video) {
         videoHTML = `
@@ -83,7 +82,6 @@ function renderProductDetail(product) {
         `;
     }
 
-    // Price display
     let priceBlock = '';
     if (product.discount_percent > 0) {
         priceBlock = `
@@ -98,11 +96,54 @@ function renderProductDetail(product) {
         priceBlock = `<div class="detail-price">${Math.round(product.price).toLocaleString()} MMK</div>`;
     }
 
-    // Stock status
+    // Stock badge + order button
     let stockStatus = '';
-    if (product.stock_quantity > 10) stockStatus = '<span class="stock-badge in-stock">ရှိသည် (In Stock)</span>';
-    else if (product.stock_quantity > 0) stockStatus = '<span class="stock-badge low-stock">နောက်ဆုံးကျန် (Low Stock)</span>';
-    else stockStatus = '<span class="stock-badge out-of-stock">ကုန်သွားပါပြီ (Out of Stock)</span>';
+    let orderButton = '';
+    if (product.stock_quantity > 10) {
+        stockStatus = '<span class="stock-badge in-stock">ရှိသည် (In Stock)</span>';
+        orderButton = `
+            <div class="order-section">
+                <div class="quantity-selector">
+                    <label for="qtyInput">အရေအတွက် (Qty):</label>
+                    <div class="qty-control">
+                        <button type="button" onclick="changeQty(-1)">−</button>
+                        <input type="number" id="qtyInput" value="1" min="1" max="${product.stock_quantity || 99}" readonly>
+                        <button type="button" onclick="changeQty(1)">+</button>
+                    </div>
+                </div>
+                <button class="btn-order telegram-order" onclick="orderViaTelegramById('${product.id}')">
+                    💬 Telegram မှာယူရန် (Order)
+                </button>
+            </div>
+        `;
+    } else if (product.stock_quantity > 0) {
+        stockStatus = '<span class="stock-badge low-stock">နောက်ဆုံးကျန် (Low Stock)</span>';
+        orderButton = `
+            <div class="order-section">
+                <div class="quantity-selector">
+                    <label for="qtyInput">အရေအတွက် (Qty):</label>
+                    <div class="qty-control">
+                        <button type="button" onclick="changeQty(-1)">−</button>
+                        <input type="number" id="qtyInput" value="1" min="1" max="${product.stock_quantity || 99}" readonly>
+                        <button type="button" onclick="changeQty(1)">+</button>
+                    </div>
+                </div>
+                <button class="btn-order telegram-order" onclick="orderViaTelegramById('${product.id}')">
+                    💬 Telegram မှာယူရန် (Order)
+                </button>
+            </div>
+        `;
+    } else {
+        stockStatus = '<span class="stock-badge out-of-stock">ကုန်သွားပါပြီ (Out of Stock)</span>';
+        // Back-in-stock alert button
+        orderButton = `
+            <div class="order-section">
+                <button class="btn-order notify-btn" onclick="notifyBackInStock('${product.id}')">
+                    🔔 ပြန်ရရှိပါက အသိပေးရန် (Notify Me)
+                </button>
+            </div>
+        `;
+    }
 
     root.innerHTML = `
         <div class="product-detail-container">
@@ -110,8 +151,8 @@ function renderProductDetail(product) {
                 <div class="main-image-wrapper">
                     <img src="${mainImg}" alt="${product.name}" class="main-image" id="mainImage">
                     ${images.length > 1 ? `
-                        <button class="slideshow-btn prev" onclick="slideImage(-1)" aria-label="Previous">❮</button>
-                        <button class="slideshow-btn next" onclick="slideImage(1)" aria-label="Next">❯</button>
+                        <button class="slideshow-btn prev" onclick="slideImage(-1)">❮</button>
+                        <button class="slideshow-btn next" onclick="slideImage(1)">❯</button>
                     ` : ''}
                 </div>
                 <div class="thumbnail-list">${thumbnails}</div>
@@ -135,24 +176,11 @@ function renderProductDetail(product) {
                     <p>အရွယ်အစား (Size): ${product.size}</p>
                     <p>မူလနိုင်ငံ (Origin): ${product.country_of_origin}</p>
                 </div>
-                <div class="order-section">
-                    <div class="quantity-selector">
-                        <label for="qtyInput">အရေအတွက် (Qty):</label>
-                        <div class="qty-control">
-                            <button type="button" onclick="changeQty(-1)">−</button>
-                            <input type="number" id="qtyInput" value="1" min="1" max="${product.stock_quantity || 99}" readonly>
-                            <button type="button" onclick="changeQty(1)">+</button>
-                        </div>
-                    </div>
-                    <button class="btn-order telegram-order" onclick="orderViaTelegramById('${product.id}')">
-                        💬 Telegram မှာယူရန် (Order via Telegram)
-                    </button>
-                </div>
+                ${orderButton}
             </div>
         </div>
     `;
 
-    // Slideshow state
     window.productImages = images;
     window.currentImageIndex = 0;
     window.setMainImage = function(index) {

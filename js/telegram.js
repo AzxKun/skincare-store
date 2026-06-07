@@ -1,4 +1,4 @@
-// telegram.js – Modern, clean order message for Telegram
+// telegram.js – Order and back-in-stock alert
 function orderViaTelegramById(productId) {
     const product = products.find(p => p.id === productId || p.product_code === productId);
     if (!product) return;
@@ -36,5 +36,21 @@ function orderViaTelegramById(productId) {
         `_ _`;
 
     const url = `https://t.me/${CONFIG.TELEGRAM_USERNAME.replace('@','')}?text=${encodeURIComponent(message)}`;
+    window.open(url, '_blank');
+}
+
+// Back-in-stock alert
+function notifyBackInStock(productId) {
+    const product = products.find(p => p.id === productId || p.product_code === productId);
+    if (!product) return;
+
+    const message = encodeURIComponent(
+        `🔔 *Back in Stock Alert*\n\n` +
+        `📦 Product Code: ${product.product_code}\n` +
+        `🛍️ Product: ${product.name}\n\n` +
+        `ကျေးဇူးပြု၍ ဤပစ္စည်းပြန်ရပါက အသိပေးပါ။ (Please notify me when this product is back in stock.)`
+    );
+
+    const url = `https://t.me/${CONFIG.TELEGRAM_USERNAME.replace('@','')}?text=${message}`;
     window.open(url, '_blank');
 }
