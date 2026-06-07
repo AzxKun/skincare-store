@@ -60,6 +60,7 @@ function parseSheetData(table) {
         obj.usage_instructions = obj.usage_instructions || '';
         obj.size = obj.size || '';
         obj.country_of_origin = obj.country_of_origin || '';
+        obj.video = obj.video || '';   // <-- NEW video field
 
         // Images
         obj.images = [];
@@ -79,10 +80,8 @@ function parseSheetData(table) {
 
         if (obj.discount_percent > 0) {
             if (obj.original_price > 0 && obj.price === 0) {
-                // Auto‑calculate discounted price
                 obj.price = Math.round(obj.original_price * (1 - obj.discount_percent / 100));
             } else if (obj.original_price === 0 && obj.price > 0) {
-                // Auto‑calculate original price
                 obj.original_price = Math.round(obj.price / (1 - obj.discount_percent / 100));
             }
         }
@@ -90,4 +89,3 @@ function parseSheetData(table) {
         return obj;
     });
 }
-

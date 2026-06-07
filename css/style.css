@@ -194,7 +194,7 @@ body {
     width: 100%;
     height: auto;
     max-height: 500px;
-    object-fit: contain;        /* ← shows full image, no crop */
+    object-fit: contain;
     display: block;
     background: #fafafa;
 }
@@ -236,7 +236,7 @@ body {
     width: 60px;
     height: 60px;
     border-radius: var(--radius-sm);
-    object-fit: contain;       /* ← no zoom, whole image visible */
+    object-fit: contain;
     cursor: pointer;
     border: 2px solid transparent;
     background: #fafafa;
@@ -247,12 +247,29 @@ body {
     border-color: var(--soft-pink);
 }
 
-/* Detail info (text size balanced) */
+/* Product video */
+.product-video {
+    margin-top: 1rem;
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    background: var(--white);
+    box-shadow: var(--shadow-card);
+}
+
+.product-video video {
+    width: 100%;
+    height: auto;
+    display: block;
+    max-height: 400px;
+    object-fit: contain;
+}
+
+/* Detail info */
 .detail-info {
     display: flex;
     flex-direction: column;
     gap: 1rem;
-    font-size: 1rem;           /* base size increased */
+    font-size: 1rem;
 }
 .product-code-large {
     font-size: 1rem;

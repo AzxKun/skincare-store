@@ -1,4 +1,4 @@
-// ui.js – Render products, detail page with slideshow, filters, countdown
+// ui.js – Render products, detail page with slideshow & video, filters, countdown
 function renderProducts(productArray, containerId = 'featured-section') {
     const container = document.getElementById(containerId);
     if (!container) return;
@@ -59,7 +59,7 @@ function attachCardClickEvents() {
     });
 }
 
-/* ========== PRODUCT DETAIL PAGE (with slideshow) ========== */
+/* ========== PRODUCT DETAIL PAGE ========== */
 function renderProductDetail(product) {
     const root = document.getElementById('product-detail-root');
     if (!root) return;
@@ -69,6 +69,19 @@ function renderProductDetail(product) {
     const thumbnails = images.map((img, idx) => `
         <img src="${img}" alt="thumbnail ${idx+1}" class="thumbnail ${idx === 0 ? 'active' : ''}" onclick="setMainImage(${idx})">
     `).join('');
+
+    // Video section
+    let videoHTML = '';
+    if (product.video) {
+        videoHTML = `
+            <div class="product-video">
+                <video autoplay muted loop playsinline controls>
+                    <source src="${product.video}" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+            </div>
+        `;
+    }
 
     // Price display
     let priceBlock = '';
@@ -102,6 +115,7 @@ function renderProductDetail(product) {
                     ` : ''}
                 </div>
                 <div class="thumbnail-list">${thumbnails}</div>
+                ${videoHTML}
             </div>
             <div class="detail-info">
                 <span class="product-code-large">${product.product_code}</span>
