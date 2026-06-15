@@ -5,7 +5,7 @@
 
   "contact": {
     "telegram_username": "@Hayythithaw",
-    "telegram_channel": "your_channel",
+    "telegram_channel": "@Hayythithaw",
     "facebook_page": "https://facebook.com/yourpage",
     "viber": "+959xxxxxxxxx",
     "phone": "+959xxxxxxxxx",
@@ -21,8 +21,8 @@
   },
 
   "google_sheets": {
-    "sheet_id": "18APCzYnE1pa8I26YrGD6_Iqz48QJRJwZE0HbVu08VHo",
-    "api_key": "YOUR_GOOGLE_API_KEY_HERE",
+    "sheet_id": "1ijWYX15Igq0RMYwuc1ryQjliGTNYVwyoH8nPAiHmV4k",
+    "api_key": "1ijWYX15Igq0RMYwuc1ryQjliGTNYVwyoH8nPAiHmV4k",
     "sheet_name": "Products",
     "range": "A1:Z1000"
   },
