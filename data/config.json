@@ -1,11 +1,11 @@
 {
   "store_name": "TEST",
-  "store_tagline": "TEST မြန်မာ ",
+  "store_tagline": "TEST မြန်မာ",
   "store_description": "Premium luxury skincare curated for discerning skin. Authentic products, direct import.",
 
   "contact": {
     "telegram_username": "@Hayythithaw",
-    "telegram_channel": "@Hayythithaw",
+    "telegram_channel": "your_channel",
     "facebook_page": "https://facebook.com/yourpage",
     "viber": "+959xxxxxxxxx",
     "phone": "+959xxxxxxxxx",
@@ -22,9 +22,7 @@
 
   "google_sheets": {
     "sheet_id": "1ijWYX15Igq0RMYwuc1ryQjliGTNYVwyoH8nPAiHmV4k",
-    "api_key": "AIzaSyAqiJmmV7HlgGOtFjDp3sm18zHVIai6hS4",
-    "sheet_name": "products-template",
-    "range": "A1:Z1000"
+    "sheet_name": "Products"
   },
 
   "hero": {
@@ -213,5 +211,5 @@
       "card_blur_px": 18
     }
   }
-
+}
 

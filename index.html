@@ -793,50 +793,64 @@
       }
 
       function waitForProducts() {
-        const cache = window._productsCache || [];
-        if (cache.length) {
-          buildCategories();
-          buildFeaturedProducts();
-          AppUtils?.initScrollReveal?.();
-          return;
-        }
+  let finished = false;
 
-        if (window.ProductsSystem && window.ProductsSystem.isLoaded && window.ProductsSystem.isLoaded()) {
-          buildCategories();
-          buildFeaturedProducts();
-          AppUtils?.initScrollReveal?.();
-          return;
-        }
+  function success() {
+    if (finished) return;
+    finished = true;
+    buildCategories();
+    buildFeaturedProducts();
+    AppUtils?.initScrollReveal?.();
+  }
 
-        let tries = 0;
-        const timer = setInterval(() => {
-          tries++;
-          const pool = window._productsCache || [];
-          const loaded = window.ProductsSystem?.isLoaded?.();
+  function fail(reason = '') {
+    if (finished) return;
+    finished = true;
+    console.warn('[Home] Product load failed:', reason);
+    showLoadError();
+  }
 
-          if (pool.length) {
-            clearInterval(timer);
-            buildCategories();
-            buildFeaturedProducts();
-            AppUtils?.initScrollReveal?.();
-            return;
-          }
+  const readyNow = window._productsCache || [];
+  if (readyNow.length) {
+    success();
+    return;
+  }
 
-          if (loaded && !pool.length) {
-            clearInterval(timer);
-            showLoadError();
-            return;
-          }
+  document.addEventListener('products:loaded-gviz', () => {
+    const pool = window._productsCache || [];
+    if (pool.length) success();
+    else fail('GViz loaded but empty');
+  }, { once: true });
 
-          if (tries >= 20) {
-            clearInterval(timer);
-            showLoadError();
-          }
-        }, 400);
-      }
+  document.addEventListener('products:load-error', (e) => {
+    fail(e?.detail?.reason || 'unknown');
+  }, { once: true });
 
-      waitForProducts();
-    });
+  let tries = 0;
+  const timer = setInterval(() => {
+    tries++;
+    const pool = window._productsCache || [];
+    const loaded = window.ProductsSystem?.isLoaded?.();
+
+    if (pool.length) {
+      clearInterval(timer);
+      success();
+      return;
+    }
+
+    if (loaded && !pool.length) {
+      clearInterval(timer);
+      fail('Loaded with empty cache');
+      return;
+    }
+
+    if (tries >= 40) {
+      clearInterval(timer);
+      fail('Timeout');
+    }
+  }, 500);
+}
+
   </script>
 </body>
 </html>
