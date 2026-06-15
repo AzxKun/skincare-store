@@ -22,8 +22,8 @@
 
   "google_sheets": {
     "sheet_id": "1ijWYX15Igq0RMYwuc1ryQjliGTNYVwyoH8nPAiHmV4k",
-    "api_key": "1ijWYX15Igq0RMYwuc1ryQjliGTNYVwyoH8nPAiHmV4k",
-    "sheet_name": "Products",
+    "api_key": "AIzaSyAqiJmmV7HlgGOtFjDp3sm18zHVIai6hS4",
+    "sheet_name": "products-template",
     "range": "A1:Z1000"
   },
 
