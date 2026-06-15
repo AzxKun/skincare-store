@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="my" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <meta name="theme-color" content="#0D0D0D" />
+
+  <!-- SEO (dynamic - filled by JS) -->
+  <title>Product — LUMIÈRE Luxury Skincare</title>
+  <meta name="description" content="Premium luxury skincare product at LUMIÈRE Myanmar." />
+  <meta property="og:type"  content="product" />
+  <meta property="og:image" content="assets/images/og-image.jpg" />
+
+  <!-- PWA -->
+  <link rel="manifest"         href="manifest.json" />
+  <link rel="apple-touch-icon" href="assets/icons/icon-192.png" />
+  <link rel="icon"             href="assets/icons/favicon.png" />
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="assets/css/style.css" />
+  <link rel="stylesheet" href="assets/css/animations.css" />
+  <link rel="stylesheet" href="assets/css/luxury-theme.css" />
+
+  <!-- Theme flash prevention -->
+  <script>(function(){var t=localStorage.getItem('lumiere_theme')||'light';document.documentElement.setAttribute('data-theme',t);})();</script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+</head>
+
+<body>
+
+<!-- ════════════════════════════════════════════════════
+     LOADING SCREEN (slim)
+════════════════════════════════════════════════════ -->
+<div id="loading-screen" role="status">
+  <div class="loading-logo shimmer-text">LUMIÈRE</div>
+  <div class="loading-bar-track"><div class="loading-bar-fill"></div></div>
+</div>
+
+<!-- ════════════════════════════════════════════════════
+     NAVBAR
+════════════════════════════════════════════════════ -->
+<header class="navbar" role="banner">
+  <div class="container">
+    <div class="navbar-inner">
+      <a href="index.html" class="navbar-logo" aria-label="LUMIÈRE Home">
+        <span class="logo-text">LUMIÈRE</span>
+        <span class="logo-sub">Luxury Skincare · MM</span>
+      </a>
+      <nav class="navbar-links" aria-label="Main navigation">
+        <a href="index.html">Home</a>
+        <a href="category.html">Shop All</a>
+        <a href="category.html?cat=Serum">Serums</a>
+        <a href="category.html?cat=Moisturizer">Moisturizers</a>
+        <a href="category.html?cat=Sunscreen">Sunscreen</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+      <div class="navbar-actions">
+        <button class="nav-icon-btn" data-open-search aria-label="Search">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+        </button>
+        <button class="theme-toggle nav-icon-btn" data-toggle-theme aria-label="Toggle dark mode">
+          <span data-theme-icon>🌙</span>
+        </button>
+        <a href="wishlist.html" class="nav-icon-btn" aria-label="Wishlist">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+          <span class="nav-badge" data-wishlist-badge style="display:none;">0</span>
+        </a>
+        <button class="nav-icon-btn" data-open-cart aria-label="Cart">
+          <svg width="18" height="18" data-cart-icon viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
+          <span class="nav-badge" data-cart-badge style="display:none;">0</span>
+        </button>
+        <button class="nav-hamburger" aria-label="Open menu"><span></span><span></span><span></span></button>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- Mobile Nav -->
+<nav class="mobile-nav" aria-label="Mobile navigation">
+  <a href="index.html">🏠 Home</a>
+  <a href="category.html">🛍️ Shop All</a>
+  <a href="wishlist.html">❤️ Wishlist</a>
+  <a href="contact.html">✉️ Contact</a>
+</nav>
+
+<!-- ════════════════════════════════════════════════════
+     BREADCRUMB
+════════════════════════════════════════════════════ -->
+<div style="background:var(--surface);border-bottom:1px solid var(--border-soft);padding-top:var(--nav-h);">
+  <div class="container" style="padding-top:var(--space-3);padding-bottom:var(--space-3);">
+    <nav class="breadcrumb" aria-label="Breadcrumb" style="justify-content:flex-start;">
+      <a href="index.html">Home</a>
+      <span class="breadcrumb-sep">›</span>
+      <a href="category.html" id="breadcrumb-category">Products</a>
+      <span class="breadcrumb-sep">›</span>
+      <span class="breadcrumb-current" id="breadcrumb-name">Loading…</span>
+    </nav>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════════════════
+     PRODUCT PAGE
+════════════════════════════════════════════════════ -->
+<main class="product-page" id="product-page-content" style="padding-top:var(--space-10);">
+  <div class="container">
+    <div class="product-layout">
+
+      <!-- ══════════════════════════════════════════════
+           LEFT — GALLERY
+      ══════════════════════════════════════════════ -->
+      <div class="product-gallery">
+
+        <!-- Main Image -->
+        <div class="gallery-main zoom-container" id="gallery-main-container">
+          <img
+            id="gallery-main-img"
+            src="assets/images/placeholder.jpg"
+            alt="Product image"
+            loading="eager"
+          />
+          <!-- Prev / Next -->
+          <div class="gallery-nav">
+            <button class="gallery-btn" id="gallery-prev-btn" aria-label="Previous image">&#8249;</button>
+            <button class="gallery-btn" id="gallery-next-btn" aria-label="Next image">&#8250;</button>
+          </div>
+          <!-- Fullscreen -->
+          <button class="gallery-fullscreen-btn" id="gallery-fullscreen-btn" aria-label="View fullscreen">⛶</button>
+        </div>
+
+        <!-- Thumbnails -->
+        <div class="gallery-thumbnails" id="gallery-thumbs" role="list" aria-label="Product images">
+          <!-- Populated by app.js -->
+        </div>
+
+        <!-- Video (if any) -->
+        <div id="product-video-wrap" style="margin-top:var(--space-4);"></div>
+
+        <!-- Share row -->
+        <div style="display:flex;align-items:center;gap:var(--space-3);margin-top:var(--space-5);padding-top:var(--space-4);border-top:1px solid var(--border-soft);">
+          <span style="font-family:var(--font-ui);font-size:var(--text-xs);color:var(--text-muted);letter-spacing:0.1em;text-transform:uppercase;">Share:</span>
+          <button id="product-share-btn" class="btn btn-ghost btn-sm" title="Share product">🔗 Share</button>
+          <button id="product-copy-sku" class="btn btn-ghost btn-sm" title="Copy SKU">
+            📋 Copy SKU
+          </button>
+          <button class="btn btn-ghost btn-sm" onclick="ProductsSystem.addToCompare(new URLSearchParams(location.search).get('id'))">⚖️ Compare</button>
+        </div>
+
+        <!-- View count -->
+        <div style="display:flex;align-items:center;gap:var(--space-3);margin-top:var(--space-3);">
+          <div class="live-dot">
+            <span class="live-dot-indicator"></span>
+            <span style="font-size:var(--text-xs);color:var(--text-muted);font-family:var(--font-ui);">
+              <span id="product-view-count">—</span> people viewed this today
+            </span>
+          </div>
+        </div>
+
+      </div><!-- /gallery -->
+
+      <!-- ══════════════════════════════════════════════
+           RIGHT — DETAILS
+      ══════════════════════════════════════════════ -->
+      <div class="product-details">
+
+        <!-- Brand -->
+        <div class="product-detail-brand" id="product-detail-brand">—</div>
+
+        <!-- SKU -->
+        <div class="product-detail-sku">
+          SKU: <span id="product-detail-sku">—</span>
+          <button id="product-copy-sku-inline" class="product-detail-sku-copy" title="Copy SKU" onclick="AppUtils.copyToClipboard(document.getElementById('product-detail-sku').textContent)">📋</button>
+        </div>
+
+        <!-- Name -->
+        <h1 class="product-detail-name" id="product-detail-name">Loading product…</h1>
+        <div class="product-detail-name-mm" id="product-detail-name-mm"></div>
+
+        <!-- Rating -->
+        <div class="product-detail-rating">
+          <div id="product-detail-stars"></div>
+          <div id="product-detail-stock"></div>
+          <div style="font-size:var(--text-xs);color:var(--text-muted);font-family:var(--font-ui);" id="product-sold-text"></div>
+        </div>
+
+        <!-- Price -->
+        <div id="product-detail-price">
+          <!-- Populated by app.js -->
+        </div>
+
+        <!-- Flash sale countdown (shown if product is on sale) -->
+        <div id="product-sale-timer-wrap" style="margin-bottom:var(--space-5);display:none;">
+          <div style="font-family:var(--font-ui);font-size:var(--text-xs);color:var(--red);font-weight:700;letter-spacing:0.1em;margin-bottom:var(--space-2);">⏰ SALE ENDS IN:</div>
+          <div id="product-sale-timer"></div>
+        </div>
+
+        <!-- Description -->
+        <p class="product-detail-desc" id="product-detail-desc"></p>
+
+        <!-- Skin Type Tags -->
+        <div id="product-skin-tags" class="skin-tags"></div>
+
+        <!-- ── Add to Cart ─────────────────────────────── -->
+        <div class="product-atc">
+          <!-- Quantity -->
+          <div class="product-qty" aria-label="Quantity">
+            <button class="product-qty-btn" id="product-qty-dec" aria-label="Decrease">−</button>
+            <span class="product-qty-value" id="product-qty-value" aria-live="polite">1</span>
+            <button class="product-qty-btn" id="product-qty-inc" aria-label="Increase">+</button>
+          </div>
+
+          <!-- ATC Button -->
+          <button class="btn btn-primary" id="product-atc-btn" style="flex:1;">
+            🛒 Add to Cart
+          </button>
+
+          <!-- Wishlist -->
+          <button
+            class="btn btn-outline btn-icon"
+            id="product-wishlist-btn"
+            data-wishlist-toggle=""
+            aria-label="Add to wishlist"
+            title="Wishlist"
+          >🤍</button>
+        </div>
+
+        <!-- Telegram Order -->
+        <button class="btn btn-dark w-full" id="product-order-btn" style="margin-bottom:var(--space-6);">
+          ✈️ Order via Telegram
+        </button>
+
+        <!-- Meta Chips -->
+        <div class="product-meta-chips" id="product-meta-chips">
+          <span class="meta-chip"><span class="meta-chip-icon">📏</span><span id="product-size">—</span></span>
+          <span class="meta-chip"><span class="meta-chip-icon">🌏</span><span id="product-origin">—</span></span>
+          <span class="meta-chip"><span class="meta-chip-icon">✅</span>100% Authentic</span>
+          <span class="meta-chip"><span class="meta-chip-icon">🚗</span>COD Available</span>
+          <span class="meta-chip"><span class="meta-chip-icon">📦</span>Fast Delivery</span>
+        </div>
+
+        <!-- Guarantees strip -->
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:var(--space-3);padding:var(--space-5);background:var(--surface-2);border-radius:var(--radius-lg);border:1px solid var(--border-soft);">
+          <div style="display:flex;align-items:center;gap:var(--space-2);font-size:var(--text-xs);color:var(--text-soft);">
+            <span style="color:var(--rose-gold);">✅</span> 100% Genuine
+          </div>
+          <div style="display:flex;align-items:center;gap:var(--space-2);font-size:var(--text-xs);color:var(--text-soft);">
+            <span style="color:var(--rose-gold);">🚚</span> COD Available
+          </div>
+          <div style="display:flex;align-items:center;gap:var(--space-2);font-size:var(--text-xs);color:var(--text-soft);">
+            <span style="color:var(--rose-gold);">💳</span> Wave/KBZ Pay
+          </div>
+          <div style="display:flex;align-items:center;gap:var(--space-2);font-size:var(--text-xs);color:var(--text-soft);">
+            <span style="color:var(--rose-gold);">🔄</span> Easy Returns
+          </div>
+        </div>
+
+        <!-- ── Product Tabs ────────────────────────────── -->
+        <div class="product-tabs">
+          <div class="product-tab-nav" role="tablist">
+            <button class="product-tab-btn active" role="tab" data-tab="tab-description"  aria-selected="true">Description</button>
+            <button class="product-tab-btn"        role="tab" data-tab="tab-ingredients"  aria-selected="false">Ingredients</button>
+            <button class="product-tab-btn"        role="tab" data-tab="tab-usage"        aria-selected="false">How to Use</button>
+            <button class="product-tab-btn"        role="tab" data-tab="tab-details"      aria-selected="false">Details</button>
+          </div>
+
+          <!-- Description -->
+          <div class="product-tab-content active" id="tab-description" role="tabpanel">
+            <p id="tab-desc-content" style="color:var(--text-soft);line-height:1.9;font-size:var(--text-base);"></p>
+          </div>
+
+          <!-- Ingredients -->
+          <div class="product-tab-content" id="tab-ingredients" role="tabpanel">
+            <div style="margin-bottom:var(--space-4);">
+              <p style="font-size:var(--text-sm);color:var(--text-muted);line-height:1.8;margin-bottom:var(--space-4);">
+                Key ingredients that make this product effective:
+              </p>
+              <div id="tab-ingredients-content" style="line-height:2;">
+                <!-- Populated by app.js -->
+              </div>
+            </div>
+          </div>
+
+          <!-- How to Use -->
+          <div class="product-tab-content" id="tab-usage" role="tabpanel">
+            <div id="tab-usage-content" class="tab-usage-steps">
+              <!-- Populated by app.js -->
+            </div>
+          </div>
+
+          <!-- Details -->
+          <div class="product-tab-content" id="tab-details" role="tabpanel">
+            <table style="width:100%;border-collapse:collapse;">
+              <tbody id="tab-details-table">
+                <!-- Populated below by app.js via _renderProductDetails -->
+              </tbody>
+            </table>
+          </div>
+
+        </div><!-- /tabs -->
+
+      </div><!-- /product-details -->
+
+    </div><!-- /product-layout -->
+  </div><!-- /container -->
+</main>
+
+<!-- ════════════════════════════════════════════════════
+     FULLSCREEN GALLERY MODAL
+════════════════════════════════════════════════════ -->
+<div id="gallery-fullscreen-modal" class="gallery-fullscreen-modal" role="dialog" aria-modal="true" aria-label="Fullscreen image">
+  <img id="gallery-fullscreen-img" src="" alt="Product fullscreen" class="gallery-fullscreen-img" />
+  <button class="gallery-fullscreen-close" id="gallery-fullscreen-close" aria-label="Close fullscreen">✕</button>
+  <!-- Nav arrows in fullscreen -->
+  <button onclick="AppUtils._galleryGoTo(AppUtils._galleryIdx-1);document.getElementById('gallery-fullscreen-img').src=AppUtils._galleryImages[AppUtils._galleryIdx]"
+    style="position:absolute;left:var(--space-6);top:50%;transform:translateY(-50%);background:rgba(255,255,255,0.15);border:1px solid rgba(255,255,255,0.2);color:white;width:48px;height:48px;border-radius:50%;font-size:1.4rem;display:flex;align-items:center;justify-content:center;cursor:pointer;">‹</button>
+  <button onclick="AppUtils._galleryGoTo(AppUtils._galleryIdx+1);document.getElementById('gallery-fullscreen-img').src=AppUtils._galleryImages[AppUtils._galleryIdx]"
+    style="position:absolute;right:var(--space-6);top:50%;transform:translateY(-50%);background:rgba(255,255,255,0.15);border:1px solid rgba(255,255,255,0.2);color:white;width:48px;height:48px;border-radius:50%;font-size:1.4rem;display:flex;align-items:center;justify-content:center;cursor:pointer;">›</button>
+</div>
+
+<!-- ════════════════════════════════════════════════════
+     RELATED PRODUCTS
+════════════════════════════════════════════════════ -->
+<section class="section" style="background:var(--bg-2);" aria-label="Related products">
+  <div class="container">
+    <div class="section-header reveal">
+      <span class="eyebrow">You May Also Like</span>
+      <h2 class="section-title">Related Products</h2>
+      <p class="section-subtitle">ဆက်နွယ်သော ကုန်ပစ္စည်းများ</p>
+    </div>
+    <div class="grid-products" id="related-products-grid" role="list">
+      <!-- Populated by app.js -->
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════════════
+     RECENTLY VIEWED
+════════════════════════════════════════════════════ -->
+<section class="section recently-viewed-section" id="recently-viewed-section" style="display:none;" aria-label="Recently viewed">
+  <div class="container">
+    <div class="section-header reveal">
+      <span class="eyebrow">Your History</span>
+      <h2 class="section-title">Recently Viewed</h2>
+    </div>
+    <div class="grid-products" id="recently-viewed-products"></div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════════════
+     FOOTER
+════════════════════════════════════════════════════ -->
+<footer class="footer" role="contentinfo">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="logo-text" style="font-family:var(--font-display);font-size:var(--text-2xl);font-weight:900;background:linear-gradient(135deg,var(--rose-gold),var(--rose-light));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;letter-spacing:0.1em;">LUMIÈRE</div>
+        <p class="footer-desc">Myanmar's premier luxury skincare destination. Authentic imported products, COD available.</p>
+        <div class="footer-social">
+          <a href="#" class="social-btn">f</a>
+          <a href="#" class="social-btn">📷</a>
+          <a href="#" class="social-btn">✈️</a>
+        </div>
+      </div>
+      <div>
+        <div class="footer-heading">Shop</div>
+        <ul class="footer-links">
+          <li><a href="category.html">All Products</a></li>
+          <li><a href="category.html?cat=Serum">Serums</a></li>
+          <li><a href="category.html?cat=Moisturizer">Moisturizers</a></li>
+          <li><a href="category.html?cat=Sunscreen">Sunscreen</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-heading">Help</div>
+        <ul class="footer-links">
+          <li><a href="contact.html">Contact Us</a></li>
+          <li><a href="index.html#faq">FAQ</a></li>
+          <li><a href="contact.html">Returns</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-heading">Contact</div>
+        <ul class="footer-links">
+          <li><a href="https://t.me/your_telegram" target="_blank">✈️ Telegram</a></li>
+          <li><a href="https://facebook.com/yourpage" target="_blank">👤 Facebook</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="footer-copy">© 2025 LUMIÈRE Luxury Skincare Myanmar.</div>
+      <div class="footer-payments"><span>COD</span><span style="color:rgba(255,255,255,0.2);">·</span><span>Wave Pay</span><span style="color:rgba(255,255,255,0.2);">·</span><span>KBZ Pay</span></div>
+    </div>
+  </div>
+</footer>
+
+<!-- Floating Buttons -->
+<a href="https://t.me/your_telegram" target="_blank" rel="noopener" class="floating-telegram" aria-label="Chat on Telegram">✈️</a>
+<button class="floating-top" aria-label="Back to top">↑</button>
+
+<!-- ════════════════════════════════════════════════════
+     SCRIPTS
+════════════════════════════════════════════════════ -->
+<script src="assets/js/discount.js"></script>
+<script src="assets/js/cart.js"></script>
+<script src="assets/js/wishlist.js"></script>
+<script src="assets/js/products.js"></script>
+<script src="assets/js/search.js"></script>
+<script src="assets/js/app.js"></script>
+
+<script>
+  /* Extra product-page logic after app boots */
+  document.addEventListener('DOMContentLoaded', () => {
+    /* Show recently-viewed if exists */
+    const viewed = JSON.parse(localStorage.getItem('lumiere_viewed') || '[]');
+    if (viewed.length > 1) {
+      const sec = document.getElementById('recently-viewed-section');
+      if (sec) sec.style.display = '';
+    }
+  });
+
+  /* Populate details table once product data available */
+  window._onProductReady = function(product) {
+    /* Breadcrumb */
+    const catEl  = document.getElementById('breadcrumb-category');
+    const nameEl = document.getElementById('breadcrumb-name');
+    if (catEl)  { catEl.textContent = product.category; catEl.href = `category.html?cat=${encodeURIComponent(product.category)}`; }
+    if (nameEl) nameEl.textContent  = product.name_en || product.name_mm;
+
+    /* Sold count */
+    const soldEl = document.getElementById('product-sold-text');
+    if (soldEl && product.sold_count > 0) {
+      soldEl.textContent = `${product.sold_count.toLocaleString()} sold`;
+    }
+
+    /* Description tab */
+    const descEl = document.getElementById('tab-desc-content');
+    if (descEl) descEl.textContent = product.full_description_mm || product.short_description_mm || '';
+
+    /* Benefits as ingredient tags */
+    const benfEl = document.getElementById('tab-ingredients-content');
+    if (benfEl) {
+      const all = [product.benefits, product.ingredients].filter(Boolean).join(', ');
+      benfEl.innerHTML = all.split(',').filter(Boolean).map(item =>
+        `<span class="ingredient-tag">${item.trim()}</span>`
+      ).join(' ');
+    }
+
+    /* Details table */
+    const table = document.getElementById('tab-details-table');
+    if (table) {
+      const rows = [
+        ['Brand',           product.brand],
+        ['SKU',             product.product_code],
+        ['Category',        product.category],
+        ['Size / Volume',   product.size],
+        ['Skin Type',       product.skin_type],
+        ['Country',         product.country_of_origin],
+        ['Stock',           parseInt(product.stock_quantity) > 0 ? `${product.stock_quantity} units` : 'Out of Stock'],
+        ['Benefits',        product.benefits],
+      ].filter(([, val]) => val);
+
+      table.innerHTML = rows.map(([label, val]) => `
+        <tr style="border-bottom:1px solid var(--border-soft);">
+          <td style="padding:var(--space-3) var(--space-4);font-size:var(--text-sm);font-weight:600;color:var(--text-muted);white-space:nowrap;width:40%;">${label}</td>
+          <td style="padding:var(--space-3) var(--space-4);font-size:var(--text-sm);color:var(--text-soft);">${val}</td>
+        </tr>`).join('');
+    }
+
+    /* Flash sale timer on product */
+    const priceInfo = window.DiscountSystem?.calculatePrice(product);
+    if (priceInfo?.isFlashSale && product.discount_end) {
+      const wrap   = document.getElementById('product-sale-timer-wrap');
+      const timerEl = document.getElementById('product-sale-timer');
+      if (wrap && timerEl) {
+        timerEl.innerHTML = DiscountSystem.buildTimerHTML('product-sale-timer-inner');
+        wrap.style.display = '';
+        const inner = document.getElementById('product-sale-timer-inner');
+        if (inner) DiscountSystem.startTimer(inner, product.discount_end);
+      }
+    }
+
+    /* Meta chip cleanup */
+    const sizeEl   = document.getElementById('product-size');
+    const originEl = document.getElementById('product-origin');
+    if (sizeEl && !product.size)             sizeEl.closest('.meta-chip')?.remove();
+    if (originEl && !product.country_of_origin) originEl.closest('.meta-chip')?.remove();
+  };
+</script>
+
+</body>
+</html>
+

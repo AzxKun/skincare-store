@@ -1,0 +1,120 @@
+{
+  "store_name": "TEST",
+  "store_tagline": "TEST မြန်မာ ",
+  "store_description": "Premium luxury skincare curated for discerning skin. Authentic products, direct import.",
+
+  "contact": {
+    "telegram_username": "@Hayythithaw",
+    "telegram_channel": "your_channel",
+    "facebook_page": "https://facebook.com/yourpage",
+    "viber": "+959xxxxxxxxx",
+    "phone": "+959xxxxxxxxx",
+    "email": "hello@lumiere.com.mm"
+  },
+
+  "currency": {
+    "code": "MMK",
+    "symbol": "K",
+    "format": "symbol_before",
+    "thousands_separator": ",",
+    "decimal_separator": "."
+  },
+
+  "google_sheets": {
+    "sheet_id": "18APCzYnE1pa8I26YrGD6_Iqz48QJRJwZE0HbVu08VHo",
+    "api_key": "YOUR_GOOGLE_API_KEY_HERE",
+    "sheet_name": "Products",
+    "range": "A1:Z1000"
+  },
+
+  "hero": {
+    "video_url": "",
+    "slides": [
+      {
+        "image": "assets/images/hero-1.jpg",
+        "title": "Luxury Skincare",
+        "subtitle": "သင့်အသားအရေအတွက် အကောင်းဆုံး",
+        "cta": "Shop Now"
+      },
+      {
+        "image": "assets/images/hero-2.jpg",
+        "title": "New Arrivals",
+        "subtitle": "ထွက်သစ် ကုန်ပစ္စည်းများ",
+        "cta": "Explore"
+      },
+      {
+        "image": "assets/images/hero-3.jpg",
+        "title": "Flash Sale",
+        "subtitle": "အချိန်ကန့်သတ် လျော့ဈေး",
+        "cta": "Get Offer"
+      }
+    ]
+  },
+
+  "payment": {
+    "enable_cod": true,
+    "enable_wavepay": true,
+    "enable_kbzpay": true,
+    "enable_bank_transfer": true,
+    "bank_name": "KBZ Bank",
+    "bank_account": "xxx-xxxx-xxxx",
+    "bank_account_name": "Your Name"
+  },
+
+  "shipping": {
+    "fee": 3000,
+    "free_shipping_threshold": 100000,
+    "fee_label": "Yangon Standard",
+    "express_fee": 5000,
+    "express_label": "Express Delivery"
+  },
+
+  "features": {
+    "dark_mode": true,
+    "pwa": true,
+    "ai_quiz": true,
+    "compare": true,
+    "wishlist": true,
+    "recently_viewed": true,
+    "view_count": true,
+    "confetti_on_order": true,
+    "flash_sale": true
+  },
+
+  "stock_rules": {
+    "low_stock_threshold": 20,
+    "out_of_stock_threshold": 0
+  },
+
+  "seo": {
+    "base_url": "https://yourdomain.pages.dev",
+    "og_image": "assets/images/og-image.jpg",
+    "twitter_handle": "@yourstore"
+  },
+
+  "theme": {
+    "colors": {
+      "luxury_pink": "#F8D7E6",
+      "rose_gold": "#D4AF37",
+      "champagne": "#FFF5EE",
+      "black": "#0D0D0D",
+      "luxury_red": "#A3002A"
+    },
+    "font_display": "Playfair Display",
+    "font_body": "Noto Sans Myanmar",
+    "font_accent": "Cormorant Garamond"
+  },
+
+  "analytics": {
+    "google_analytics": "",
+    "facebook_pixel": ""
+  },
+
+  "social_proof": {
+    "total_customers": "10,000+",
+    "products_sold": "50,000+",
+    "rating": "4.9",
+    "reviews_count": "2,800+"
+  }
+}
+

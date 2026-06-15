@@ -1,96 +1,849 @@
 <!DOCTYPE html>
-<html lang="my">
+<html lang="my" data-theme="light">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PLACE-HOLDER | အသားအရေထိန်းပစ္စည်းများ</title>
-    <link rel="stylesheet" href="css/style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <meta name="theme-color" content="#0D0D0D" />
+
+  <!-- SEO -->
+  <title>LUMIÈRE — Luxury Skincare Myanmar | လူဇ်ရှဲ အသားအရေ ထုတ်ကုန်</title>
+  <meta name="description" content="Myanmar's premier luxury skincare destination. Authentic imported products — SK-II, Laneige, Sulwhasoo, Estée Lauder & more. COD available. ✈️ Telegram ordering." />
+  <meta name="keywords"    content="luxury skincare myanmar, SK-II myanmar, laneige myanmar, face serum myanmar, မျက်နှာ ထုတ်ကုန်, အသားအရေ" />
+  <link rel="canonical"   href="https://yourdomain.pages.dev/" />
+
+  <!-- Open Graph -->
+  <meta property="og:type"        content="website" />
+  <meta property="og:title"       content="LUMIÈRE — Luxury Skincare Myanmar" />
+  <meta property="og:description" content="Premium imported skincare with Telegram ordering & COD." />
+  <meta property="og:image"       content="assets/images/og-image.jpg" />
+  <meta property="og:url"         content="https://yourdomain.pages.dev/" />
+  <meta property="og:site_name"   content="LUMIÈRE" />
+
+  <!-- Twitter -->
+  <meta name="twitter:card"        content="summary_large_image" />
+  <meta name="twitter:title"       content="LUMIÈRE Luxury Skincare" />
+  <meta name="twitter:description" content="Myanmar's finest skincare store." />
+  <meta name="twitter:image"       content="assets/images/og-image.jpg" />
+
+  <!-- PWA -->
+  <link rel="manifest" href="manifest.json" />
+  <link rel="apple-touch-icon" href="assets/icons/icon-192.png" />
+  <meta name="apple-mobile-web-app-capable"          content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="apple-mobile-web-app-title"            content="LUMIÈRE" />
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="assets/icons/favicon.png" />
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="assets/css/style.css" />
+  <link rel="stylesheet" href="assets/css/animations.css" />
+  <link rel="stylesheet" href="assets/css/luxury-theme.css" />
+
+  <!-- Prevent dark mode flash -->
+  <script>
+    (function(){
+      var t = localStorage.getItem('lumiere_theme') || 'light';
+      document.documentElement.setAttribute('data-theme', t);
+    })();
+  </script>
+
+  <!-- Font preloads -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+  <!-- Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Store",
+    "name": "LUMIÈRE",
+    "description": "Luxury skincare store in Myanmar",
+    "url": "https://yourdomain.pages.dev",
+    "telephone": "+959xxxxxxxxx",
+    "priceRange": "$$",
+    "address": { "@type": "PostalAddress", "addressCountry": "MM" }
+  }
+  </script>
 </head>
+
 <body>
-    <header class="site-header">
-        <div class="container">
-            <a href="index.html" class="brand-logo">✨ PLACE-HOLDER</a>
-            <div class="search-box">
-                <input type="text" id="searchInput" placeholder="ပစ္စည်းကုဒ် / အမည် ရှာရန်... (SKU or Name)" autocomplete="off">
-                <button id="searchBtn" aria-label="ရှာမည်">🔍</button>
+
+<!-- ════════════════════════════════════════════════════════
+     LOADING SCREEN
+════════════════════════════════════════════════════════ -->
+<div id="loading-screen" role="status" aria-label="Loading">
+  <div class="loading-logo shimmer-text">LUMIÈRE</div>
+  <div class="loading-bar-track">
+    <div class="loading-bar-fill"></div>
+  </div>
+  <div class="loading-tagline">Luxury Skincare · Myanmar</div>
+  <div class="css-particles">
+    <span></span><span></span><span></span><span></span><span></span>
+    <span></span><span></span><span></span><span></span><span></span>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════════════════════
+     NAVBAR
+════════════════════════════════════════════════════════ -->
+<header class="navbar" role="banner">
+  <div class="container">
+    <div class="navbar-inner">
+
+      <!-- Logo -->
+      <a href="index.html" class="navbar-logo" aria-label="LUMIÈRE Home">
+        <span class="logo-text">LUMIÈRE</span>
+        <span class="logo-sub">Luxury Skincare · MM</span>
+      </a>
+
+      <!-- Desktop Nav Links -->
+      <nav class="navbar-links" aria-label="Main navigation">
+        <a href="index.html">Home</a>
+        <a href="category.html">Shop All</a>
+        <a href="category.html?cat=Serum">Serums</a>
+        <a href="category.html?cat=Moisturizer">Moisturizers</a>
+        <a href="category.html?cat=Sunscreen">Sunscreen</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+
+      <!-- Actions -->
+      <div class="navbar-actions">
+
+        <!-- Search -->
+        <button class="nav-icon-btn" data-open-search aria-label="Search">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>
+          </svg>
+        </button>
+
+        <!-- Theme Toggle -->
+        <button class="theme-toggle nav-icon-btn" data-toggle-theme aria-label="Toggle dark mode">
+          <span data-theme-icon>🌙</span>
+        </button>
+
+        <!-- Wishlist -->
+        <a href="wishlist.html" class="nav-icon-btn" aria-label="Wishlist">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+          </svg>
+          <span class="nav-badge" data-wishlist-badge style="display:none;">0</span>
+        </a>
+
+        <!-- Cart -->
+        <button class="nav-icon-btn" data-open-cart aria-label="Shopping cart">
+          <svg width="18" height="18" data-cart-icon viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/>
+            <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/>
+          </svg>
+          <span class="nav-badge" data-cart-badge style="display:none;">0</span>
+        </button>
+
+        <!-- Mobile Hamburger -->
+        <button class="nav-hamburger" aria-label="Open menu" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- Mobile Nav Drawer -->
+<nav class="mobile-nav" aria-label="Mobile navigation">
+  <a href="index.html">🏠 Home</a>
+  <a href="category.html">🛍️ Shop All</a>
+  <a href="category.html?cat=Serum">💧 Serums</a>
+  <a href="category.html?cat=Moisturizer">🌸 Moisturizers</a>
+  <a href="category.html?cat=Sunscreen">☀️ Sunscreen</a>
+  <a href="wishlist.html">❤️ Wishlist</a>
+  <a href="contact.html">✉️ Contact</a>
+  <hr style="border:none;border-top:1px solid var(--border-soft);margin:var(--space-4) 0;" />
+  <button class="btn btn-outline w-full" data-toggle-theme>
+    <span data-theme-icon>🌙</span>
+    <span data-theme-label>Dark Mode</span>
+  </button>
+</nav>
+
+<!-- ════════════════════════════════════════════════════════
+     HERO SECTION
+════════════════════════════════════════════════════════ -->
+<section class="hero" aria-label="Hero" id="hero">
+
+  <!-- Particle Canvas -->
+  <canvas id="particles-canvas" aria-hidden="true"></canvas>
+
+  <!-- Slides -->
+  <div class="hero-slides" aria-live="polite">
+
+    <!-- Slide 1 -->
+    <div class="hero-slide active" aria-hidden="false">
+      <img
+        src="https://images.unsplash.com/photo-1620916566398-39f1143ab7be?w=1600&q=80"
+        alt="Luxury skincare"
+        class="hero-slide-bg"
+        loading="eager"
+        fetchpriority="high"
+      />
+      <div class="hero-slide-overlay"></div>
+    </div>
+
+    <!-- Slide 2 -->
+    <div class="hero-slide" aria-hidden="true">
+      <img
+        src="https://images.unsplash.com/photo-1556228578-0d85b1a4d571?w=1600&q=80"
+        alt="Premium skincare products"
+        class="hero-slide-bg"
+        loading="lazy"
+      />
+      <div class="hero-slide-overlay"></div>
+    </div>
+
+    <!-- Slide 3 -->
+    <div class="hero-slide" aria-hidden="true">
+      <img
+        src="https://images.unsplash.com/photo-1598440947619-2c35fc9aa908?w=1600&q=80"
+        alt="Luxury beauty collection"
+        class="hero-slide-bg"
+        loading="lazy"
+      />
+      <div class="hero-slide-overlay"></div>
+    </div>
+  </div>
+
+  <!-- Hero Content -->
+  <div class="container">
+    <div class="hero-content">
+
+      <div class="hero-eyebrow hero-fade-in">
+        <span class="hero-eyebrow-line"></span>
+        NEW COLLECTION 2025
+        <span class="hero-eyebrow-line"></span>
+      </div>
+
+      <h1 class="hero-title hero-text-reveal">
+        <span class="line">Luxury</span>
+        <span class="line"><em class="italic">Skincare</em></span>
+        <span class="line">for You</span>
+      </h1>
+
+      <p class="hero-subtitle hero-fade-in delay-1">
+        သင့်အသားအရေအတွက် အကောင်းဆုံးသော ကုန်ပစ္စည်းများ —
+        Authentic imports, premium quality.
+      </p>
+
+      <div class="hero-cta-group hero-fade-in delay-2">
+        <a href="category.html" class="btn btn-primary btn-lg shimmer-hover">
+          ✨ Shop Collection
+        </a>
+        <button class="btn btn-outline" data-open-quiz
+          style="color:var(--white);border-color:rgba(255,255,255,0.3);backdrop-filter:blur(4px);">
+          🔍 Find My Skincare
+        </button>
+      </div>
+
+      <!-- Live viewers -->
+      <div style="margin-top:var(--space-8);display:flex;align-items:center;gap:var(--space-3);" class="hero-fade-in delay-3">
+        <div class="live-dot">
+          <span class="live-dot-indicator"></span>
+          <span style="font-size:var(--text-xs);color:rgba(255,255,255,0.6);font-family:var(--font-ui);">
+            <span id="live-viewers">12</span> people viewing now
+          </span>
+        </div>
+        <span style="color:rgba(255,255,255,0.2);">·</span>
+        <span style="font-size:var(--text-xs);color:rgba(255,255,255,0.6);font-family:var(--font-ui);">
+          Free shipping over K 100,000
+        </span>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Slide Controls -->
+  <div class="hero-controls" aria-label="Slide controls">
+    <button class="hero-prev" aria-label="Previous slide">&#8249;</button>
+    <div class="hero-dots" role="tablist"></div>
+    <button class="hero-next" aria-label="Next slide">&#8250;</button>
+  </div>
+
+  <!-- Scroll Hint -->
+  <div class="hero-scroll-hint" aria-hidden="true">
+    <span class="hero-scroll-line"></span>
+    Scroll
+  </div>
+
+</section>
+
+<!-- ════════════════════════════════════════════════════════
+     BRAND MARQUEE
+════════════════════════════════════════════════════════ -->
+<div class="brand-marquee" aria-label="Featured brands" aria-hidden="true">
+  <div class="marquee-wrap">
+    <div class="marquee-track">
+      <!-- Items duplicated for seamless loop -->
+      <span class="marquee-item"><span class="marquee-dot"></span> SK-II</span>
+      <span class="marquee-item"><span class="marquee-dot"></span> Laneige</span>
+      <span class="marquee-item"><span class="marquee-dot"></span> Sulwhasoo</span>
+      <span class="marquee-item"><span class="marquee-dot"></span> Estée Lauder</span>
+      <span class="marquee-item"><span class="marquee-dot"></span> Lancôme</span>
+      <span class="marquee-item"><span class="marquee-dot"></span> Anessa</span>
+      <span class="marquee-item"><span class="marquee-dot"></span> CeraVe</span>
+      <span class="marquee-item"><span class="marquee-dot"></span> The Ordinary</span>
+      <span class="marquee-item"><span class="marquee-dot"></span> Kiehl's</span>
+      <span class="marquee-item"><span class="marquee-dot"></span> Some By Mi</span>
+      <span class="marquee-item"><span class="marquee-dot"></span> Cosrx</span>
+      <span class="marquee-item"><span class="marquee-dot"></span> La Mer</span>
+      <!-- Duplicate -->
+      <span class="marquee-item"><span class="marquee-dot"></span> SK-II</span>
+      <span class="marquee-item"><span class="marquee-dot"></span> Laneige</span>
+      <span class="marquee-item"><span class="marquee-dot"></span> Sulwhasoo</span>
+      <span class="marquee-item"><span class="marquee-dot"></span> Estée Lauder</span>
+      <span class="marquee-item"><span class="marquee-dot"></span> Lancôme</span>
+      <span class="marquee-item"><span class="marquee-dot"></span> Anessa</span>
+      <span class="marquee-item"><span class="marquee-dot"></span> CeraVe</span>
+      <span class="marquee-item"><span class="marquee-dot"></span> The Ordinary</span>
+      <span class="marquee-item"><span class="marquee-dot"></span> Kiehl's</span>
+      <span class="marquee-item"><span class="marquee-dot"></span> Some By Mi</span>
+      <span class="marquee-item"><span class="marquee-dot"></span> Cosrx</span>
+      <span class="marquee-item"><span class="marquee-dot"></span> La Mer</span>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════════════════════
+     TRUST STRIP
+════════════════════════════════════════════════════════ -->
+<div class="trust-strip">
+  <div class="container">
+    <div class="trust-grid reveal-stagger">
+      <div class="trust-item">
+        <div class="trust-icon">✅</div>
+        <div class="trust-label">100% Authentic</div>
+        <div class="trust-sub">Direct import only</div>
+      </div>
+      <div class="trust-item">
+        <div class="trust-icon">🚚</div>
+        <div class="trust-label">COD Available</div>
+        <div class="trust-sub">Pay on delivery</div>
+      </div>
+      <div class="trust-item">
+        <div class="trust-icon">💎</div>
+        <div class="trust-label">Premium Quality</div>
+        <div class="trust-sub">Luxury brands only</div>
+      </div>
+      <div class="trust-item">
+        <div class="trust-icon">✈️</div>
+        <div class="trust-label">Telegram Order</div>
+        <div class="trust-sub">Fast & easy</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════════════════════
+     FEATURED PRODUCTS
+════════════════════════════════════════════════════════ -->
+<section class="section featured-section" id="products" aria-label="Products">
+  <div class="container">
+
+    <div class="section-header reveal">
+      <span class="eyebrow">Curated For You</span>
+      <h2 class="section-title">Our Collection</h2>
+      <p class="section-subtitle">Handpicked luxury skincare — authentic, imported, delivered.</p>
+    </div>
+
+    <!-- Tab Navigation -->
+    <div class="products-tabs reveal" data-tabs aria-label="Product categories">
+      <button class="tab-btn active" data-tab-featured="featured">⭐ Featured</button>
+      <button class="tab-btn" data-tab-featured="bestsellers">🔥 Best Sellers</button>
+      <button class="tab-btn" data-tab-featured="new">✨ New Arrivals</button>
+    </div>
+
+    <!-- Products Grid -->
+    <div class="grid-products" id="featured-grid" role="list" aria-label="Featured products">
+      <!-- Populated by app.js -->
+    </div>
+
+    <div style="text-align:center;margin-top:var(--space-10);" class="reveal">
+      <a href="category.html" class="btn btn-dark btn-lg">
+        View All Products →
+      </a>
+    </div>
+
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════════════════
+     FLASH SALE
+════════════════════════════════════════════════════════ -->
+<section class="section flash-sale-section flash-sale-bg" id="flash-sale-section" aria-label="Flash sale">
+  <div class="container">
+
+    <div class="flash-sale-header">
+      <div class="reveal">
+        <div class="flash-sale-label">
+          <span class="live-dot-indicator"></span>
+          FLASH SALE
+        </div>
+        <h2 class="section-title" style="color:var(--text);">Limited Time Offers</h2>
+        <p class="section-subtitle">အချိန်ကန့်သတ် လျော့ဈေး — Grab before it ends!</p>
+      </div>
+
+      <!-- Timer -->
+      <div class="reveal" style="text-align:right;">
+        <div style="font-family:var(--font-ui);font-size:var(--text-xs);letter-spacing:0.1em;text-transform:uppercase;color:var(--text-muted);margin-bottom:var(--space-2);">
+          Ends in:
+        </div>
+        <div id="flash-timer-mount"></div>
+      </div>
+    </div>
+
+    <div class="grid-products" id="flash-sale-grid" role="list" aria-label="Flash sale products">
+      <!-- Populated by app.js -->
+    </div>
+
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════════════════
+     NEW ARRIVALS (asymmetric grid)
+════════════════════════════════════════════════════════ -->
+<section class="section" aria-label="New arrivals" style="background:var(--surface);">
+  <div class="container">
+
+    <div class="section-header reveal">
+      <span class="eyebrow">Just Landed</span>
+      <h2 class="section-title">New Arrivals</h2>
+      <p class="section-subtitle">ထွက်သစ် ကုန်ပစ္စည်းများ — The latest in luxury skincare</p>
+    </div>
+
+    <div class="new-arrivals-grid" id="new-arrivals-grid" role="list">
+      <!-- Populated by app.js -->
+    </div>
+
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════════════════
+     AI SKINCARE QUIZ CTA
+════════════════════════════════════════════════════════ -->
+<section class="section-sm" style="background:linear-gradient(135deg,var(--black) 0%,#1A0A0F 100%);overflow:hidden;position:relative;">
+  <div style="position:absolute;inset:0;background:radial-gradient(ellipse at 30% 50%,rgba(212,175,55,0.08) 0%,transparent 60%);pointer-events:none;"></div>
+  <div class="container" style="text-align:center;position:relative;">
+    <span class="eyebrow" style="color:var(--rose-gold);">Personalized For You</span>
+    <h2 class="section-title reveal" style="color:var(--white);margin:var(--space-4) 0;">
+      Find Your Perfect <em style="color:var(--rose-gold);font-style:italic;">Skincare</em>
+    </h2>
+    <p class="section-subtitle reveal" style="color:rgba(255,255,255,0.6);margin-bottom:var(--space-8);">
+      Take our 60-second AI quiz to get personalised product recommendations.
+    </p>
+    <button class="btn btn-primary btn-lg glow-gold reveal" data-open-quiz>
+      💎 Start Skin Quiz — Free
+    </button>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════════════════
+     BRAND STORY
+════════════════════════════════════════════════════════ -->
+<section class="section brand-story" aria-label="Our story">
+  <div class="container">
+    <div class="brand-story-grid">
+
+      <!-- Visual -->
+      <div class="brand-story-visual reveal-left">
+        <img
+          src="https://images.unsplash.com/photo-1612817288484-6f916006741a?w=800&q=80"
+          alt="Luxury skincare products"
+          class="brand-story-img-main brand-image-frame"
+          loading="lazy"
+        />
+        <div class="brand-story-badge">
+          <span class="brand-story-badge-num">5+</span>
+          <span class="brand-story-badge-text">Years of Trust</span>
+        </div>
+      </div>
+
+      <!-- Text -->
+      <div class="brand-story-text reveal-right">
+        <span class="eyebrow">Our Story</span>
+        <h2 class="section-title">Luxury That Loves Your Skin</h2>
+
+        <div class="brand-story-body">
+          <p>
+            We believe every person deserves access to the world's finest skincare.
+            LUMIÈRE was born from a passion for authentic luxury beauty —
+            sourced directly from Korea, Japan, France, and the USA.
+          </p>
+          <p>
+            မြန်မာနိုင်ငံတွင် စစ်မှန်သော ယုံကြည်ရသော လူဇ်ရှဲ အသားအရေ ထုတ်ကုန်များကို
+            ရရှိနိုင်ရန် ကျွန်ုပ်တို့ ကတိပြုပါသည်။
+          </p>
+        </div>
+
+        <!-- Stats -->
+        <div class="brand-stats">
+          <div>
+            <div class="brand-stat-num" data-counter="10000" data-counter-suffix="+">&nbsp;</div>
+            <div class="brand-stat-label">Happy Customers</div>
+          </div>
+          <div>
+            <div class="brand-stat-num" data-counter="200" data-counter-suffix="+">&nbsp;</div>
+            <div class="brand-stat-label">Premium Products</div>
+          </div>
+          <div>
+            <div class="brand-stat-num" data-counter="4.9" data-counter-suffix="★" data-counter-decimal="1">&nbsp;</div>
+            <div class="brand-stat-label">Average Rating</div>
+          </div>
+        </div>
+
+        <a href="contact.html" class="btn btn-dark">
+          Contact Us →
+        </a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════════════════
+     RECENTLY VIEWED
+════════════════════════════════════════════════════════ -->
+<section class="section recently-viewed-section" id="recently-viewed-section" style="display:none;" aria-label="Recently viewed">
+  <div class="container">
+    <div class="section-header reveal">
+      <span class="eyebrow">Your History</span>
+      <h2 class="section-title">Recently Viewed</h2>
+    </div>
+    <div class="grid-products" id="recently-viewed-products">
+      <!-- Populated by app.js -->
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════════════════
+     CUSTOMER REVIEWS
+════════════════════════════════════════════════════════ -->
+<section class="section reviews-section" aria-label="Customer reviews">
+  <div class="container">
+
+    <div class="section-header reveal">
+      <span class="eyebrow">Real Stories</span>
+      <h2 class="section-title">Loved by Thousands</h2>
+      <p class="section-subtitle">ဖောက်သည်များ၏ အမှန်တကယ် အကြောင်းပြချက်များ</p>
+    </div>
+
+    <!-- Overall rating -->
+    <div style="text-align:center;margin-bottom:var(--space-10);" class="reveal">
+      <div style="font-family:var(--font-display);font-size:5rem;font-weight:900;color:var(--rose-gold);line-height:1;">4.9</div>
+      <div style="display:flex;justify-content:center;gap:4px;font-size:1.5rem;color:var(--rose-gold);margin:var(--space-2) 0;">★★★★★</div>
+      <div style="font-family:var(--font-ui);font-size:var(--text-sm);color:var(--text-muted);">Based on 2,800+ verified reviews</div>
+    </div>
+
+    <div class="reviews-grid reveal-stagger">
+
+      <!-- Review 1 -->
+      <article class="review-card">
+        <div class="review-card-quote">"</div>
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">The SK-II Facial Treatment Essence completely transformed my skin. After just 3 weeks, I noticed such a visible difference in brightness and texture.</p>
+        <p class="review-mm">SK-II ကို သုံးပြီး ၃ ပတ်အတွင်း မျက်နှာတောက်ပလာတာ အံ့သြမိပါတယ်!</p>
+        <div class="review-author">
+          <div class="review-avatar">M</div>
+          <div>
+            <div class="review-name">Ma Khin Thazin</div>
+            <div class="review-location">📍 Yangon</div>
+            <div class="review-verified">✓ Verified Purchase</div>
+          </div>
+        </div>
+      </article>
+
+      <!-- Review 2 -->
+      <article class="review-card">
+        <div class="review-card-quote">"</div>
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">Fast delivery, authentic products, and the Telegram ordering is so convenient. I've been buying from LUMIÈRE for over a year now and never disappointed.</p>
+        <p class="review-mm">Telegram မှ မှာယူတာ လွယ်ကူပြီး ကုန်ပစ္စည်းတွေလည်း အစစ်အမှန်ဆိုတာ သေချာပါတယ်။</p>
+        <div class="review-author">
+          <div class="review-avatar">A</div>
+          <div>
+            <div class="review-name">Aye Myat Thu</div>
+            <div class="review-location">📍 Mandalay</div>
+            <div class="review-verified">✓ Verified Purchase</div>
+          </div>
+        </div>
+      </article>
+
+      <!-- Review 3 -->
+      <article class="review-card">
+        <div class="review-card-quote">"</div>
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">The Laneige Water Sleeping Mask is a game changer for dry skin. Woke up with the most plump, dewy skin. Will definitely reorder.</p>
+        <p class="review-mm">Laneige Mask ကို တစ်ညလောင်း လိမ်းပြီး နေ့တိုင်း အသားအရေ ကောင်းလာပါတယ်!</p>
+        <div class="review-author">
+          <div class="review-avatar">N</div>
+          <div>
+            <div class="review-name">Nwe Ni Win</div>
+            <div class="review-location">📍 Naypyidaw</div>
+            <div class="review-verified">✓ Verified Purchase</div>
+          </div>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════════════════
+     PAYMENT METHODS
+════════════════════════════════════════════════════════ -->
+<section class="section-sm" style="background:var(--surface);border-top:1px solid var(--border-soft);">
+  <div class="container">
+    <div style="text-align:center;margin-bottom:var(--space-8);" class="reveal">
+      <span class="eyebrow">Secure Payments</span>
+      <h3 style="font-family:var(--font-display);font-size:var(--text-2xl);font-weight:700;margin-top:var(--space-3);">
+        We Accept
+      </h3>
+    </div>
+    <div style="display:flex;justify-content:center;gap:var(--space-6);flex-wrap:wrap;align-items:center;" class="reveal-stagger">
+      <div style="display:flex;flex-direction:column;align-items:center;gap:var(--space-2);">
+        <div style="width:64px;height:40px;border-radius:var(--radius);background:var(--surface-2);border:1px solid var(--border-soft);display:flex;align-items:center;justify-content:center;font-size:1.5rem;">🚗</div>
+        <span style="font-size:var(--text-xs);color:var(--text-muted);font-family:var(--font-ui);">Cash on Delivery</span>
+      </div>
+      <div style="display:flex;flex-direction:column;align-items:center;gap:var(--space-2);">
+        <div style="width:64px;height:40px;border-radius:var(--radius);background:#00AEEF;display:flex;align-items:center;justify-content:center;color:white;font-weight:700;font-size:0.75rem;font-family:var(--font-ui);">Wave<br>Pay</div>
+        <span style="font-size:var(--text-xs);color:var(--text-muted);font-family:var(--font-ui);">Wave Pay</span>
+      </div>
+      <div style="display:flex;flex-direction:column;align-items:center;gap:var(--space-2);">
+        <div style="width:64px;height:40px;border-radius:var(--radius);background:#e60026;display:flex;align-items:center;justify-content:center;color:white;font-weight:700;font-size:0.75rem;font-family:var(--font-ui);">KBZ<br>Pay</div>
+        <span style="font-size:var(--text-xs);color:var(--text-muted);font-family:var(--font-ui);">KBZ Pay</span>
+      </div>
+      <div style="display:flex;flex-direction:column;align-items:center;gap:var(--space-2);">
+        <div style="width:64px;height:40px;border-radius:var(--radius);background:var(--surface-2);border:1px solid var(--border-soft);display:flex;align-items:center;justify-content:center;font-size:1.5rem;">🏦</div>
+        <span style="font-size:var(--text-xs);color:var(--text-muted);font-family:var(--font-ui);">Bank Transfer</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════════════════
+     FAQ
+════════════════════════════════════════════════════════ -->
+<section class="section faq-section" id="faq" aria-label="FAQ">
+  <div class="container">
+    <div class="faq-grid">
+
+      <!-- Sidebar -->
+      <div class="faq-sidebar reveal-left">
+        <span class="eyebrow">Got Questions?</span>
+        <h2 class="section-title">Frequently Asked</h2>
+        <p>Everything you need to know about ordering, shipping, and our products.</p>
+        <a href="contact.html" class="btn btn-primary">
+          ✈️ Ask via Telegram
+        </a>
+      </div>
+
+      <!-- FAQ List -->
+      <div class="faq-list reveal-right">
+
+        <div class="faq-item">
+          <div class="faq-question">
+            <div>
+              <div class="faq-question-text">Are your products 100% authentic?</div>
+              <div class="faq-question-mm">ကုန်ပစ္စည်းတွေ စစ်မှန်ပါသလား?</div>
             </div>
-        </div>
-    </header>
-
-    <section class="hero">
-        <div class="container">
-            <h2>သင့်အသားအရေအတွက် အကောင်းဆုံးပစ္စည်းများ</h2>
-            <p>အရည်အသွေးမြင့် Skincare များကို မြန်မာနိုင်ငံအတွင်း အိမ်အရောက်ပို့ဆောင်ပေးပါမည်။ (Premium skincare delivered across Myanmar.)</p>
-        </div>
-    </section>
-
-    <main class="container">
-        <div class="filter-bar" id="filterBar">
-            <button class="filter-chip active" data-filter="all">အားလုံး (All)</button>
-            <button class="filter-chip" data-filter="Cleanser">ဆပ်ပြာ (Cleanser)</button>
-            <button class="filter-chip" data-filter="Serum">ဆီရမ် (Serum)</button>
-            <button class="filter-chip" data-filter="Toner">တိုနာ (Toner)</button>
-            <button class="filter-chip" data-filter="Moisturizer">Moisturizer</button>
-            <button class="filter-chip" data-filter="Sunscreen">နေရောင်ကာ (Sunscreen)</button>
+            <div class="faq-icon">+</div>
+          </div>
+          <div class="faq-answer">
+            Yes! Every product we sell is 100% authentic and sourced directly from official distributors in Korea, Japan, France, and USA. We never sell counterfeit or grey-market products. ကုန်ပစ္စည်းတိုင်း စစ်မှန်သော တိုက်ရိုက် တင်သွင်းမှု ဖြစ်ပါသည်။
+          </div>
         </div>
 
-        <section id="featured-section" class="product-grid">
-            <div class="loading-spinner">
-                <div class="spinner"></div>
-                <p>ပစ္စည်းများကို ရယူနေသည်... (Loading products)</p>
+        <div class="faq-item">
+          <div class="faq-question">
+            <div>
+              <div class="faq-question-text">How do I place an order?</div>
+              <div class="faq-question-mm">ဘယ်လို မှာယူရမလဲ?</div>
             </div>
-        </section>
-    </main>
-
-    <footer class="site-footer">
-        <div class="container">
-            <p>© 2026 PLACE-HOLDER Myanmar</p>
+            <div class="faq-icon">+</div>
+          </div>
+          <div class="faq-answer">
+            Simply add items to your cart and click "Order via Telegram". Your order details will be automatically formatted and sent to our Telegram. We'll confirm within 30 minutes. Cart ထဲ ထည့်ပြီး Telegram မှ မှာယူနိုင်ပါသည်။
+          </div>
         </div>
-    </footer>
 
-    <script src="js/config.js"></script>
-    <script src="js/data.js"></script>
-    <script src="js/search.js"></script>
-    <script src="js/ui.js"></script>
-    <script src="js/telegram.js"></script>
-    <script>
-        document.addEventListener('DOMContentLoaded', async () => {
-            try {
-                await fetchProducts();
-                const featured = products.filter(p => p.featured).length ? products.filter(p => p.featured) : products;
-                renderProducts(featured);
-            } catch (e) {
-                document.getElementById('featured-section').innerHTML = '<p class="empty-state">အင်တာနက်ဆက်သွယ်မှုအား စစ်ဆေးပါ။ (Check your connection.)</p>';
-            }
+        <div class="faq-item">
+          <div class="faq-question">
+            <div>
+              <div class="faq-question-text">What payment methods do you accept?</div>
+              <div class="faq-question-mm">ငွေပေးချေနည်း ဘာတွေ လက်ခံသလဲ?</div>
+            </div>
+            <div class="faq-icon">+</div>
+          </div>
+          <div class="faq-answer">
+            We accept Cash on Delivery (COD), Wave Pay, KBZ Pay, and Bank Transfer. COD is available for Yangon delivery. ငွေသားနှင့် Wave Pay, KBZ Pay, ဘဏ်လွှဲ လက်ခံပါသည်။
+          </div>
+        </div>
 
-            // Filter buttons
-            document.querySelectorAll('.filter-chip').forEach(chip => {
-                chip.addEventListener('click', () => {
-                    document.querySelectorAll('.filter-chip').forEach(c => c.classList.remove('active'));
-                    chip.classList.add('active');
-                    const cat = chip.getAttribute('data-filter');
-                    if (cat === 'all') {
-                        renderProducts(products);
-                    } else {
-                        filterProducts({ category: cat });
-                    }
-                });
-            });
+        <div class="faq-item">
+          <div class="faq-question">
+            <div>
+              <div class="faq-question-text">What is your delivery time?</div>
+              <div class="faq-question-mm">ပို့ဆောင်ရေး ဘယ်နှစ်ရက် ကြာသလဲ?</div>
+            </div>
+            <div class="faq-icon">+</div>
+          </div>
+          <div class="faq-answer">
+            Yangon: 1-2 business days. Other regions: 3-5 business days. Express delivery available. ရန်ကုန်တွင် ၁-၂ ရက်၊ တစ်ပြည်နယ်လုံးတွင် ၃-၅ ရက် ကြာမည်ဖြစ်သည်။
+          </div>
+        </div>
 
-            // Search
-            const searchInput = document.getElementById('searchInput');
-            const searchBtn = document.getElementById('searchBtn');
-            function performSearch() { handleSearch(searchInput.value); }
-            searchBtn.addEventListener('click', performSearch);
-            let debounce;
-            searchInput.addEventListener('input', () => {
-                clearTimeout(debounce);
-                debounce = setTimeout(performSearch, 300);
-            });
-            searchInput.addEventListener('keypress', (e) => {
-                if (e.key === 'Enter') { clearTimeout(debounce); performSearch(); }
-            });
-        });
-    </script>
+        <div class="faq-item">
+          <div class="faq-question">
+            <div>
+              <div class="faq-question-text">Can I return a product?</div>
+              <div class="faq-question-mm">ကုန်ပစ္စည်း ပြန်ပို့လို့ ရသလား?</div>
+            </div>
+            <div class="faq-icon">+</div>
+          </div>
+          <div class="faq-answer">
+            If you receive a damaged or wrong item, contact us via Telegram within 24 hours with photos. We'll replace or refund immediately. ပျက်စီးနေသော သို့မဟုတ် မှားနေသော ကုန်ပစ္စည်းကို လက်ခံ၍ ၂၄ နာရီအတွင်း ဆက်သွယ်ပါ။
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════════════════
+     FOOTER
+════════════════════════════════════════════════════════ -->
+<footer class="footer" role="contentinfo">
+  <div class="container">
+    <div class="footer-grid">
+
+      <!-- Brand -->
+      <div class="footer-brand">
+        <div class="logo-text" style="font-family:var(--font-display);font-size:var(--text-2xl);font-weight:900;background:linear-gradient(135deg,var(--rose-gold),var(--rose-light));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;letter-spacing:0.1em;">
+          LUMIÈRE
+        </div>
+        <p class="footer-desc">
+          Myanmar's premier destination for authentic luxury skincare.
+          Sourced from the world's finest beauty brands.
+        </p>
+        <p style="font-family:var(--font-body);font-size:var(--text-sm);color:rgba(255,255,255,0.4);margin-top:var(--space-2);">
+          မြန်မာနိုင်ငံ၏ လူဇ်ရှဲ အသားအရေ ထုတ်ကုန် ဆိုင်
+        </p>
+        <div class="footer-social">
+          <a href="#" class="social-btn" aria-label="Facebook">f</a>
+          <a href="#" class="social-btn" aria-label="Instagram">📷</a>
+          <a href="#" class="social-btn" aria-label="Telegram">✈️</a>
+          <a href="#" class="social-btn" aria-label="Viber">📞</a>
+        </div>
+      </div>
+
+      <!-- Shop -->
+      <div>
+        <div class="footer-heading">Shop</div>
+        <ul class="footer-links">
+          <li><a href="category.html">All Products</a></li>
+          <li><a href="category.html?cat=Serum">Serums</a></li>
+          <li><a href="category.html?cat=Moisturizer">Moisturizers</a></li>
+          <li><a href="category.html?cat=Sunscreen">Sunscreen</a></li>
+          <li><a href="category.html?cat=Mask">Face Masks</a></li>
+          <li><a href="category.html?cat=Cleanser">Cleansers</a></li>
+        </ul>
+      </div>
+
+      <!-- Help -->
+      <div>
+        <div class="footer-heading">Help</div>
+        <ul class="footer-links">
+          <li><a href="contact.html">Contact Us</a></li>
+          <li><a href="#faq">FAQ</a></li>
+          <li><a href="contact.html">Shipping Info</a></li>
+          <li><a href="contact.html">Returns</a></li>
+          <li><a href="contact.html">Track Order</a></li>
+        </ul>
+      </div>
+
+      <!-- Contact -->
+      <div>
+        <div class="footer-heading">Contact</div>
+        <ul class="footer-links">
+          <li><a href="https://t.me/your_telegram" target="_blank" rel="noopener">✈️ Telegram</a></li>
+          <li><a href="viber://chat?number=+959xxxxxxxx">📱 Viber</a></li>
+          <li><a href="https://facebook.com/yourpage" target="_blank" rel="noopener">👤 Facebook</a></li>
+          <li><a href="tel:+959xxxxxxxx">📞 Call Us</a></li>
+        </ul>
+        <div style="margin-top:var(--space-6);">
+          <div style="font-family:var(--font-ui);font-size:var(--text-xs);letter-spacing:0.1em;text-transform:uppercase;color:rgba(255,255,255,0.4);margin-bottom:var(--space-3);">Hours</div>
+          <div style="font-size:var(--text-sm);color:rgba(255,255,255,0.5);">Mon–Sat · 9am–8pm</div>
+          <div style="font-size:var(--text-sm);color:rgba(255,255,255,0.5);">Sun · 10am–6pm</div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Bottom -->
+    <div class="footer-bottom">
+      <div class="footer-copy">
+        © 2025 LUMIÈRE Luxury Skincare Myanmar. All rights reserved.
+      </div>
+      <div class="footer-payments">
+        <span>COD</span>
+        <span style="color:rgba(255,255,255,0.2);">·</span>
+        <span>Wave Pay</span>
+        <span style="color:rgba(255,255,255,0.2);">·</span>
+        <span>KBZ Pay</span>
+        <span style="color:rgba(255,255,255,0.2);">·</span>
+        <span>Bank Transfer</span>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- ════════════════════════════════════════════════════════
+     FLOATING BUTTONS
+════════════════════════════════════════════════════════ -->
+
+<!-- Telegram -->
+<a
+  href="https://t.me/your_telegram"
+  target="_blank"
+  rel="noopener"
+  class="floating-telegram"
+  aria-label="Chat on Telegram"
+  title="Order on Telegram"
+>
+  ✈️
+</a>
+
+<!-- Back to Top -->
+<button class="floating-top" aria-label="Back to top">↑</button>
+
+<!-- ════════════════════════════════════════════════════════
+     SCRIPTS
+     Order: discount → cart → wishlist → products → search → app
+════════════════════════════════════════════════════════ -->
+<script src="assets/js/discount.js"></script>
+<script src="assets/js/cart.js"></script>
+<script src="assets/js/wishlist.js"></script>
+<script src="assets/js/products.js"></script>
+<script src="assets/js/search.js"></script>
+<script src="assets/js/app.js"></script>
+
+<!-- Inline: show recently-viewed section if items exist -->
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const viewed = JSON.parse(localStorage.getItem('lumiere_viewed') || '[]');
+    if (viewed.length > 0) {
+      const sec = document.getElementById('recently-viewed-section');
+      if (sec) sec.style.display = '';
+    }
+  });
+</script>
+
 </body>
 </html>
+

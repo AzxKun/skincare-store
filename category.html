@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="my" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <meta name="theme-color" content="#0D0D0D" />
+
+  <title>Shop All — LUMIÈRE Luxury Skincare</title>
+  <meta name="description" content="Browse Myanmar's finest luxury skincare collection. Filter by brand, skin type, price and more. Authentic SK-II, Laneige, Sulwhasoo & more." />
+  <link rel="canonical" href="https://yourdomain.pages.dev/category.html" />
+
+  <!-- OG -->
+  <meta property="og:title"       content="Shop All — LUMIÈRE Luxury Skincare" />
+  <meta property="og:description" content="Browse our full luxury skincare collection." />
+  <meta property="og:image"       content="assets/images/og-image.jpg" />
+
+  <!-- PWA -->
+  <link rel="manifest"         href="manifest.json" />
+  <link rel="apple-touch-icon" href="assets/icons/icon-192.png" />
+  <link rel="icon"             href="assets/icons/favicon.png" />
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="assets/css/style.css" />
+  <link rel="stylesheet" href="assets/css/animations.css" />
+  <link rel="stylesheet" href="assets/css/luxury-theme.css" />
+
+  <script>(function(){var t=localStorage.getItem('lumiere_theme')||'light';document.documentElement.setAttribute('data-theme',t);})();</script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+</head>
+<body>
+
+<!-- Loading -->
+<div id="loading-screen" role="status">
+  <div class="loading-logo shimmer-text">LUMIÈRE</div>
+  <div class="loading-bar-track"><div class="loading-bar-fill"></div></div>
+</div>
+
+<!-- ════════════════════════════════════════════════════
+     NAVBAR
+════════════════════════════════════════════════════ -->
+<header class="navbar" role="banner">
+  <div class="container">
+    <div class="navbar-inner">
+      <a href="index.html" class="navbar-logo">
+        <span class="logo-text">LUMIÈRE</span>
+        <span class="logo-sub">Luxury Skincare · MM</span>
+      </a>
+      <nav class="navbar-links" aria-label="Main navigation">
+        <a href="index.html">Home</a>
+        <a href="category.html" style="color:var(--rose-gold);">Shop All</a>
+        <a href="category.html?cat=Serum">Serums</a>
+        <a href="category.html?cat=Moisturizer">Moisturizers</a>
+        <a href="category.html?cat=Sunscreen">Sunscreen</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+      <div class="navbar-actions">
+        <button class="nav-icon-btn" data-open-search aria-label="Search">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+        </button>
+        <button class="theme-toggle nav-icon-btn" data-toggle-theme aria-label="Toggle dark mode">
+          <span data-theme-icon>🌙</span>
+        </button>
+        <a href="wishlist.html" class="nav-icon-btn" aria-label="Wishlist">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+          <span class="nav-badge" data-wishlist-badge style="display:none;">0</span>
+        </a>
+        <button class="nav-icon-btn" data-open-cart aria-label="Cart">
+          <svg width="18" height="18" data-cart-icon viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
+          <span class="nav-badge" data-cart-badge style="display:none;">0</span>
+        </button>
+        <button class="nav-hamburger" aria-label="Open menu"><span></span><span></span><span></span></button>
+      </div>
+    </div>
+  </div>
+</header>
+
+<nav class="mobile-nav" aria-label="Mobile navigation">
+  <a href="index.html">🏠 Home</a>
+  <a href="category.html">🛍️ Shop All</a>
+  <a href="category.html?cat=Serum">💧 Serums</a>
+  <a href="category.html?cat=Moisturizer">🌸 Moisturizers</a>
+  <a href="wishlist.html">❤️ Wishlist</a>
+  <a href="contact.html">✉️ Contact</a>
+</nav>
+
+<!-- ════════════════════════════════════════════════════
+     PAGE HERO
+════════════════════════════════════════════════════ -->
+<div class="page-hero" style="padding-top:calc(var(--nav-h) + var(--space-10));">
+  <div class="css-particles" aria-hidden="true">
+    <span></span><span></span><span></span><span></span><span></span>
+  </div>
+  <div class="container" style="position:relative;">
+    <div class="breadcrumb">
+      <a href="index.html">Home</a>
+      <span class="breadcrumb-sep">›</span>
+      <span class="breadcrumb-current" id="page-hero-category">All Products</span>
+    </div>
+    <h1 class="page-hero-title" id="page-hero-title">
+      Shop <em style="color:var(--rose-gold);font-style:italic;">All</em>
+    </h1>
+    <p class="page-hero-sub" id="page-hero-sub">ကုန်ပစ္စည်းများ အားလုံး — Discover our full luxury collection</p>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════════════════
+     CATEGORY QUICK NAV
+════════════════════════════════════════════════════ -->
+<div style="background:var(--surface);border-bottom:1px solid var(--border-soft);overflow-x:auto;scrollbar-width:none;">
+  <div class="container">
+    <div style="display:flex;gap:var(--space-2);padding:var(--space-3) 0;white-space:nowrap;" id="cat-quick-nav">
+      <a href="category.html"
+        class="btn btn-sm"
+        style="font-size:var(--text-xs);"
+        id="cat-all-btn">All</a>
+      <!-- Populated by JS -->
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════════════════
+     FILTER + PRODUCTS LAYOUT
+════════════════════════════════════════════════════ -->
+<main class="filter-page" style="padding-bottom:var(--space-20);">
+  <div class="container" style="padding-top:var(--space-8);">
+    <div class="filter-layout">
+
+      <!-- ══════════════════════════════════════════════
+           SIDEBAR FILTERS
+      ══════════════════════════════════════════════ -->
+      <aside class="filter-sidebar" id="filter-sidebar" aria-label="Filters">
+
+        <!-- Sidebar Header -->
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:var(--space-5);padding-bottom:var(--space-4);border-bottom:1px solid var(--border-soft);">
+          <div style="font-family:var(--font-display);font-size:var(--text-lg);font-weight:700;">Filters</div>
+          <button
+            id="filter-clear-btn"
+            style="font-family:var(--font-ui);font-size:var(--text-xs);color:var(--rose-gold);background:none;border:none;cursor:pointer;text-decoration:underline;"
+          >Clear All</button>
+        </div>
+
+        <!-- Active Filter Tags -->
+        <div id="active-filters" style="display:none;margin-bottom:var(--space-4);">
+          <div style="font-family:var(--font-ui);font-size:var(--text-xs);letter-spacing:0.1em;text-transform:uppercase;color:var(--text-muted);margin-bottom:var(--space-2);">Active Filters</div>
+          <div id="active-filter-tags" style="display:flex;flex-wrap:wrap;gap:var(--space-2);"></div>
+        </div>
+
+        <!-- Filter groups (populated by app.js → _buildFilterSidebar) -->
+        <div id="filter-sidebar-content"></div>
+
+        <!-- Mobile close -->
+        <button
+          id="filter-close-btn"
+          class="btn btn-dark w-full"
+          style="margin-top:var(--space-6);display:none;"
+        >Show Results</button>
+
+      </aside>
+
+      <!-- ══════════════════════════════════════════════
+           PRODUCTS AREA
+      ══════════════════════════════════════════════ -->
+      <div>
+
+        <!-- Sort Bar -->
+        <div class="sort-bar">
+          <div style="display:flex;align-items:center;gap:var(--space-3);">
+            <!-- Mobile filter trigger -->
+            <button
+              id="filter-mobile-btn"
+              class="btn btn-outline btn-sm filter-mobile-trigger"
+              aria-label="Open filters"
+            >
+              ⚙️ Filters
+              <span id="active-filter-count"
+                style="display:none;background:var(--red);color:white;border-radius:50%;width:18px;height:18px;font-size:0.6rem;font-weight:700;display:none;align-items:center;justify-content:center;margin-left:4px;"
+              >0</span>
+            </button>
+
+            <div class="results-count">
+              <span id="results-count">0</span> products
+            </div>
+          </div>
+
+          <div style="display:flex;align-items:center;gap:var(--space-3);">
+            <!-- View toggle -->
+            <div style="display:flex;border:1px solid var(--border);border-radius:var(--radius-full);overflow:hidden;">
+              <button
+                id="view-grid-btn"
+                onclick="setView('grid')"
+                style="padding:var(--space-2) var(--space-3);font-size:0.8rem;background:var(--rose-gold);color:white;border:none;cursor:pointer;"
+                title="Grid view" aria-label="Grid view"
+              >⊞</button>
+              <button
+                id="view-list-btn"
+                onclick="setView('list')"
+                style="padding:var(--space-2) var(--space-3);font-size:0.8rem;background:transparent;color:var(--text-muted);border:none;cursor:pointer;"
+                title="List view" aria-label="List view"
+              >☰</button>
+            </div>
+
+            <!-- Sort -->
+            <label for="sort-select" class="sr-only">Sort by</label>
+            <select id="sort-select" class="sort-select" aria-label="Sort products">
+              <option value="popular">Most Popular</option>
+              <option value="newest">Newest First</option>
+              <option value="price_asc">Price: Low → High</option>
+              <option value="price_desc">Price: High → Low</option>
+              <option value="rating">Top Rated</option>
+              <option value="discount">Biggest Discount</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Active filter chips (inline) -->
+        <div id="active-filter-chips-row" style="display:none;margin-bottom:var(--space-4);">
+          <div id="active-filter-chips" style="display:flex;flex-wrap:wrap;gap:var(--space-2);align-items:center;">
+            <span style="font-family:var(--font-ui);font-size:var(--text-xs);color:var(--text-muted);">Filters:</span>
+          </div>
+        </div>
+
+        <!-- Products Grid -->
+        <div class="grid-products" id="products-grid" role="list" aria-label="Products">
+          <!-- Populated by app.js -->
+        </div>
+
+        <!-- Pagination / Load More -->
+        <div style="text-align:center;margin-top:var(--space-12);">
+          <button
+            id="load-more-btn"
+            class="btn btn-outline btn-lg"
+            style="display:none;"
+          >
+            Load More Products
+          </button>
+          <div id="all-loaded-msg"
+            style="display:none;font-family:var(--font-accent);font-style:italic;color:var(--text-muted);font-size:var(--text-lg);">
+            ✨ You've seen all products
+          </div>
+        </div>
+
+      </div><!-- /products area -->
+    </div><!-- /filter-layout -->
+  </div><!-- /container -->
+</main>
+
+<!-- Sidebar backdrop (mobile) -->
+<div id="filter-backdrop" class="overlay-backdrop" style="z-index:1100;"></div>
+
+<!-- ════════════════════════════════════════════════════
+     FOOTER
+════════════════════════════════════════════════════ -->
+<footer class="footer" role="contentinfo">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="logo-text" style="font-family:var(--font-display);font-size:var(--text-2xl);font-weight:900;background:linear-gradient(135deg,var(--rose-gold),var(--rose-light));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;letter-spacing:0.1em;">LUMIÈRE</div>
+        <p class="footer-desc">Myanmar's premier luxury skincare destination. Authentic imported products.</p>
+        <div class="footer-social">
+          <a href="#" class="social-btn">f</a>
+          <a href="#" class="social-btn">📷</a>
+          <a href="#" class="social-btn">✈️</a>
+        </div>
+      </div>
+      <div>
+        <div class="footer-heading">Shop</div>
+        <ul class="footer-links">
+          <li><a href="category.html">All Products</a></li>
+          <li><a href="category.html?cat=Serum">Serums</a></li>
+          <li><a href="category.html?cat=Moisturizer">Moisturizers</a></li>
+          <li><a href="category.html?cat=Sunscreen">Sunscreen</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-heading">Help</div>
+        <ul class="footer-links">
+          <li><a href="contact.html">Contact Us</a></li>
+          <li><a href="index.html#faq">FAQ</a></li>
+          <li><a href="contact.html">Returns</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-heading">Contact</div>
+        <ul class="footer-links">
+          <li><a href="https://t.me/your_telegram" target="_blank">✈️ Telegram</a></li>
+          <li><a href="https://facebook.com/yourpage" target="_blank">👤 Facebook</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="footer-copy">© 2025 LUMIÈRE Luxury Skincare Myanmar.</div>
+      <div class="footer-payments"><span>COD</span><span style="color:rgba(255,255,255,0.2);">·</span><span>Wave Pay</span><span style="color:rgba(255,255,255,0.2);">·</span><span>KBZ Pay</span></div>
+    </div>
+  </div>
+</footer>
+
+<a href="https://t.me/your_telegram" target="_blank" rel="noopener" class="floating-telegram" aria-label="Chat on Telegram">✈️</a>
+<button class="floating-top" aria-label="Back to top">↑</button>
+
+<!-- ════════════════════════════════════════════════════
+     SCRIPTS
+════════════════════════════════════════════════════ -->
+<script src="assets/js/discount.js"></script>
+<script src="assets/js/cart.js"></script>
+<script src="assets/js/wishlist.js"></script>
+<script src="assets/js/products.js"></script>
+<script src="assets/js/search.js"></script>
+<script src="assets/js/app.js"></script>
+
+<script>
+/* ── Category page extras ──────────────────────────── */
+
+/* View mode toggle */
+function setView(mode) {
+  const grid    = document.getElementById('products-grid');
+  const gridBtn = document.getElementById('view-grid-btn');
+  const listBtn = document.getElementById('view-list-btn');
+  if (!grid) return;
+
+  if (mode === 'list') {
+    grid.style.gridTemplateColumns = '1fr';
+    listBtn.style.background = 'var(--rose-gold)';
+    listBtn.style.color      = 'white';
+    gridBtn.style.background = 'transparent';
+    gridBtn.style.color      = 'var(--text-muted)';
+  } else {
+    grid.style.gridTemplateColumns = '';
+    gridBtn.style.background = 'var(--rose-gold)';
+    gridBtn.style.color      = 'white';
+    listBtn.style.background = 'transparent';
+    listBtn.style.color      = 'var(--text-muted)';
+  }
+}
+
+/* Update page hero based on URL param */
+document.addEventListener('DOMContentLoaded', () => {
+  const params   = new URLSearchParams(window.location.search);
+  const cat      = params.get('cat')   || '';
+  const brand    = params.get('brand') || '';
+  const titleEl  = document.getElementById('page-hero-title');
+  const subEl    = document.getElementById('page-hero-sub');
+  const catEl    = document.getElementById('page-hero-category');
+
+  if (cat) {
+    if (titleEl) titleEl.innerHTML = `${cat} <em style="color:var(--rose-gold);font-style:italic;">Collection</em>`;
+    if (subEl)   subEl.textContent = `Browse our ${cat.toLowerCase()} collection — Premium & authentic`;
+    if (catEl)   catEl.textContent = cat;
+    document.title = `${cat} — LUMIÈRE Luxury Skincare`;
+  } else if (brand) {
+    if (titleEl) titleEl.innerHTML = `<em style="color:var(--rose-gold);font-style:italic;">${brand}</em>`;
+    if (subEl)   subEl.textContent = `All ${brand} products — Authentic imports`;
+    if (catEl)   catEl.textContent = brand;
+    document.title = `${brand} — LUMIÈRE Luxury Skincare`;
+  }
+
+  /* Build category quick-nav once products load */
+  const catNav = document.getElementById('cat-quick-nav');
+  if (catNav) {
+    const tryBuild = () => {
+      const cats = window.ProductsSystem?.getCategories() || [];
+      if (!cats.length) { setTimeout(tryBuild, 400); return; }
+
+      const existing = catNav.innerHTML;
+      catNav.innerHTML = existing + cats.map(c => `
+        <a href="category.html?cat=${encodeURIComponent(c)}"
+          class="btn btn-sm ${c === cat ? 'btn-primary' : 'btn-ghost'}"
+          style="font-size:var(--text-xs);flex-shrink:0;"
+        >${c}</a>`).join('');
+    };
+    tryBuild();
+  }
+
+  /* Active filter tag management */
+  document.addEventListener('change', _updateActiveFilterChips);
+  document.getElementById('filter-clear-btn')?.addEventListener('click', () => {
+    document.querySelectorAll('.filter-option.checked').forEach(opt => {
+      opt.classList.remove('checked');
+      opt.querySelector('input')?.click(); // uncheck
+    });
+    _updateActiveFilterChips();
+  });
+
+  /* Mobile sidebar */
+  document.getElementById('filter-backdrop')?.addEventListener('click', () => {
+    document.getElementById('filter-sidebar')?.classList.remove('open');
+    document.getElementById('filter-backdrop')?.classList.remove('open');
+    document.body.style.overflow = '';
+  });
+
+  /* Show mobile close button */
+  const closeBtn = document.getElementById('filter-close-btn');
+  if (closeBtn) {
+    closeBtn.style.display = '';
+    closeBtn.addEventListener('click', () => {
+      document.getElementById('filter-sidebar')?.classList.remove('open');
+      document.getElementById('filter-backdrop')?.classList.remove('open');
+      document.body.style.overflow = '';
+    });
+  }
+
+  /* Wire mobile filter btn to also open backdrop */
+  const mobileBtn = document.getElementById('filter-mobile-btn');
+  mobileBtn?.addEventListener('click', () => {
+    document.getElementById('filter-sidebar')?.classList.toggle('open');
+    document.getElementById('filter-backdrop')?.classList.toggle('open');
+    document.body.style.overflow = document.getElementById('filter-sidebar')?.classList.contains('open') ? 'hidden' : '';
+  });
+});
+
+function _updateActiveFilterChips() {
+  const chips   = document.querySelectorAll('.filter-option.checked');
+  const row     = document.getElementById('active-filter-chips-row');
+  const chipsEl = document.getElementById('active-filter-chips');
+  const countEl = document.getElementById('active-filter-count');
+
+  if (!row || !chipsEl) return;
+  const count = chips.length;
+
+  if (countEl) {
+    countEl.textContent  = count;
+    countEl.style.display = count > 0 ? 'inline-flex' : 'none';
+  }
+
+  if (count === 0) {
+    row.style.display = 'none';
+    return;
+  }
+
+  row.style.display = '';
+  const base = `<span style="font-family:var(--font-ui);font-size:var(--text-xs);color:var(--text-muted);">Filters:</span>`;
+  const tags  = [...chips].map(opt => {
+    const label = opt.querySelector('span:not(.filter-checkbox):not(.filter-count)')?.textContent?.trim() || '';
+    return `<span style="display:inline-flex;align-items:center;gap:4px;background:rgba(212,175,55,0.1);border:1px solid rgba(212,175,55,0.3);border-radius:var(--radius-full);padding:2px 10px;font-family:var(--font-ui);font-size:var(--text-xs);color:var(--rose-gold);">
+      ${label}
+      <button onclick="this.closest('.filter-option, [class*=filter]');this.parentElement.remove();" style="background:none;border:none;cursor:pointer;color:inherit;font-size:0.7rem;padding:0;margin-left:2px;">✕</button>
+    </span>`;
+  }).join('');
+
+  chipsEl.innerHTML = base + tags + `
+    <button onclick="document.getElementById('filter-clear-btn').click()"
+      style="font-family:var(--font-ui);font-size:var(--text-xs);color:var(--red);background:none;border:none;cursor:pointer;text-decoration:underline;">
+      Clear all
+    </button>`;
+}
+</script>
+
+</body>
+</html>
+
