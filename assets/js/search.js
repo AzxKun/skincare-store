@@ -799,3 +799,96 @@ const SearchSystem = (() => {
 
 window.SearchSystem = SearchSystem;
 
+/* ============================================================
+   PHASE 2 ENHANCEMENTS — SEARCH UX / AUTOCOMPLETE POLISH
+   Append only
+   ============================================================ */
+
+(function () {
+  'use strict';
+
+  if (!window.SearchSystem) return;
+
+  const _search = window.SearchSystem;
+
+  function _decorateSuggestions() {
+    document.querySelectorAll('.search-suggestion-item').forEach((item, idx) => {
+      item.classList.add('surface-rise', 'revealed');
+      item.style.transitionDelay = `${Math.min(idx * 35, 180)}ms`;
+    });
+  }
+
+  function _injectSearchMeta() {
+    document.querySelectorAll('.search-suggestions, .autocomplete-suggestions, [role="listbox"]').forEach(box => {
+      if (box.dataset.enhancedMeta === 'true') return;
+      box.dataset.enhancedMeta = 'true';
+      box.classList.add('card-glass', 'shadow-luxe');
+    });
+  }
+
+  const _originalBindAutocomplete = _search.bindAutocomplete;
+  if (typeof _originalBindAutocomplete === 'function') {
+    _search.bindAutocomplete = function enhancedBindAutocomplete(inputEl, suggestEl) {
+      const result = _originalBindAutocomplete.apply(this, arguments);
+
+      try {
+        const input = typeof inputEl === 'string' ? document.querySelector(inputEl) : inputEl;
+        const suggest = typeof suggestEl === 'string' ? document.querySelector(suggestEl) : suggestEl;
+
+        if (input) {
+          input.classList.add('input-luxe');
+          input.setAttribute('autocomplete', 'off');
+
+          input.addEventListener('focus', () => {
+            input.classList.add('is-search-focused');
+            _injectSearchMeta();
+            setTimeout(_decorateSuggestions, 40);
+          });
+
+          input.addEventListener('input', () => {
+            setTimeout(() => {
+              _injectSearchMeta();
+              _decorateSuggestions();
+            }, 60);
+          });
+        }
+
+        if (suggest) {
+          suggest.classList.add('search-suggestions-luxe');
+        }
+      } catch (err) {
+        console.warn('[SearchEnhancer] autocomplete hook failed:', err);
+      }
+
+      return result;
+    };
+  }
+
+  const _originalExecuteSearch = _search.executeSearch;
+  if (typeof _originalExecuteSearch === 'function') {
+    _search.executeSearch = function enhancedExecuteSearch(query) {
+      try {
+        document.documentElement.classList.add('search-is-transitioning');
+      } catch {}
+      return _originalExecuteSearch.apply(this, arguments);
+    };
+  }
+
+  const _originalHighlight = _search.highlight;
+  if (typeof _originalHighlight === 'function') {
+    _search.highlight = function enhancedHighlight(text, query) {
+      const result = _originalHighlight.apply(this, arguments);
+      try {
+        return String(result).replace(/<mark>/g, '<mark class="search-highlight-luxe">');
+      } catch {
+        return result;
+      }
+    };
+  }
+
+  document.addEventListener('DOMContentLoaded', () => {
+    _injectSearchMeta();
+    _decorateSuggestions();
+  });
+})();
+

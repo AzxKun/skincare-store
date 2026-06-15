@@ -1,58 +1,49 @@
 <!DOCTYPE html>
-<html lang="my" data-theme="light">
+<html lang="my" data-theme="dark">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-  <meta name="theme-color" content="#0D0D0D" />
+  <meta name="theme-color" content="#090909" />
 
-  <!-- SEO -->
-  <title>LUMIÈRE — Luxury Skincare Myanmar | လူဇ်ရှဲ အသားအရေ ထုတ်ကုန်</title>
-  <meta name="description" content="Myanmar's premier luxury skincare destination. Authentic imported products — SK-II, Laneige, Sulwhasoo, Estée Lauder & more. COD available. ✈️ Telegram ordering." />
-  <meta name="keywords"    content="luxury skincare myanmar, SK-II myanmar, laneige myanmar, face serum myanmar, မျက်နှာ ထုတ်ကုန်, အသားအရေ" />
-  <link rel="canonical"   href="https://yourdomain.pages.dev/" />
+  <title>LUMIÈRE — Luxury Skincare Myanmar</title>
+  <meta name="description" content="Luxury skincare in Myanmar with a darker, sharper, and more refined shopping experience. Explore curated collections, premium products, and fast ordering." />
+  <meta name="keywords" content="luxury skincare myanmar, premium skincare, serum myanmar, authentic skincare, skincare store myanmar" />
+  <link rel="canonical" href="https://yourdomain.pages.dev/" />
 
-  <!-- Open Graph -->
-  <meta property="og:type"        content="website" />
-  <meta property="og:title"       content="LUMIÈRE — Luxury Skincare Myanmar" />
-  <meta property="og:description" content="Premium imported skincare with Telegram ordering & COD." />
-  <meta property="og:image"       content="assets/images/og-image.jpg" />
-  <meta property="og:url"         content="https://yourdomain.pages.dev/" />
-  <meta property="og:site_name"   content="LUMIÈRE" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="LUMIÈRE — Luxury Skincare Myanmar" />
+  <meta property="og:description" content="Curated luxury skincare with a modern black and red editorial experience." />
+  <meta property="og:image" content="assets/images/og-image.jpg" />
+  <meta property="og:url" content="https://yourdomain.pages.dev/" />
+  <meta property="og:site_name" content="LUMIÈRE" />
 
-  <!-- Twitter -->
-  <meta name="twitter:card"        content="summary_large_image" />
-  <meta name="twitter:title"       content="LUMIÈRE Luxury Skincare" />
-  <meta name="twitter:description" content="Myanmar's finest skincare store." />
-  <meta name="twitter:image"       content="assets/images/og-image.jpg" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="LUMIÈRE Luxury Skincare" />
+  <meta name="twitter:description" content="Luxury skincare with a refined and modern presentation." />
+  <meta name="twitter:image" content="assets/images/og-image.jpg" />
 
-  <!-- PWA -->
   <link rel="manifest" href="manifest.json" />
   <link rel="apple-touch-icon" href="assets/icons/icon-192.png" />
-  <meta name="apple-mobile-web-app-capable"          content="yes" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
-  <meta name="apple-mobile-web-app-title"            content="LUMIÈRE" />
+  <meta name="apple-mobile-web-app-title" content="LUMIÈRE" />
 
-  <!-- Favicon -->
   <link rel="icon" type="image/png" href="assets/icons/favicon.png" />
 
-  <!-- CSS -->
   <link rel="stylesheet" href="assets/css/style.css" />
   <link rel="stylesheet" href="assets/css/animations.css" />
   <link rel="stylesheet" href="assets/css/luxury-theme.css" />
 
-  <!-- Prevent dark mode flash -->
   <script>
     (function(){
-      var t = localStorage.getItem('lumiere_theme') || 'light';
+      var t = localStorage.getItem('lumiere_theme') || 'dark';
       document.documentElement.setAttribute('data-theme', t);
     })();
   </script>
 
-  <!-- Font preloads -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 
-  <!-- Structured Data -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -65,785 +56,788 @@
     "address": { "@type": "PostalAddress", "addressCountry": "MM" }
   }
   </script>
-</head>
 
-<body>
-
-<!-- ════════════════════════════════════════════════════════
-     LOADING SCREEN
-════════════════════════════════════════════════════════ -->
-<div id="loading-screen" role="status" aria-label="Loading">
-  <div class="loading-logo shimmer-text">LUMIÈRE</div>
-  <div class="loading-bar-track">
-    <div class="loading-bar-fill"></div>
-  </div>
-  <div class="loading-tagline">Luxury Skincare · Myanmar</div>
-  <div class="css-particles">
-    <span></span><span></span><span></span><span></span><span></span>
-    <span></span><span></span><span></span><span></span><span></span>
-  </div>
-</div>
-
-<!-- ════════════════════════════════════════════════════════
-     NAVBAR
-════════════════════════════════════════════════════════ -->
-<header class="navbar" role="banner">
-  <div class="container">
-    <div class="navbar-inner">
-
-      <!-- Logo -->
-      <a href="index.html" class="navbar-logo" aria-label="LUMIÈRE Home">
-        <span class="logo-text">LUMIÈRE</span>
-        <span class="logo-sub">Luxury Skincare · MM</span>
-      </a>
-
-      <!-- Desktop Nav Links -->
-      <nav class="navbar-links" aria-label="Main navigation">
-        <a href="index.html">Home</a>
-        <a href="category.html">Shop All</a>
-        <a href="category.html?cat=Serum">Serums</a>
-        <a href="category.html?cat=Moisturizer">Moisturizers</a>
-        <a href="category.html?cat=Sunscreen">Sunscreen</a>
-        <a href="contact.html">Contact</a>
-      </nav>
-
-      <!-- Actions -->
-      <div class="navbar-actions">
-
-        <!-- Search -->
-        <button class="nav-icon-btn" data-open-search aria-label="Search">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>
-          </svg>
-        </button>
-
-        <!-- Theme Toggle -->
-        <button class="theme-toggle nav-icon-btn" data-toggle-theme aria-label="Toggle dark mode">
-          <span data-theme-icon>🌙</span>
-        </button>
-
-        <!-- Wishlist -->
-        <a href="wishlist.html" class="nav-icon-btn" aria-label="Wishlist">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
-          </svg>
-          <span class="nav-badge" data-wishlist-badge style="display:none;">0</span>
-        </a>
-
-        <!-- Cart -->
-        <button class="nav-icon-btn" data-open-cart aria-label="Shopping cart">
-          <svg width="18" height="18" data-cart-icon viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/>
-            <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/>
-          </svg>
-          <span class="nav-badge" data-cart-badge style="display:none;">0</span>
-        </button>
-
-        <!-- Mobile Hamburger -->
-        <button class="nav-hamburger" aria-label="Open menu" aria-expanded="false">
-          <span></span><span></span><span></span>
-        </button>
-      </div>
-    </div>
-  </div>
-</header>
-
-<!-- Mobile Nav Drawer -->
-<nav class="mobile-nav" aria-label="Mobile navigation">
-  <a href="index.html">🏠 Home</a>
-  <a href="category.html">🛍️ Shop All</a>
-  <a href="category.html?cat=Serum">💧 Serums</a>
-  <a href="category.html?cat=Moisturizer">🌸 Moisturizers</a>
-  <a href="category.html?cat=Sunscreen">☀️ Sunscreen</a>
-  <a href="wishlist.html">❤️ Wishlist</a>
-  <a href="contact.html">✉️ Contact</a>
-  <hr style="border:none;border-top:1px solid var(--border-soft);margin:var(--space-4) 0;" />
-  <button class="btn btn-outline w-full" data-toggle-theme>
-    <span data-theme-icon>🌙</span>
-    <span data-theme-label>Dark Mode</span>
-  </button>
-</nav>
-
-<!-- ════════════════════════════════════════════════════════
-     HERO SECTION
-════════════════════════════════════════════════════════ -->
-<section class="hero" aria-label="Hero" id="hero">
-
-  <!-- Particle Canvas -->
-  <canvas id="particles-canvas" aria-hidden="true"></canvas>
-
-  <!-- Slides -->
-  <div class="hero-slides" aria-live="polite">
-
-    <!-- Slide 1 -->
-    <div class="hero-slide active" aria-hidden="false">
-      <img
-        src="https://images.unsplash.com/photo-1620916566398-39f1143ab7be?w=1600&q=80"
-        alt="Luxury skincare"
-        class="hero-slide-bg"
-        loading="eager"
-        fetchpriority="high"
-      />
-      <div class="hero-slide-overlay"></div>
-    </div>
-
-    <!-- Slide 2 -->
-    <div class="hero-slide" aria-hidden="true">
-      <img
-        src="https://images.unsplash.com/photo-1556228578-0d85b1a4d571?w=1600&q=80"
-        alt="Premium skincare products"
-        class="hero-slide-bg"
-        loading="lazy"
-      />
-      <div class="hero-slide-overlay"></div>
-    </div>
-
-    <!-- Slide 3 -->
-    <div class="hero-slide" aria-hidden="true">
-      <img
-        src="https://images.unsplash.com/photo-1598440947619-2c35fc9aa908?w=1600&q=80"
-        alt="Luxury beauty collection"
-        class="hero-slide-bg"
-        loading="lazy"
-      />
-      <div class="hero-slide-overlay"></div>
-    </div>
-  </div>
-
-  <!-- Hero Content -->
-  <div class="container">
-    <div class="hero-content">
-
-      <div class="hero-eyebrow hero-fade-in">
-        <span class="hero-eyebrow-line"></span>
-        NEW COLLECTION 2025
-        <span class="hero-eyebrow-line"></span>
-      </div>
-
-      <h1 class="hero-title hero-text-reveal">
-        <span class="line">Luxury</span>
-        <span class="line"><em class="italic">Skincare</em></span>
-        <span class="line">for You</span>
-      </h1>
-
-      <p class="hero-subtitle hero-fade-in delay-1">
-        သင့်အသားအရေအတွက် အကောင်းဆုံးသော ကုန်ပစ္စည်းများ —
-        Authentic imports, premium quality.
-      </p>
-
-      <div class="hero-cta-group hero-fade-in delay-2">
-        <a href="category.html" class="btn btn-primary btn-lg shimmer-hover">
-          ✨ Shop Collection
-        </a>
-        <button class="btn btn-outline" data-open-quiz
-          style="color:var(--white);border-color:rgba(255,255,255,0.3);backdrop-filter:blur(4px);">
-          🔍 Find My Skincare
-        </button>
-      </div>
-
-      <!-- Live viewers -->
-      <div style="margin-top:var(--space-8);display:flex;align-items:center;gap:var(--space-3);" class="hero-fade-in delay-3">
-        <div class="live-dot">
-          <span class="live-dot-indicator"></span>
-          <span style="font-size:var(--text-xs);color:rgba(255,255,255,0.6);font-family:var(--font-ui);">
-            <span id="live-viewers">12</span> people viewing now
-          </span>
-        </div>
-        <span style="color:rgba(255,255,255,0.2);">·</span>
-        <span style="font-size:var(--text-xs);color:rgba(255,255,255,0.6);font-family:var(--font-ui);">
-          Free shipping over K 100,000
-        </span>
-      </div>
-
-    </div>
-  </div>
-
-  <!-- Slide Controls -->
-  <div class="hero-controls" aria-label="Slide controls">
-    <button class="hero-prev" aria-label="Previous slide">&#8249;</button>
-    <div class="hero-dots" role="tablist"></div>
-    <button class="hero-next" aria-label="Next slide">&#8250;</button>
-  </div>
-
-  <!-- Scroll Hint -->
-  <div class="hero-scroll-hint" aria-hidden="true">
-    <span class="hero-scroll-line"></span>
-    Scroll
-  </div>
-
-</section>
-
-<!-- ════════════════════════════════════════════════════════
-     BRAND MARQUEE
-════════════════════════════════════════════════════════ -->
-<div class="brand-marquee" aria-label="Featured brands" aria-hidden="true">
-  <div class="marquee-wrap">
-    <div class="marquee-track">
-      <!-- Items duplicated for seamless loop -->
-      <span class="marquee-item"><span class="marquee-dot"></span> SK-II</span>
-      <span class="marquee-item"><span class="marquee-dot"></span> Laneige</span>
-      <span class="marquee-item"><span class="marquee-dot"></span> Sulwhasoo</span>
-      <span class="marquee-item"><span class="marquee-dot"></span> Estée Lauder</span>
-      <span class="marquee-item"><span class="marquee-dot"></span> Lancôme</span>
-      <span class="marquee-item"><span class="marquee-dot"></span> Anessa</span>
-      <span class="marquee-item"><span class="marquee-dot"></span> CeraVe</span>
-      <span class="marquee-item"><span class="marquee-dot"></span> The Ordinary</span>
-      <span class="marquee-item"><span class="marquee-dot"></span> Kiehl's</span>
-      <span class="marquee-item"><span class="marquee-dot"></span> Some By Mi</span>
-      <span class="marquee-item"><span class="marquee-dot"></span> Cosrx</span>
-      <span class="marquee-item"><span class="marquee-dot"></span> La Mer</span>
-      <!-- Duplicate -->
-      <span class="marquee-item"><span class="marquee-dot"></span> SK-II</span>
-      <span class="marquee-item"><span class="marquee-dot"></span> Laneige</span>
-      <span class="marquee-item"><span class="marquee-dot"></span> Sulwhasoo</span>
-      <span class="marquee-item"><span class="marquee-dot"></span> Estée Lauder</span>
-      <span class="marquee-item"><span class="marquee-dot"></span> Lancôme</span>
-      <span class="marquee-item"><span class="marquee-dot"></span> Anessa</span>
-      <span class="marquee-item"><span class="marquee-dot"></span> CeraVe</span>
-      <span class="marquee-item"><span class="marquee-dot"></span> The Ordinary</span>
-      <span class="marquee-item"><span class="marquee-dot"></span> Kiehl's</span>
-      <span class="marquee-item"><span class="marquee-dot"></span> Some By Mi</span>
-      <span class="marquee-item"><span class="marquee-dot"></span> Cosrx</span>
-      <span class="marquee-item"><span class="marquee-dot"></span> La Mer</span>
-    </div>
-  </div>
-</div>
-
-<!-- ════════════════════════════════════════════════════════
-     TRUST STRIP
-════════════════════════════════════════════════════════ -->
-<div class="trust-strip">
-  <div class="container">
-    <div class="trust-grid reveal-stagger">
-      <div class="trust-item">
-        <div class="trust-icon">✅</div>
-        <div class="trust-label">100% Authentic</div>
-        <div class="trust-sub">Direct import only</div>
-      </div>
-      <div class="trust-item">
-        <div class="trust-icon">🚚</div>
-        <div class="trust-label">COD Available</div>
-        <div class="trust-sub">Pay on delivery</div>
-      </div>
-      <div class="trust-item">
-        <div class="trust-icon">💎</div>
-        <div class="trust-label">Premium Quality</div>
-        <div class="trust-sub">Luxury brands only</div>
-      </div>
-      <div class="trust-item">
-        <div class="trust-icon">✈️</div>
-        <div class="trust-label">Telegram Order</div>
-        <div class="trust-sub">Fast & easy</div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- ════════════════════════════════════════════════════════
-     FEATURED PRODUCTS
-════════════════════════════════════════════════════════ -->
-<section class="section featured-section" id="products" aria-label="Products">
-  <div class="container">
-
-    <div class="section-header reveal">
-      <span class="eyebrow">Curated For You</span>
-      <h2 class="section-title">Our Collection</h2>
-      <p class="section-subtitle">Handpicked luxury skincare — authentic, imported, delivered.</p>
-    </div>
-
-    <!-- Tab Navigation -->
-    <div class="products-tabs reveal" data-tabs aria-label="Product categories">
-      <button class="tab-btn active" data-tab-featured="featured">⭐ Featured</button>
-      <button class="tab-btn" data-tab-featured="bestsellers">🔥 Best Sellers</button>
-      <button class="tab-btn" data-tab-featured="new">✨ New Arrivals</button>
-    </div>
-
-    <!-- Products Grid -->
-    <div class="grid-products" id="featured-grid" role="list" aria-label="Featured products">
-      <!-- Populated by app.js -->
-    </div>
-
-    <div style="text-align:center;margin-top:var(--space-10);" class="reveal">
-      <a href="category.html" class="btn btn-dark btn-lg">
-        View All Products →
-      </a>
-    </div>
-
-  </div>
-</section>
-
-<!-- ════════════════════════════════════════════════════════
-     FLASH SALE
-════════════════════════════════════════════════════════ -->
-<section class="section flash-sale-section flash-sale-bg" id="flash-sale-section" aria-label="Flash sale">
-  <div class="container">
-
-    <div class="flash-sale-header">
-      <div class="reveal">
-        <div class="flash-sale-label">
-          <span class="live-dot-indicator"></span>
-          FLASH SALE
-        </div>
-        <h2 class="section-title" style="color:var(--text);">Limited Time Offers</h2>
-        <p class="section-subtitle">အချိန်ကန့်သတ် လျော့ဈေး — Grab before it ends!</p>
-      </div>
-
-      <!-- Timer -->
-      <div class="reveal" style="text-align:right;">
-        <div style="font-family:var(--font-ui);font-size:var(--text-xs);letter-spacing:0.1em;text-transform:uppercase;color:var(--text-muted);margin-bottom:var(--space-2);">
-          Ends in:
-        </div>
-        <div id="flash-timer-mount"></div>
-      </div>
-    </div>
-
-    <div class="grid-products" id="flash-sale-grid" role="list" aria-label="Flash sale products">
-      <!-- Populated by app.js -->
-    </div>
-
-  </div>
-</section>
-
-<!-- ════════════════════════════════════════════════════════
-     NEW ARRIVALS (asymmetric grid)
-════════════════════════════════════════════════════════ -->
-<section class="section" aria-label="New arrivals" style="background:var(--surface);">
-  <div class="container">
-
-    <div class="section-header reveal">
-      <span class="eyebrow">Just Landed</span>
-      <h2 class="section-title">New Arrivals</h2>
-      <p class="section-subtitle">ထွက်သစ် ကုန်ပစ္စည်းများ — The latest in luxury skincare</p>
-    </div>
-
-    <div class="new-arrivals-grid" id="new-arrivals-grid" role="list">
-      <!-- Populated by app.js -->
-    </div>
-
-  </div>
-</section>
-
-<!-- ════════════════════════════════════════════════════════
-     AI SKINCARE QUIZ CTA
-════════════════════════════════════════════════════════ -->
-<section class="section-sm" style="background:linear-gradient(135deg,var(--black) 0%,#1A0A0F 100%);overflow:hidden;position:relative;">
-  <div style="position:absolute;inset:0;background:radial-gradient(ellipse at 30% 50%,rgba(212,175,55,0.08) 0%,transparent 60%);pointer-events:none;"></div>
-  <div class="container" style="text-align:center;position:relative;">
-    <span class="eyebrow" style="color:var(--rose-gold);">Personalized For You</span>
-    <h2 class="section-title reveal" style="color:var(--white);margin:var(--space-4) 0;">
-      Find Your Perfect <em style="color:var(--rose-gold);font-style:italic;">Skincare</em>
-    </h2>
-    <p class="section-subtitle reveal" style="color:rgba(255,255,255,0.6);margin-bottom:var(--space-8);">
-      Take our 60-second AI quiz to get personalised product recommendations.
-    </p>
-    <button class="btn btn-primary btn-lg glow-gold reveal" data-open-quiz>
-      💎 Start Skin Quiz — Free
-    </button>
-  </div>
-</section>
-
-<!-- ════════════════════════════════════════════════════════
-     BRAND STORY
-════════════════════════════════════════════════════════ -->
-<section class="section brand-story" aria-label="Our story">
-  <div class="container">
-    <div class="brand-story-grid">
-
-      <!-- Visual -->
-      <div class="brand-story-visual reveal-left">
-        <img
-          src="https://images.unsplash.com/photo-1612817288484-6f916006741a?w=800&q=80"
-          alt="Luxury skincare products"
-          class="brand-story-img-main brand-image-frame"
-          loading="lazy"
-        />
-        <div class="brand-story-badge">
-          <span class="brand-story-badge-num">5+</span>
-          <span class="brand-story-badge-text">Years of Trust</span>
-        </div>
-      </div>
-
-      <!-- Text -->
-      <div class="brand-story-text reveal-right">
-        <span class="eyebrow">Our Story</span>
-        <h2 class="section-title">Luxury That Loves Your Skin</h2>
-
-        <div class="brand-story-body">
-          <p>
-            We believe every person deserves access to the world's finest skincare.
-            LUMIÈRE was born from a passion for authentic luxury beauty —
-            sourced directly from Korea, Japan, France, and the USA.
-          </p>
-          <p>
-            မြန်မာနိုင်ငံတွင် စစ်မှန်သော ယုံကြည်ရသော လူဇ်ရှဲ အသားအရေ ထုတ်ကုန်များကို
-            ရရှိနိုင်ရန် ကျွန်ုပ်တို့ ကတိပြုပါသည်။
-          </p>
-        </div>
-
-        <!-- Stats -->
-        <div class="brand-stats">
-          <div>
-            <div class="brand-stat-num" data-counter="10000" data-counter-suffix="+">&nbsp;</div>
-            <div class="brand-stat-label">Happy Customers</div>
-          </div>
-          <div>
-            <div class="brand-stat-num" data-counter="200" data-counter-suffix="+">&nbsp;</div>
-            <div class="brand-stat-label">Premium Products</div>
-          </div>
-          <div>
-            <div class="brand-stat-num" data-counter="4.9" data-counter-suffix="★" data-counter-decimal="1">&nbsp;</div>
-            <div class="brand-stat-label">Average Rating</div>
-          </div>
-        </div>
-
-        <a href="contact.html" class="btn btn-dark">
-          Contact Us →
-        </a>
-      </div>
-
-    </div>
-  </div>
-</section>
-
-<!-- ════════════════════════════════════════════════════════
-     RECENTLY VIEWED
-════════════════════════════════════════════════════════ -->
-<section class="section recently-viewed-section" id="recently-viewed-section" style="display:none;" aria-label="Recently viewed">
-  <div class="container">
-    <div class="section-header reveal">
-      <span class="eyebrow">Your History</span>
-      <h2 class="section-title">Recently Viewed</h2>
-    </div>
-    <div class="grid-products" id="recently-viewed-products">
-      <!-- Populated by app.js -->
-    </div>
-  </div>
-</section>
-
-<!-- ════════════════════════════════════════════════════════
-     CUSTOMER REVIEWS
-════════════════════════════════════════════════════════ -->
-<section class="section reviews-section" aria-label="Customer reviews">
-  <div class="container">
-
-    <div class="section-header reveal">
-      <span class="eyebrow">Real Stories</span>
-      <h2 class="section-title">Loved by Thousands</h2>
-      <p class="section-subtitle">ဖောက်သည်များ၏ အမှန်တကယ် အကြောင်းပြချက်များ</p>
-    </div>
-
-    <!-- Overall rating -->
-    <div style="text-align:center;margin-bottom:var(--space-10);" class="reveal">
-      <div style="font-family:var(--font-display);font-size:5rem;font-weight:900;color:var(--rose-gold);line-height:1;">4.9</div>
-      <div style="display:flex;justify-content:center;gap:4px;font-size:1.5rem;color:var(--rose-gold);margin:var(--space-2) 0;">★★★★★</div>
-      <div style="font-family:var(--font-ui);font-size:var(--text-sm);color:var(--text-muted);">Based on 2,800+ verified reviews</div>
-    </div>
-
-    <div class="reviews-grid reveal-stagger">
-
-      <!-- Review 1 -->
-      <article class="review-card">
-        <div class="review-card-quote">"</div>
-        <div class="review-stars">★★★★★</div>
-        <p class="review-text">The SK-II Facial Treatment Essence completely transformed my skin. After just 3 weeks, I noticed such a visible difference in brightness and texture.</p>
-        <p class="review-mm">SK-II ကို သုံးပြီး ၃ ပတ်အတွင်း မျက်နှာတောက်ပလာတာ အံ့သြမိပါတယ်!</p>
-        <div class="review-author">
-          <div class="review-avatar">M</div>
-          <div>
-            <div class="review-name">Ma Khin Thazin</div>
-            <div class="review-location">📍 Yangon</div>
-            <div class="review-verified">✓ Verified Purchase</div>
-          </div>
-        </div>
-      </article>
-
-      <!-- Review 2 -->
-      <article class="review-card">
-        <div class="review-card-quote">"</div>
-        <div class="review-stars">★★★★★</div>
-        <p class="review-text">Fast delivery, authentic products, and the Telegram ordering is so convenient. I've been buying from LUMIÈRE for over a year now and never disappointed.</p>
-        <p class="review-mm">Telegram မှ မှာယူတာ လွယ်ကူပြီး ကုန်ပစ္စည်းတွေလည်း အစစ်အမှန်ဆိုတာ သေချာပါတယ်။</p>
-        <div class="review-author">
-          <div class="review-avatar">A</div>
-          <div>
-            <div class="review-name">Aye Myat Thu</div>
-            <div class="review-location">📍 Mandalay</div>
-            <div class="review-verified">✓ Verified Purchase</div>
-          </div>
-        </div>
-      </article>
-
-      <!-- Review 3 -->
-      <article class="review-card">
-        <div class="review-card-quote">"</div>
-        <div class="review-stars">★★★★★</div>
-        <p class="review-text">The Laneige Water Sleeping Mask is a game changer for dry skin. Woke up with the most plump, dewy skin. Will definitely reorder.</p>
-        <p class="review-mm">Laneige Mask ကို တစ်ညလောင်း လိမ်းပြီး နေ့တိုင်း အသားအရေ ကောင်းလာပါတယ်!</p>
-        <div class="review-author">
-          <div class="review-avatar">N</div>
-          <div>
-            <div class="review-name">Nwe Ni Win</div>
-            <div class="review-location">📍 Naypyidaw</div>
-            <div class="review-verified">✓ Verified Purchase</div>
-          </div>
-        </div>
-      </article>
-
-    </div>
-  </div>
-</section>
-
-<!-- ════════════════════════════════════════════════════════
-     PAYMENT METHODS
-════════════════════════════════════════════════════════ -->
-<section class="section-sm" style="background:var(--surface);border-top:1px solid var(--border-soft);">
-  <div class="container">
-    <div style="text-align:center;margin-bottom:var(--space-8);" class="reveal">
-      <span class="eyebrow">Secure Payments</span>
-      <h3 style="font-family:var(--font-display);font-size:var(--text-2xl);font-weight:700;margin-top:var(--space-3);">
-        We Accept
-      </h3>
-    </div>
-    <div style="display:flex;justify-content:center;gap:var(--space-6);flex-wrap:wrap;align-items:center;" class="reveal-stagger">
-      <div style="display:flex;flex-direction:column;align-items:center;gap:var(--space-2);">
-        <div style="width:64px;height:40px;border-radius:var(--radius);background:var(--surface-2);border:1px solid var(--border-soft);display:flex;align-items:center;justify-content:center;font-size:1.5rem;">🚗</div>
-        <span style="font-size:var(--text-xs);color:var(--text-muted);font-family:var(--font-ui);">Cash on Delivery</span>
-      </div>
-      <div style="display:flex;flex-direction:column;align-items:center;gap:var(--space-2);">
-        <div style="width:64px;height:40px;border-radius:var(--radius);background:#00AEEF;display:flex;align-items:center;justify-content:center;color:white;font-weight:700;font-size:0.75rem;font-family:var(--font-ui);">Wave<br>Pay</div>
-        <span style="font-size:var(--text-xs);color:var(--text-muted);font-family:var(--font-ui);">Wave Pay</span>
-      </div>
-      <div style="display:flex;flex-direction:column;align-items:center;gap:var(--space-2);">
-        <div style="width:64px;height:40px;border-radius:var(--radius);background:#e60026;display:flex;align-items:center;justify-content:center;color:white;font-weight:700;font-size:0.75rem;font-family:var(--font-ui);">KBZ<br>Pay</div>
-        <span style="font-size:var(--text-xs);color:var(--text-muted);font-family:var(--font-ui);">KBZ Pay</span>
-      </div>
-      <div style="display:flex;flex-direction:column;align-items:center;gap:var(--space-2);">
-        <div style="width:64px;height:40px;border-radius:var(--radius);background:var(--surface-2);border:1px solid var(--border-soft);display:flex;align-items:center;justify-content:center;font-size:1.5rem;">🏦</div>
-        <span style="font-size:var(--text-xs);color:var(--text-muted);font-family:var(--font-ui);">Bank Transfer</span>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ════════════════════════════════════════════════════════
-     FAQ
-════════════════════════════════════════════════════════ -->
-<section class="section faq-section" id="faq" aria-label="FAQ">
-  <div class="container">
-    <div class="faq-grid">
-
-      <!-- Sidebar -->
-      <div class="faq-sidebar reveal-left">
-        <span class="eyebrow">Got Questions?</span>
-        <h2 class="section-title">Frequently Asked</h2>
-        <p>Everything you need to know about ordering, shipping, and our products.</p>
-        <a href="contact.html" class="btn btn-primary">
-          ✈️ Ask via Telegram
-        </a>
-      </div>
-
-      <!-- FAQ List -->
-      <div class="faq-list reveal-right">
-
-        <div class="faq-item">
-          <div class="faq-question">
-            <div>
-              <div class="faq-question-text">Are your products 100% authentic?</div>
-              <div class="faq-question-mm">ကုန်ပစ္စည်းတွေ စစ်မှန်ပါသလား?</div>
-            </div>
-            <div class="faq-icon">+</div>
-          </div>
-          <div class="faq-answer">
-            Yes! Every product we sell is 100% authentic and sourced directly from official distributors in Korea, Japan, France, and USA. We never sell counterfeit or grey-market products. ကုန်ပစ္စည်းတိုင်း စစ်မှန်သော တိုက်ရိုက် တင်သွင်းမှု ဖြစ်ပါသည်။
-          </div>
-        </div>
-
-        <div class="faq-item">
-          <div class="faq-question">
-            <div>
-              <div class="faq-question-text">How do I place an order?</div>
-              <div class="faq-question-mm">ဘယ်လို မှာယူရမလဲ?</div>
-            </div>
-            <div class="faq-icon">+</div>
-          </div>
-          <div class="faq-answer">
-            Simply add items to your cart and click "Order via Telegram". Your order details will be automatically formatted and sent to our Telegram. We'll confirm within 30 minutes. Cart ထဲ ထည့်ပြီး Telegram မှ မှာယူနိုင်ပါသည်။
-          </div>
-        </div>
-
-        <div class="faq-item">
-          <div class="faq-question">
-            <div>
-              <div class="faq-question-text">What payment methods do you accept?</div>
-              <div class="faq-question-mm">ငွေပေးချေနည်း ဘာတွေ လက်ခံသလဲ?</div>
-            </div>
-            <div class="faq-icon">+</div>
-          </div>
-          <div class="faq-answer">
-            We accept Cash on Delivery (COD), Wave Pay, KBZ Pay, and Bank Transfer. COD is available for Yangon delivery. ငွေသားနှင့် Wave Pay, KBZ Pay, ဘဏ်လွှဲ လက်ခံပါသည်။
-          </div>
-        </div>
-
-        <div class="faq-item">
-          <div class="faq-question">
-            <div>
-              <div class="faq-question-text">What is your delivery time?</div>
-              <div class="faq-question-mm">ပို့ဆောင်ရေး ဘယ်နှစ်ရက် ကြာသလဲ?</div>
-            </div>
-            <div class="faq-icon">+</div>
-          </div>
-          <div class="faq-answer">
-            Yangon: 1-2 business days. Other regions: 3-5 business days. Express delivery available. ရန်ကုန်တွင် ၁-၂ ရက်၊ တစ်ပြည်နယ်လုံးတွင် ၃-၅ ရက် ကြာမည်ဖြစ်သည်။
-          </div>
-        </div>
-
-        <div class="faq-item">
-          <div class="faq-question">
-            <div>
-              <div class="faq-question-text">Can I return a product?</div>
-              <div class="faq-question-mm">ကုန်ပစ္စည်း ပြန်ပို့လို့ ရသလား?</div>
-            </div>
-            <div class="faq-icon">+</div>
-          </div>
-          <div class="faq-answer">
-            If you receive a damaged or wrong item, contact us via Telegram within 24 hours with photos. We'll replace or refund immediately. ပျက်စီးနေသော သို့မဟုတ် မှားနေသော ကုန်ပစ္စည်းကို လက်ခံ၍ ၂၄ နာရီအတွင်း ဆက်သွယ်ပါ။
-          </div>
-        </div>
-
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ════════════════════════════════════════════════════════
-     FOOTER
-════════════════════════════════════════════════════════ -->
-<footer class="footer" role="contentinfo">
-  <div class="container">
-    <div class="footer-grid">
-
-      <!-- Brand -->
-      <div class="footer-brand">
-        <div class="logo-text" style="font-family:var(--font-display);font-size:var(--text-2xl);font-weight:900;background:linear-gradient(135deg,var(--rose-gold),var(--rose-light));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;letter-spacing:0.1em;">
-          LUMIÈRE
-        </div>
-        <p class="footer-desc">
-          Myanmar's premier destination for authentic luxury skincare.
-          Sourced from the world's finest beauty brands.
-        </p>
-        <p style="font-family:var(--font-body);font-size:var(--text-sm);color:rgba(255,255,255,0.4);margin-top:var(--space-2);">
-          မြန်မာနိုင်ငံ၏ လူဇ်ရှဲ အသားအရေ ထုတ်ကုန် ဆိုင်
-        </p>
-        <div class="footer-social">
-          <a href="#" class="social-btn" aria-label="Facebook">f</a>
-          <a href="#" class="social-btn" aria-label="Instagram">📷</a>
-          <a href="#" class="social-btn" aria-label="Telegram">✈️</a>
-          <a href="#" class="social-btn" aria-label="Viber">📞</a>
-        </div>
-      </div>
-
-      <!-- Shop -->
-      <div>
-        <div class="footer-heading">Shop</div>
-        <ul class="footer-links">
-          <li><a href="category.html">All Products</a></li>
-          <li><a href="category.html?cat=Serum">Serums</a></li>
-          <li><a href="category.html?cat=Moisturizer">Moisturizers</a></li>
-          <li><a href="category.html?cat=Sunscreen">Sunscreen</a></li>
-          <li><a href="category.html?cat=Mask">Face Masks</a></li>
-          <li><a href="category.html?cat=Cleanser">Cleansers</a></li>
-        </ul>
-      </div>
-
-      <!-- Help -->
-      <div>
-        <div class="footer-heading">Help</div>
-        <ul class="footer-links">
-          <li><a href="contact.html">Contact Us</a></li>
-          <li><a href="#faq">FAQ</a></li>
-          <li><a href="contact.html">Shipping Info</a></li>
-          <li><a href="contact.html">Returns</a></li>
-          <li><a href="contact.html">Track Order</a></li>
-        </ul>
-      </div>
-
-      <!-- Contact -->
-      <div>
-        <div class="footer-heading">Contact</div>
-        <ul class="footer-links">
-          <li><a href="https://t.me/your_telegram" target="_blank" rel="noopener">✈️ Telegram</a></li>
-          <li><a href="viber://chat?number=+959xxxxxxxx">📱 Viber</a></li>
-          <li><a href="https://facebook.com/yourpage" target="_blank" rel="noopener">👤 Facebook</a></li>
-          <li><a href="tel:+959xxxxxxxx">📞 Call Us</a></li>
-        </ul>
-        <div style="margin-top:var(--space-6);">
-          <div style="font-family:var(--font-ui);font-size:var(--text-xs);letter-spacing:0.1em;text-transform:uppercase;color:rgba(255,255,255,0.4);margin-bottom:var(--space-3);">Hours</div>
-          <div style="font-size:var(--text-sm);color:rgba(255,255,255,0.5);">Mon–Sat · 9am–8pm</div>
-          <div style="font-size:var(--text-sm);color:rgba(255,255,255,0.5);">Sun · 10am–6pm</div>
-        </div>
-      </div>
-
-    </div>
-
-    <!-- Bottom -->
-    <div class="footer-bottom">
-      <div class="footer-copy">
-        © 2025 LUMIÈRE Luxury Skincare Myanmar. All rights reserved.
-      </div>
-      <div class="footer-payments">
-        <span>COD</span>
-        <span style="color:rgba(255,255,255,0.2);">·</span>
-        <span>Wave Pay</span>
-        <span style="color:rgba(255,255,255,0.2);">·</span>
-        <span>KBZ Pay</span>
-        <span style="color:rgba(255,255,255,0.2);">·</span>
-        <span>Bank Transfer</span>
-      </div>
-    </div>
-  </div>
-</footer>
-
-<!-- ════════════════════════════════════════════════════════
-     FLOATING BUTTONS
-════════════════════════════════════════════════════════ -->
-
-<!-- Telegram -->
-<a
-  href="https://t.me/your_telegram"
-  target="_blank"
-  rel="noopener"
-  class="floating-telegram"
-  aria-label="Chat on Telegram"
-  title="Order on Telegram"
->
-  ✈️
-</a>
-
-<!-- Back to Top -->
-<button class="floating-top" aria-label="Back to top">↑</button>
-
-<!-- ════════════════════════════════════════════════════════
-     SCRIPTS
-     Order: discount → cart → wishlist → products → search → app
-════════════════════════════════════════════════════════ -->
-<script src="assets/js/discount.js"></script>
-<script src="assets/js/cart.js"></script>
-<script src="assets/js/wishlist.js"></script>
-<script src="assets/js/products.js"></script>
-<script src="assets/js/search.js"></script>
-<script src="assets/js/app.js"></script>
-
-<!-- Inline: show recently-viewed section if items exist -->
-<script>
-  document.addEventListener('DOMContentLoaded', () => {
-    const viewed = JSON.parse(localStorage.getItem('lumiere_viewed') || '[]');
-    if (viewed.length > 0) {
-      const sec = document.getElementById('recently-viewed-section');
-      if (sec) sec.style.display = '';
+  <style>
+    .home-shell-dark {
+      position: relative;
+      overflow: hidden;
     }
-  });
-</script>
 
+    .home-shell-dark::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: -1;
+      background:
+        radial-gradient(circle at 0% 0%, rgba(163,0,42,0.12), transparent 24%),
+        radial-gradient(circle at 100% 100%, rgba(210,31,76,0.10), transparent 24%),
+        linear-gradient(135deg, #050505 0%, #090909 18%, #101012 58%, #18090E 100%);
+    }
+
+    .topbar-dark {
+      position: relative;
+      z-index: 20;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+      background:
+        linear-gradient(90deg, rgba(163,0,42,0.14), rgba(255,255,255,0.03), rgba(163,0,42,0.14));
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+    }
+
+    .topbar-dark-inner {
+      min-height: 42px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--space-4);
+      color: rgba(255,255,255,0.72);
+      font-size: var(--text-xs);
+      font-family: var(--font-ui);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .hero-home-shell {
+      position: relative;
+    }
+
+    .hero-home-shell .hero-content {
+      max-width: 760px;
+    }
+
+    .hero-home-metrics {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: var(--space-4);
+      margin-top: var(--space-8);
+    }
+
+    .hero-home-metric {
+      padding: var(--space-5);
+      border-radius: 22px;
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.12);
+      box-shadow: 0 16px 42px rgba(0,0,0,0.18);
+      backdrop-filter: blur(14px) saturate(180%);
+      -webkit-backdrop-filter: blur(14px) saturate(180%);
+    }
+
+    .hero-home-metric strong {
+      display: block;
+      color: white;
+      font-family: var(--font-display);
+      font-size: clamp(1.3rem, 2.6vw, 2rem);
+      margin-bottom: 0.3rem;
+    }
+
+    .hero-home-metric span {
+      display: block;
+      color: rgba(255,255,255,0.62);
+      font-size: var(--text-sm);
+      line-height: 1.6;
+    }
+
+    .section-dark-home {
+      position: relative;
+      background:
+        radial-gradient(circle at 0% 0%, rgba(163,0,42,0.08), transparent 24%),
+        radial-gradient(circle at 100% 100%, rgba(210,31,76,0.06), transparent 24%),
+        linear-gradient(135deg, #060606 0%, #0C0C0D 35%, #151517 100%);
+      border-top: 1px solid rgba(255,255,255,0.04);
+      border-bottom: 1px solid rgba(255,255,255,0.04);
+    }
+
+    .section-dark-home .section-title,
+    .section-dark-home .eyebrow,
+    .section-dark-home .section-subtitle {
+      color: var(--white);
+    }
+
+    .section-dark-home .section-subtitle {
+      color: rgba(255,255,255,0.56);
+    }
+
+    .home-editorial-split {
+      display: grid;
+      grid-template-columns: 1.05fr 0.95fr;
+      gap: var(--space-10);
+      align-items: center;
+    }
+
+    .home-editorial-card {
+      padding: clamp(1.2rem, 2vw, 1.8rem);
+      border-radius: 30px;
+    }
+
+    .home-categories-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: var(--space-5);
+    }
+
+    .home-category-card {
+      min-height: 220px;
+      padding: var(--space-6);
+      border-radius: 28px;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      text-decoration: none;
+      border: 1px solid rgba(255,255,255,0.08);
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 0 30px rgba(163,0,42,0.10);
+      transition: transform var(--duration) var(--ease), box-shadow var(--duration) var(--ease), border-color var(--duration) var(--ease);
+    }
+
+    .home-category-card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0));
+      pointer-events: none;
+    }
+
+    .home-category-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 20px 48px rgba(0,0,0,0.22), 0 0 36px rgba(163,0,42,0.16);
+      border-color: rgba(210,31,76,0.20);
+    }
+
+    .home-category-card-title {
+      position: relative;
+      z-index: 1;
+      font-family: var(--font-display);
+      font-size: var(--text-xl);
+      font-weight: 700;
+      color: var(--white);
+      margin-bottom: 0.35rem;
+    }
+
+    .home-category-card-meta {
+      position: relative;
+      z-index: 1;
+      font-family: var(--font-ui);
+      font-size: var(--text-xs);
+      color: rgba(255,255,255,0.62);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .home-feature-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: var(--space-5);
+    }
+
+    .home-feature-card {
+      padding: var(--space-6);
+      border-radius: 26px;
+    }
+
+    .home-feature-card h3 {
+      color: var(--white);
+      font-family: var(--font-display);
+      font-size: var(--text-xl);
+      margin-bottom: 0.6rem;
+      letter-spacing: -0.02em;
+    }
+
+    .home-feature-card p {
+      color: rgba(255,255,255,0.62);
+      line-height: 1.9;
+      font-size: var(--text-sm);
+    }
+
+    .home-feature-kicker {
+      display: inline-block;
+      margin-bottom: var(--space-4);
+      font-family: var(--font-ui);
+      font-size: var(--text-xs);
+      color: #FF7C9A;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    .home-social-proof-row {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: var(--space-4);
+    }
+
+    .home-proof-card {
+      padding: var(--space-6);
+      border-radius: 24px;
+      text-align: center;
+    }
+
+    .home-proof-card strong {
+      display: block;
+      font-family: var(--font-display);
+      font-size: clamp(1.5rem, 2.7vw, 2.2rem);
+      color: var(--white);
+      margin-bottom: 0.35rem;
+    }
+
+    .home-proof-card span {
+      display: block;
+      color: rgba(255,255,255,0.56);
+      font-size: var(--text-sm);
+    }
+
+    .home-error-panel {
+      display: none;
+      padding: clamp(1.2rem, 2vw, 1.6rem);
+      border-radius: 28px;
+      background: linear-gradient(135deg, rgba(111,0,27,0.22), rgba(163,0,42,0.12));
+      border: 1px solid rgba(210,31,76,0.24);
+      box-shadow: 0 0 28px rgba(163,0,42,0.12);
+    }
+
+    .home-error-title {
+      font-family: var(--font-display);
+      font-size: var(--text-2xl);
+      font-weight: 700;
+      color: var(--white);
+      margin-bottom: 0.5rem;
+    }
+
+    .home-error-text {
+      color: rgba(255,255,255,0.68);
+      line-height: 1.9;
+      margin-bottom: var(--space-5);
+    }
+
+    .home-empty-grid {
+      display: none;
+    }
+
+    @media (max-width: 1100px) {
+      .home-editorial-split,
+      .home-categories-grid,
+      .home-feature-grid,
+      .home-social-proof-row {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 768px) {
+      .hero-home-metrics,
+      .home-editorial-split,
+      .home-categories-grid,
+      .home-feature-grid,
+      .home-social-proof-row {
+        grid-template-columns: 1fr;
+      }
+
+      .topbar-dark-inner {
+        justify-content: center;
+        text-align: center;
+      }
+    }
+  </style>
+</head>
+<body class="page-shell-dark home-shell-dark">
+
+  <div id="loading-screen" role="status" aria-label="Loading">
+    <div class="loading-logo shimmer-text">LUMIÈRE</div>
+    <div class="loading-bar-track">
+      <div class="loading-bar-fill"></div>
+    </div>
+    <div class="loading-tagline">Luxury Skincare · Myanmar</div>
+    <div class="css-particles">
+      <span></span><span></span><span></span><span></span><span></span>
+      <span></span><span></span><span></span><span></span><span></span>
+    </div>
+  </div>
+
+  <div class="topbar-dark">
+    <div class="container">
+      <div class="topbar-dark-inner">
+        <span>Authentic Luxury Skincare</span>
+        <span>Fast Delivery Across Myanmar</span>
+        <span>Curated Premium Selection</span>
+      </div>
+    </div>
+  </div>
+
+  <header class="navbar" role="banner">
+    <div class="container">
+      <div class="navbar-inner">
+        <a href="index.html" class="navbar-logo" aria-label="LUMIÈRE Home">
+          <span class="logo-text">LUMIÈRE</span>
+          <span class="logo-sub">Luxury Skincare · MM</span>
+        </a>
+
+        <nav class="navbar-links" aria-label="Main navigation">
+          <a href="index.html" style="color:#FF6C8F;">Home</a>
+          <a href="category.html">Shop</a>
+          <a href="category.html?cat=Serum">Serums</a>
+          <a href="category.html?cat=Moisturizer">Moisturizers</a>
+          <a href="search.html">Search</a>
+          <a href="contact.html">Contact</a>
+        </nav>
+
+        <div class="navbar-actions">
+          <button class="nav-icon-btn" data-open-search aria-label="Search">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="11" cy="11" r="8"></circle>
+              <path d="m21 21-4.35-4.35"></path>
+            </svg>
+          </button>
+
+          <button class="theme-toggle nav-icon-btn" data-toggle-theme aria-label="Toggle dark mode">
+            <span data-theme-icon>◐</span>
+          </button>
+
+          <a href="wishlist.html" class="nav-icon-btn" aria-label="Wishlist">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+            </svg>
+            <span class="nav-badge" data-wishlist-badge style="display:none;">0</span>
+          </a>
+
+          <button class="nav-icon-btn" data-open-cart aria-label="Cart">
+            <svg width="18" height="18" data-cart-icon viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="9" cy="21" r="1"></circle>
+              <circle cx="20" cy="21" r="1"></circle>
+              <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+            </svg>
+            <span class="nav-badge" data-cart-badge style="display:none;">0</span>
+          </button>
+
+          <button class="nav-hamburger" aria-label="Open menu"><span></span><span></span><span></span></button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <nav class="mobile-nav" aria-label="Mobile navigation">
+    <a href="index.html">Home</a>
+    <a href="category.html">Shop</a>
+    <a href="search.html">Search</a>
+    <a href="wishlist.html">Wishlist</a>
+    <a href="contact.html">Contact</a>
+  </nav>
+
+  <section class="hero hero-home-shell">
+    <div class="hero-slides" id="hero-slides"></div>
+
+    <div class="container" style="position:relative;z-index:3;">
+      <div class="hero-content reveal-blur-up">
+        <span class="hero-eyebrow">
+          <span class="hero-eyebrow-line"></span>
+          Curated Luxury Beauty
+        </span>
+
+        <h1 class="hero-title">
+          Luxury Skincare for a <span class="italic">Refined Ritual</span>
+        </h1>
+
+        <p class="hero-subtitle">
+          Discover modern, authentic, and premium skincare with a darker editorial experience built for elegant browsing and fast shopping.
+        </p>
+
+        <div class="hero-cta-group cta-row-modern">
+          <a href="category.html" class="btn btn-red-luxe btn-lg btn-sheen">Shop Collection</a>
+          <a href="search.html" class="btn btn-dark-glass btn-lg">Search Products</a>
+        </div>
+
+        <div class="hero-meta-row">
+          <span class="hero-meta-pill">Authentic Products</span>
+          <span class="hero-meta-pill">Fast Order Flow</span>
+          <span class="hero-meta-pill">Premium Selection</span>
+        </div>
+
+        <div class="hero-home-metrics">
+          <div class="hero-home-metric">
+            <strong id="hero-customers-count">10,000+</strong>
+            <span>Happy Clients</span>
+          </div>
+          <div class="hero-home-metric">
+            <strong id="hero-products-sold-count">50,000+</strong>
+            <span>Products Sold</span>
+          </div>
+          <div class="hero-home-metric">
+            <strong id="hero-rating-count">4.9</strong>
+            <span>Average Rating</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-dark-home">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="eyebrow">Shop By Category</span>
+        <h2 class="section-title">Explore the Collection</h2>
+        <p class="section-subtitle">Navigate the catalog through premium skincare categories.</p>
+      </div>
+
+      <div class="home-categories-grid" id="home-categories-grid"></div>
+    </div>
+  </section>
+
+  <section class="section section-dark-home">
+    <div class="container">
+      <div class="home-editorial-split">
+        <div class="luxe-panel-dark home-editorial-card reveal-blur-up">
+          <span class="hero-eyebrow">Editorial Selection</span>
+          <h2 class="section-title" style="text-align:left;margin-bottom:var(--space-4);">Discover Elevated Daily Care</h2>
+          <p class="section-subtitle" style="text-align:left;max-width:none;">
+            From serums and moisturizers to sun protection and treatment products, our collection is curated for a cleaner, more premium skincare discovery experience.
+          </p>
+
+          <div class="cta-row-modern" style="margin-top:var(--space-6);">
+            <a href="category.html" class="btn btn-red-luxe btn-lg">Browse All Products</a>
+            <a href="contact.html" class="btn btn-dark-glass btn-lg">Get Product Guidance</a>
+          </div>
+        </div>
+
+        <div class="luxe-panel-dark home-editorial-card reveal-clip">
+          <div class="trust-badges" style="margin-bottom:var(--space-5);">
+            <span class="luxe-chip-dark">Premium Curation</span>
+            <span class="luxe-chip-dark">Authentic Imports</span>
+            <span class="luxe-chip-dark">Modern Shopping Flow</span>
+          </div>
+
+          <div class="divider-luxe" style="margin:var(--space-6) 0;"></div>
+
+          <p class="luxe-subtext" style="line-height:1.9;">
+            The experience is designed to feel darker, sharper, and more editorial while staying fast and practical for real product discovery, wishlist saving, and ordering.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-dark-home" id="home-error-state" style="display:none;">
+    <div class="container">
+      <div class="home-error-panel" id="home-error-panel">
+        <div class="home-error-title">Products Are Currently Unavailable</div>
+        <div class="home-error-text" id="home-error-text">
+          We could not load the product catalog at this time. Please contact us directly for assistance or product inquiries.
+        </div>
+        <div class="cta-row-modern">
+          <a href="contact.html" class="btn btn-red-luxe btn-lg">Contact Us</a>
+          <a href="https://t.me/your_telegram" target="_blank" rel="noopener" class="btn btn-dark-glass btn-lg">Telegram</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-dark-home" id="featured-products-section">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="eyebrow">Featured Picks</span>
+        <h2 class="section-title">Curated Products</h2>
+        <p class="section-subtitle">A refined product selection from the current catalog.</p>
+      </div>
+
+      <div class="grid-products" id="featured-products-grid" role="list"></div>
+    </div>
+  </section>
+
+  <section class="section section-dark-home">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="eyebrow">Why LUMIÈRE</span>
+        <h2 class="section-title">A More Premium Experience</h2>
+        <p class="section-subtitle">Built for elegant browsing, discovery, and fast ordering.</p>
+      </div>
+
+      <div class="home-feature-grid">
+        <div class="luxe-panel-dark home-feature-card reveal-blur-up">
+          <span class="home-feature-kicker">Curated</span>
+          <h3>Refined Selection</h3>
+          <p>Products are presented through a more modern editorial style with stronger hierarchy and cleaner discovery flow.</p>
+        </div>
+
+        <div class="luxe-panel-dark home-feature-card reveal-blur-up">
+          <span class="home-feature-kicker">Authentic</span>
+          <h3>Trusted Sourcing</h3>
+          <p>Focus on authenticity, premium presentation, and better clarity across product details and category structure.</p>
+        </div>
+
+        <div class="luxe-panel-dark home-feature-card reveal-blur-up">
+          <span class="home-feature-kicker">Modern</span>
+          <h3>Luxury Interface</h3>
+          <p>Darker visuals, red edge glow accents, smooth transitions, and elevated interactions create a sharper browsing feel.</p>
+        </div>
+
+        <div class="luxe-panel-dark home-feature-card reveal-blur-up">
+          <span class="home-feature-kicker">Direct</span>
+          <h3>Fast Ordering</h3>
+          <p>Move from wishlist and cart to direct messaging and order confirmation through a simpler, more polished flow.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-dark-home">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="eyebrow">Social Proof</span>
+        <h2 class="section-title">Trusted by Customers</h2>
+        <p class="section-subtitle">A stronger store experience supported by visible customer confidence.</p>
+      </div>
+
+      <div class="home-social-proof-row">
+        <div class="luxe-panel-dark home-proof-card reveal-zoom-soft">
+          <strong id="proof-customers">10,000+</strong>
+          <span>Total Customers</span>
+        </div>
+        <div class="luxe-panel-dark home-proof-card reveal-zoom-soft">
+          <strong id="proof-sold">50,000+</strong>
+          <span>Products Sold</span>
+        </div>
+        <div class="luxe-panel-dark home-proof-card reveal-zoom-soft">
+          <strong id="proof-rating">4.9</strong>
+          <span>Average Rating</span>
+        </div>
+        <div class="luxe-panel-dark home-proof-card reveal-zoom-soft">
+          <strong id="proof-reviews">2,800+</strong>
+          <span>Reviews</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-dark-home" id="faq">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="eyebrow">FAQ</span>
+        <h2 class="section-title">Frequently Asked Questions</h2>
+        <p class="section-subtitle">Quick answers about ordering, authenticity, and support.</p>
+      </div>
+
+      <div class="features-grid-modern">
+        <div class="luxe-panel-dark feature-card-modern reveal-blur-up">
+          <h3 style="color:var(--white);font-family:var(--font-display);margin-bottom:0.75rem;">Are the products authentic?</h3>
+          <p style="color:rgba(255,255,255,0.62);line-height:1.9;">Yes. The store experience is built around curated, premium, and authenticity-focused presentation.</p>
+        </div>
+        <div class="luxe-panel-dark feature-card-modern reveal-blur-up">
+          <h3 style="color:var(--white);font-family:var(--font-display);margin-bottom:0.75rem;">How do I order?</h3>
+          <p style="color:rgba(255,255,255,0.62);line-height:1.9;">You can add products to cart, review them in checkout, and complete the order flow through Telegram.</p>
+        </div>
+        <div class="luxe-panel-dark feature-card-modern reveal-blur-up">
+          <h3 style="color:var(--white);font-family:var(--font-display);margin-bottom:0.75rem;">Can I save products for later?</h3>
+          <p style="color:rgba(255,255,255,0.62);line-height:1.9;">Yes. Use the wishlist to build a personal shortlist and revisit your preferred products later.</p>
+        </div>
+        <div class="luxe-panel-dark feature-card-modern reveal-blur-up">
+          <h3 style="color:var(--white);font-family:var(--font-display);margin-bottom:0.75rem;">What if products cannot be loaded?</h3>
+          <p style="color:rgba(255,255,255,0.62);line-height:1.9;">A contact panel will appear instead of demo data, so customers can reach out directly for support.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer footer-dark-luxe" role="contentinfo">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <div class="logo-text" style="font-family:var(--font-display);font-size:var(--text-2xl);font-weight:900;background:linear-gradient(135deg,#FF6C8F,#D21F4C,#A3002A);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;letter-spacing:0.1em;">
+            LUMIÈRE
+          </div>
+          <p class="footer-desc">Luxury skincare with a darker, sharper, and more modern product discovery experience.</p>
+          <div class="footer-social">
+            <a href="#" class="social-btn" aria-label="Facebook">Fb</a>
+            <a href="#" class="social-btn" aria-label="Instagram">Ig</a>
+            <a href="https://t.me/your_telegram" class="social-btn" aria-label="Telegram">Tl</a>
+          </div>
+        </div>
+
+        <div>
+          <div class="footer-heading">Shop</div>
+          <ul class="footer-links">
+            <li><a href="category.html">All Products</a></li>
+            <li><a href="category.html?cat=Serum">Serums</a></li>
+            <li><a href="category.html?cat=Moisturizer">Moisturizers</a></li>
+            <li><a href="search.html">Search</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <div class="footer-heading">Support</div>
+          <ul class="footer-links">
+            <li><a href="contact.html">Contact</a></li>
+            <li><a href="checkout.html">Checkout</a></li>
+            <li><a href="#faq">FAQ</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <div class="footer-heading">Connect</div>
+          <ul class="footer-links">
+            <li><a href="https://t.me/your_telegram" target="_blank" rel="noopener">Telegram</a></li>
+            <li><a href="https://facebook.com/yourpage" target="_blank" rel="noopener">Facebook</a></li>
+            <li><a href="mailto:hello@lumiere.com.mm">Email</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <div class="footer-copy">© 2025 LUMIÈRE Luxury Skincare Myanmar.</div>
+        <div class="footer-payments">
+          <span>COD</span>
+          <span style="color:rgba(255,255,255,0.2);">·</span>
+          <span>Wave Pay</span>
+          <span style="color:rgba(255,255,255,0.2);">·</span>
+          <span>KBZ Pay</span>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <a href="https://t.me/your_telegram" target="_blank" rel="noopener" class="floating-telegram" aria-label="Chat on Telegram">Tl</a>
+  <button class="floating-top" aria-label="Back to top">↑</button>
+
+  <script src="assets/js/discount.js"></script>
+  <script src="assets/js/cart.js"></script>
+  <script src="assets/js/wishlist.js"></script>
+  <script src="assets/js/products.js"></script>
+  <script src="assets/js/search.js"></script>
+  <script src="assets/js/app.js"></script>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', async () => {
+      let appConfig = {};
+      try {
+        const res = await fetch('/data/config.json');
+        if (res.ok) appConfig = await res.json();
+      } catch {}
+
+      const socialProof = appConfig.social_proof || {};
+      document.getElementById('hero-customers-count').textContent = socialProof.total_customers || '10,000+';
+      document.getElementById('hero-products-sold-count').textContent = socialProof.products_sold || '50,000+';
+      document.getElementById('hero-rating-count').textContent = socialProof.rating || '4.9';
+      document.getElementById('proof-customers').textContent = socialProof.total_customers || '10,000+';
+      document.getElementById('proof-sold').textContent = socialProof.products_sold || '50,000+';
+      document.getElementById('proof-rating').textContent = socialProof.rating || '4.9';
+      document.getElementById('proof-reviews').textContent = socialProof.reviews_count || '2,800+';
+
+      const categoryStyles = {
+        'Serum': 'linear-gradient(135deg,#2A0A13,#A3002A)',
+        'Moisturizer': 'linear-gradient(135deg,#171717,#5B1021)',
+        'Sunscreen': 'linear-gradient(135deg,#231015,#8B1633)',
+        'Toner': 'linear-gradient(135deg,#111111,#6B0E24)',
+        'Cleanser': 'linear-gradient(135deg,#151515,#7A102A)',
+        'Mask': 'linear-gradient(135deg,#100E10,#94142F)',
+        'Eye Cream': 'linear-gradient(135deg,#141414,#661021)',
+        'Essence': 'linear-gradient(135deg,#1A1013,#B11838)',
+        'Treatment': 'linear-gradient(135deg,#181818,#87152E)',
+        'Lip': 'linear-gradient(135deg,#140A0D,#C01A45)'
+      };
+
+      function showLoadError() {
+        document.getElementById('featured-products-section')?.style?.setProperty('display', 'none');
+        document.getElementById('home-error-state')?.style?.setProperty('display', '');
+        document.getElementById('home-error-panel')?.style?.setProperty('display', '');
+
+        const contact = appConfig.contact || {};
+        const telegramUsername = (contact.telegram_username || '@your_telegram').replace('@', '');
+        const telegramLink = document.querySelector('#home-error-panel a[href*="t.me"]');
+        if (telegramLink) telegramLink.href = `https://t.me/${telegramUsername}`;
+
+        const text = document.getElementById('home-error-text');
+        if (text) {
+          text.textContent = 'We could not load the product catalog at this time. Please contact us directly through the contact page or Telegram for product support and ordering assistance.';
+        }
+      }
+
+      function buildCategories() {
+        const grid = document.getElementById('home-categories-grid');
+        const cats = window.ProductsSystem?.getCategories?.() || [];
+        if (!grid) return;
+
+        if (!cats.length) {
+          grid.innerHTML = '';
+          return;
+        }
+
+        grid.innerHTML = cats.slice(0, 8).map(cat => {
+          const bg = categoryStyles[cat] || 'linear-gradient(135deg,#141414,#8A1731)';
+          const count = window.ProductsSystem?.getByCategory?.(cat)?.length || 0;
+          return `
+            <a href="category.html?cat=${encodeURIComponent(cat)}" class="home-category-card reveal" style="background:${bg};">
+              <span class="home-category-card-title">${cat}</span>
+              <span class="home-category-card-meta">${count} Products</span>
+            </a>
+          `;
+        }).join('');
+      }
+
+      function buildFeaturedProducts() {
+        const grid = document.getElementById('featured-products-grid');
+        if (!grid) return;
+
+        const all = window._productsCache || [];
+        if (!all.length) {
+          showLoadError();
+          return;
+        }
+
+        const featured =
+          window.ProductsSystem?.getTrending?.(8) ||
+          window.ProductsSystem?.getPopular?.(8) ||
+          all.slice(0, 8);
+
+        if (!featured.length) {
+          showLoadError();
+          return;
+        }
+
+        ProductsSystem.renderProducts(grid, featured);
+      }
+
+      function waitForProducts() {
+        const cache = window._productsCache || [];
+        if (cache.length) {
+          buildCategories();
+          buildFeaturedProducts();
+          AppUtils?.initScrollReveal?.();
+          return;
+        }
+
+        if (window.ProductsSystem && window.ProductsSystem.isLoaded && window.ProductsSystem.isLoaded()) {
+          buildCategories();
+          buildFeaturedProducts();
+          AppUtils?.initScrollReveal?.();
+          return;
+        }
+
+        let tries = 0;
+        const timer = setInterval(() => {
+          tries++;
+          const pool = window._productsCache || [];
+          const loaded = window.ProductsSystem?.isLoaded?.();
+
+          if (pool.length) {
+            clearInterval(timer);
+            buildCategories();
+            buildFeaturedProducts();
+            AppUtils?.initScrollReveal?.();
+            return;
+          }
+
+          if (loaded && !pool.length) {
+            clearInterval(timer);
+            showLoadError();
+            return;
+          }
+
+          if (tries >= 20) {
+            clearInterval(timer);
+            showLoadError();
+          }
+        }, 400);
+      }
+
+      waitForProducts();
+    });
+  </script>
 </body>
 </html>
 

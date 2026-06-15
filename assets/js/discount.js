@@ -478,3 +478,114 @@ const DiscountSystem = (() => {
 
 window.DiscountSystem = DiscountSystem;
 
+/* ============================================================
+   PHASE 2 ENHANCEMENTS — DISCOUNT / TIMER UX EXTENSIONS
+   Append only
+   ============================================================ */
+
+(function () {
+  'use strict';
+
+  if (!window.DiscountSystem) return;
+
+  const _discount = window.DiscountSystem;
+
+  function getSaleIntensity(priceInfo = {}) {
+    const pct = parseFloat(priceInfo.discountPercent || 0);
+    if (pct >= 40) return 'mega';
+    if (pct >= 25) return 'high';
+    if (pct >= 10) return 'medium';
+    return pct > 0 ? 'low' : 'none';
+  }
+
+  function buildUrgencyHTML(product, priceInfo = null) {
+    const info = priceInfo || _discount.calculatePrice(product);
+    if (!info?.hasDiscount) return '';
+
+    const intensity = getSaleIntensity(info);
+    const labels = {
+      mega: 'Mega Offer',
+      high: 'Limited Deal',
+      medium: 'Special Offer',
+      low: 'Member Price'
+    };
+
+    return `
+      <div class="sale-urgency-pill badge-soft badge-red-soft sale-${intensity}">
+        ⏳ ${labels[intensity] || 'Special Offer'}
+      </div>
+    `;
+  }
+
+  const _originalBuildBadgeHTML = _discount.buildBadgeHTML;
+  if (typeof _originalBuildBadgeHTML === 'function') {
+    _discount.buildBadgeHTML = function enhancedBuildBadgeHTML(product, priceInfo, stockStatus) {
+      let html = _originalBuildBadgeHTML.apply(this, arguments);
+
+      try {
+        const urgency = buildUrgencyHTML(product, priceInfo);
+        if (urgency) {
+          if (html && html.includes('product-badge')) {
+            html = html.replace('</div>', `${urgency}</div>`);
+          } else {
+            html = `<div class="product-badge">${urgency}</div>`;
+          }
+        }
+      } catch {}
+
+      return html;
+    };
+  }
+
+  const _originalBuildDetailPriceHTML = _discount.buildDetailPriceHTML;
+  if (typeof _originalBuildDetailPriceHTML === 'function') {
+    _discount.buildDetailPriceHTML = function enhancedBuildDetailPriceHTML(priceInfo) {
+      let html = _originalBuildDetailPriceHTML.apply(this, arguments);
+
+      try {
+        const intensity = getSaleIntensity(priceInfo);
+        if (priceInfo?.hasDiscount) {
+          html += `
+            <div class="detail-price-meta" style="margin-top:0.9rem;display:flex;flex-wrap:wrap;gap:0.6rem;">
+              <span class="badge-soft badge-gold">✨ ${intensity === 'mega' ? 'Best Value' : 'Premium Deal'}</span>
+              <span class="badge-soft">${priceInfo.discountLabel} Active</span>
+            </div>
+          `;
+        }
+      } catch {}
+
+      return html;
+    };
+  }
+
+  const _originalStartTimer = _discount.startTimer;
+  if (typeof _originalStartTimer === 'function') {
+    _discount.startTimer = function enhancedStartTimer(target, endDate, onExpire) {
+      const wrappedExpire = function () {
+        try {
+          if (window.AppUtils?.showToast) {
+            AppUtils.showToast('Flash sale ended', 'warning');
+          }
+        } catch {}
+        if (typeof onExpire === 'function') onExpire();
+      };
+
+      const result = _originalStartTimer.call(this, target, endDate, wrappedExpire);
+
+      try {
+        const el = typeof target === 'string' ? document.querySelector(target) : target;
+        if (el) {
+          el.classList.add('surface-rise', 'revealed');
+          const timerValues = el.querySelectorAll('.timer-value');
+          timerValues.forEach(v => v.classList.add('spotlight-pulse'));
+        }
+      } catch {}
+
+      return result;
+    };
+  }
+
+  window.DiscountSystem.getSaleIntensity = getSaleIntensity;
+  window.DiscountSystem.buildUrgencyHTML = buildUrgencyHTML;
+})();
+

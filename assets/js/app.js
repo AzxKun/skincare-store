@@ -1518,3 +1518,392 @@ if (document.readyState === 'loading') {
   bootApp();
 }
 
+/* ============================================================
+   PHASE 2 ENHANCEMENTS — APP UX / MOTION EXTENSIONS
+   Append only
+   ============================================================ */
+
+(function () {
+  'use strict';
+
+  const LuxuryAppEnhancer = (() => {
+    let _config = {};
+    let _magneticBound = false;
+    let _tiltBound = false;
+    let _spotlightEl = null;
+    let _sectionObs = null;
+    let _navbarLastY = window.scrollY || 0;
+    let _navbarTicking = false;
+
+    function init(config = {}) {
+      _config = config || {};
+      _bindDocumentFlags();
+      _initExtendedReveal();
+      _initMagneticButtons();
+      _initTiltCards();
+      _initLuxurySpotlight();
+      _initSmartNavbar();
+      _initAmbientSections();
+      _initAutoEnhanceCards();
+      _initHeroStatsUpgrade();
+      _initPageEnterState();
+    }
+
+    function refresh() {
+      _initExtendedReveal();
+      _initMagneticButtons();
+      _initTiltCards();
+      _initAmbientSections();
+      _initAutoEnhanceCards();
+      _initHeroStatsUpgrade();
+    }
+
+    function _bindDocumentFlags() {
+      document.documentElement.classList.add('js-luxury-enhanced');
+
+      if (_config?.ui_enhancements?.enable_soft_radial_backgrounds) {
+        document.documentElement.classList.add('ui-soft-radial-bg');
+      }
+      if (_config?.ui_enhancements?.enable_floating_blobs) {
+        document.documentElement.classList.add('ui-floating-blobs');
+      }
+      if (_config?.motion?.enable_button_sheen) {
+        document.documentElement.classList.add('ui-button-sheen');
+      }
+    }
+
+    function _initExtendedReveal() {
+      const selectors = [
+        '.reveal-blur-up',
+        '.reveal-rotate-soft',
+        '.reveal-clip',
+        '.reveal-zoom-soft',
+        '.stagger-deluxe',
+        '.surface-rise'
+      ];
+
+      const els = document.querySelectorAll(selectors.join(','));
+      if (!els.length) return;
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (!entry.isIntersecting) return;
+          entry.target.classList.add('revealed');
+          observer.unobserve(entry.target);
+        });
+      }, { threshold: 0.14, rootMargin: '0px 0px -40px 0px' });
+
+      els.forEach(el => {
+        if (!el.classList.contains('revealed')) observer.observe(el);
+      });
+    }
+
+    function _initMagneticButtons() {
+      if (_magneticBound) return;
+      _magneticBound = true;
+
+      document.addEventListener('pointermove', (e) => {
+        const btn = e.target.closest('.btn, .btn-luxe, .btn-soft, .btn-outline-luxe, [data-magnetic]');
+        if (!btn) return;
+        if (window.matchMedia('(pointer: coarse)').matches) return;
+
+        const rect = btn.getBoundingClientRect();
+        const strength = parseFloat(btn.dataset.magneticStrength || '0.18');
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        const moveX = (x - rect.width / 2) * strength;
+        const moveY = (y - rect.height / 2) * strength;
+
+        btn.style.transform = `translate(${moveX * 0.12}px, ${moveY * 0.12}px)`;
+      }, { passive: true });
+
+      document.addEventListener('pointerleave', (e) => {
+        const btn = e.target.closest?.('.btn, .btn-luxe, .btn-soft, .btn-outline-luxe, [data-magnetic]');
+        if (!btn) return;
+        btn.style.transform = '';
+      }, true);
+
+      document.addEventListener('mouseout', (e) => {
+        const btn = e.target.closest?.('.btn, .btn-luxe, .btn-soft, .btn-outline-luxe, [data-magnetic]');
+        if (!btn) return;
+        if (btn.contains(e.relatedTarget)) return;
+        btn.style.transform = '';
+      }, true);
+    }
+
+    function _initTiltCards() {
+      if (_tiltBound) return;
+      _tiltBound = true;
+
+      document.addEventListener('pointermove', (e) => {
+        const card = e.target.closest('.card-hover-tilt, .product-card, [data-tilt-card]');
+        if (!card) return;
+        if (window.matchMedia('(pointer: coarse)').matches) return;
+        if (card.dataset.tiltDisabled === 'true') return;
+
+        const rect = card.getBoundingClientRect();
+        const px = (e.clientX - rect.left) / rect.width;
+        const py = (e.clientY - rect.top) / rect.height;
+
+        const rotateY = (px - 0.5) * 7;
+        const rotateX = (0.5 - py) * 7;
+
+        card.style.transform = `perspective(1200px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-4px)`;
+        card.style.willChange = 'transform';
+      }, { passive: true });
+
+      document.addEventListener('pointerout', (e) => {
+        const card = e.target.closest?.('.card-hover-tilt, .product-card, [data-tilt-card]');
+        if (!card) return;
+        if (card.contains(e.relatedTarget)) return;
+        card.style.transform = '';
+        card.style.willChange = '';
+      }, true);
+    }
+
+    function _initLuxurySpotlight() {
+      if (!_config?.ui_enhancements?.enable_cursor_glow) return;
+      if (window.matchMedia('(pointer: coarse)').matches) return;
+      if (_spotlightEl) return;
+
+      _spotlightEl = document.createElement('div');
+      _spotlightEl.className = 'luxury-spotlight-orb';
+      Object.assign(_spotlightEl.style, {
+        position: 'fixed',
+        width: '220px',
+        height: '220px',
+        borderRadius: '50%',
+        pointerEvents: 'none',
+        zIndex: '9996',
+        left: '0',
+        top: '0',
+        opacity: '0',
+        transform: 'translate(-50%, -50%)',
+        background: 'radial-gradient(circle, rgba(212,175,55,0.14), rgba(248,215,230,0.10) 40%, rgba(255,255,255,0.02) 65%, transparent 72%)',
+        filter: 'blur(16px)',
+        transition: 'opacity 220ms ease'
+      });
+
+      document.body.appendChild(_spotlightEl);
+
+      document.addEventListener('pointermove', (e) => {
+        _spotlightEl.style.opacity = '1';
+        _spotlightEl.style.left = `${e.clientX}px`;
+        _spotlightEl.style.top = `${e.clientY}px`;
+      }, { passive: true });
+
+      document.addEventListener('pointerdown', () => {
+        _spotlightEl.style.width = '250px';
+        _spotlightEl.style.height = '250px';
+        setTimeout(() => {
+          if (!_spotlightEl) return;
+          _spotlightEl.style.width = '220px';
+          _spotlightEl.style.height = '220px';
+        }, 180);
+      });
+
+      document.addEventListener('mouseleave', () => {
+        if (_spotlightEl) _spotlightEl.style.opacity = '0';
+      });
+    }
+
+    function _initSmartNavbar() {
+      const nav = document.querySelector('.navbar, .site-header, header');
+      if (!nav) return;
+
+      const applyState = () => {
+        const y = window.scrollY || 0;
+        const directionDown = y > _navbarLastY;
+
+        nav.classList.toggle('is-scrolled', y > 18);
+        nav.classList.toggle('is-hidden', directionDown && y > 140);
+        nav.classList.toggle('is-top', y <= 12);
+
+        _navbarLastY = y;
+        _navbarTicking = false;
+      };
+
+      window.addEventListener('scroll', () => {
+        if (_navbarTicking) return;
+        _navbarTicking = true;
+        requestAnimationFrame(applyState);
+      }, { passive: true });
+
+      applyState();
+    }
+
+    function _initAmbientSections() {
+      if (!_config?.ui_enhancements?.enable_floating_blobs) return;
+
+      const sections = document.querySelectorAll('.section-soft, .section-luxe, .luxury-shell, [data-ambient-blobs]');
+      sections.forEach(section => {
+        if (section.querySelector(':scope > .ambient-blobs')) return;
+
+        const wrap = document.createElement('div');
+        wrap.className = 'ambient-blobs';
+        Object.assign(wrap.style, {
+          position: 'absolute',
+          inset: '0',
+          overflow: 'hidden',
+          pointerEvents: 'none',
+          zIndex: '0'
+        });
+
+        wrap.innerHTML = `
+          <span class="floating-blob blob-luxe blob-gold" style="width:220px;height:220px;top:-40px;right:-30px;animation-delay:0s;"></span>
+          <span class="floating-blob blob-luxe blob-pink" style="width:180px;height:180px;bottom:-30px;left:-20px;animation-delay:1.2s;"></span>
+          <span class="floating-blob blob-luxe blob-red" style="width:120px;height:120px;top:40%;left:60%;animation-delay:2.4s;"></span>
+        `;
+
+        const currentPos = getComputedStyle(section).position;
+        if (currentPos === 'static') section.style.position = 'relative';
+        section.prepend(wrap);
+      });
+    }
+
+    function _initAutoEnhanceCards() {
+      document.querySelectorAll('.product-card').forEach(card => {
+        card.classList.add('card-shine', 'card-hover-depth');
+        if (!window.matchMedia('(pointer: coarse)').matches) {
+          card.classList.add('card-hover-tilt');
+        }
+      });
+
+      document.querySelectorAll('.btn').forEach(btn => {
+        if (_config?.motion?.enable_button_sheen) btn.classList.add('btn-sheen');
+      });
+    }
+
+    function _initHeroStatsUpgrade() {
+      const hero = document.querySelector('.hero');
+      if (!hero) return;
+
+      if (!hero.querySelector('.hero-accent-ring') && _config?.hero_enhancements?.enable_floating_accent_ring !== false) {
+        const ring = document.createElement('div');
+        ring.className = 'hero-accent-ring rotate-soft';
+        hero.appendChild(ring);
+      }
+
+      const content = hero.querySelector('.hero-content');
+      if (!content) return;
+
+      if (!content.querySelector('.hero-meta-row') && _config?.hero_enhancements?.enable_stat_pills !== false) {
+        const meta = document.createElement('div');
+        meta.className = 'hero-meta-row reveal-blur-up revealed';
+        meta.innerHTML = `
+          <span class="hero-meta-pill">✨ <strong>Authentic</strong> Luxury Skincare</span>
+          <span class="hero-meta-pill">🚚 Fast Delivery Across Myanmar</span>
+          <span class="hero-meta-pill">💎 Curated Premium Selection</span>
+        `;
+        content.appendChild(meta);
+      }
+
+      if (!content.querySelector('.hero-stats') && _config?.hero_enhancements?.enable_hero_stats !== false) {
+        const stats = document.createElement('div');
+        stats.className = 'hero-stats stagger-deluxe revealed';
+        stats.innerHTML = `
+          <div class="hero-stat-card spotlight-pulse">
+            <span class="hero-stat-value">${_config?.social_proof?.total_customers || '10,000+'}</span>
+            <span class="hero-stat-label">${_config?.promo_banners?.hero_stat_1_label || 'Happy Clients'}</span>
+          </div>
+          <div class="hero-stat-card">
+            <span class="hero-stat-value">${_config?.promo_banners?.hero_stat_2_value || '100%'}</span>
+            <span class="hero-stat-label">${_config?.promo_banners?.hero_stat_2_label || 'Authentic Products'}</span>
+          </div>
+          <div class="hero-stat-card">
+            <span class="hero-stat-value">${_config?.promo_banners?.hero_stat_3_value || '4.9/5'}</span>
+            <span class="hero-stat-label">${_config?.promo_banners?.hero_stat_3_label || 'Top Rated'}</span>
+          </div>
+        `;
+        content.appendChild(stats);
+      }
+    }
+
+    function _initPageEnterState() {
+      requestAnimationFrame(() => {
+        document.documentElement.classList.add('page-is-ready');
+        document.body.classList.add('page-is-ready');
+      });
+    }
+
+    return {
+      init,
+      refresh
+    };
+  })();
+
+  window.LuxuryAppEnhancer = LuxuryAppEnhancer;
+
+  const _originalBootApp = window.bootApp;
+
+  if (typeof _originalBootApp === 'function') {
+    window.bootApp = async function enhancedBootApp() {
+      await _originalBootApp.apply(this, arguments);
+
+      try {
+        let config = {};
+        try {
+          const res = await fetch('/data/config.json');
+          if (res.ok) config = await res.json();
+        } catch {}
+
+        LuxuryAppEnhancer.init(config);
+
+        window.CartSystem?.onChange?.(() => {
+          LuxuryAppEnhancer.refresh();
+        });
+
+        window.WishlistSystem?.onChange?.(() => {
+          LuxuryAppEnhancer.refresh();
+        });
+
+        window.ProductsSystem?.onLoaded?.(() => {
+          LuxuryAppEnhancer.refresh();
+        });
+
+        document.addEventListener('products:rendered', () => {
+          LuxuryAppEnhancer.refresh();
+        });
+      } catch (err) {
+        console.warn('[LuxuryAppEnhancer] init failed:', err);
+      }
+    };
+  } else {
+    document.addEventListener('DOMContentLoaded', async () => {
+      try {
+        let config = {};
+        try {
+          const res = await fetch('/data/config.json');
+          if (res.ok) config = await res.json();
+        } catch {}
+        LuxuryAppEnhancer.init(config);
+      } catch (err) {
+        console.warn('[LuxuryAppEnhancer] fallback init failed:', err);
+      }
+    });
+  }
+})();
+
+document.addEventListener('DOMContentLoaded', async () => {
+  try {
+    let config = {};
+    try {
+      const res = await fetch('/data/config.json');
+      if (res.ok) config = await res.json();
+    } catch {}
+
+    if (window.LuxuryAppEnhancer) {
+      setTimeout(() => {
+        window.LuxuryAppEnhancer.init(config);
+        window.LuxuryAppEnhancer.refresh();
+      }, 80);
+
+      setTimeout(() => {
+        window.LuxuryAppEnhancer.refresh();
+      }, 600);
+    }
+  } catch (err) {
+    console.warn('[LuxuryAppEnhancer] DOMContentLoaded fallback failed:', err);
+  }
+});
+

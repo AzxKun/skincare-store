@@ -115,6 +115,103 @@
     "products_sold": "50,000+",
     "rating": "4.9",
     "reviews_count": "2,800+"
+  },
+
+  "ui_enhancements": {
+    "enable_cursor_glow": true,
+    "enable_scroll_progress": true,
+    "enable_section_dividers": true,
+    "enable_glass_cards": true,
+    "enable_floating_blobs": true,
+    "enable_luxury_noise": true,
+    "enable_premium_buttons": true,
+    "enable_hover_lift": true,
+    "enable_magnetic_cta": true,
+    "enable_hero_spotlight": true,
+    "enable_hero_stats": true,
+    "enable_hero_badge": true,
+    "enable_fade_edge_sections": true,
+    "enable_parallax_surfaces": true,
+    "enable_soft_radial_backgrounds": true
+  },
+
+  "motion": {
+    "page_transition": "veil",
+    "page_transition_duration_ms": 650,
+    "card_hover_duration_ms": 350,
+    "reveal_duration_ms": 800,
+    "enable_stagger_reveal_plus": true,
+    "enable_slow_pan_backgrounds": true,
+    "enable_button_sheen": true,
+    "enable_image_tilt": true,
+    "enable_marquee_pause_on_hover": true
+  },
+
+  "hero_enhancements": {
+    "enable_gradient_mesh": true,
+    "enable_bottom_fade": true,
+    "enable_glass_panel": true,
+    "enable_stat_pills": true,
+    "enable_floating_accent_ring": true,
+    "enable_scroll_cue": true,
+    "overlay_strength": 0.72,
+    "content_max_width": 720,
+    "enable_dual_cta_style": true
+  },
+
+  "home_sections": {
+    "enable_feature_highlights": true,
+    "enable_editorial_promo": true,
+    "enable_testimonial_strip": true,
+    "enable_brand_story_teaser": true,
+    "enable_category_chips": true,
+    "enable_trust_badges": true
+  },
+
+  "micro_interactions": {
+    "enable_link_underline_slide": true,
+    "enable_button_press_feedback": true,
+    "enable_card_shine": true,
+    "enable_icon_nudge": true,
+    "enable_focus_ring_luxury": true,
+    "enable_input_glow": true
+  },
+
+  "badges": {
+    "new_label": "New",
+    "hot_label": "Hot",
+    "sale_label": "Sale",
+    "limited_label": "Limited",
+    "bestseller_label": "Best Seller"
+  },
+
+  "promo_banners": {
+    "topbar_rotating_messages": [
+      "Authentic luxury skincare",
+      "Fast delivery across Myanmar",
+      "Exclusive curated collections",
+      "Premium beauty, timeless glow"
+    ],
+    "hero_badge_text": "Curated Luxury Beauty",
+    "hero_stat_1_label": "Happy Clients",
+    "hero_stat_1_value": "10,000+",
+    "hero_stat_2_label": "Authentic Products",
+    "hero_stat_2_value": "100%",
+    "hero_stat_3_label": "Top Rated",
+    "hero_stat_3_value": "4.9/5"
+  },
+
+  "advanced_theme": {
+    "gradients": {
+      "gold_luxe": "linear-gradient(135deg, #D4AF37 0%, #F5E7A1 45%, #B88917 100%)",
+      "blush_luxe": "linear-gradient(135deg, #FFF5EE 0%, #F8D7E6 50%, #EDADC9 100%)",
+      "midnight_luxe": "linear-gradient(135deg, #0D0D0D 0%, #1A1A1A 55%, #2A1F1A 100%)"
+    },
+    "surfaces": {
+      "glass_light": "rgba(255, 245, 238, 0.72)",
+      "glass_dark": "rgba(20, 20, 20, 0.68)",
+      "card_blur_px": 18
+    }
   }
-}
+
 

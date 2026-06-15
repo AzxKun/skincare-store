@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="my" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <meta name="theme-color" content="#090909" />
+
+  <title>Checkout — LUMIÈRE Luxury Skincare</title>
+  <meta name="description" content="Secure luxury skincare checkout at LUMIÈRE Myanmar. Review your order, select payment and place your request." />
+  <meta name="robots" content="noindex" />
+
+  <link rel="manifest" href="manifest.json" />
+  <link rel="apple-touch-icon" href="assets/icons/icon-192.png" />
+  <link rel="icon" href="assets/icons/favicon.png" />
+
+  <link rel="stylesheet" href="assets/css/style.css" />
+  <link rel="stylesheet" href="assets/css/animations.css" />
+  <link rel="stylesheet" href="assets/css/luxury-theme.css" />
+
+  <script>
+    (function(){
+      var t = localStorage.getItem('lumiere_theme') || 'dark';
+      document.documentElement.setAttribute('data-theme', t);
+    })();
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+</head>
+<body class="page-shell-dark">
+
+<div id="loading-screen" role="status" aria-label="Loading">
+  <div class="loading-logo shimmer-text">LUMIÈRE</div>
+  <div class="loading-bar-track"><div class="loading-bar-fill"></div></div>
+</div>
+
+<header class="navbar" role="banner">
+  <div class="container">
+    <div class="navbar-inner">
+      <a href="index.html" class="navbar-logo" aria-label="LUMIÈRE Home">
+        <span class="logo-text">LUMIÈRE</span>
+        <span class="logo-sub">Luxury Skincare · MM</span>
+      </a>
+
+      <nav class="navbar-links" aria-label="Main navigation">
+        <a href="index.html">Home</a>
+        <a href="category.html">Shop</a>
+        <a href="search.html">Search</a>
+        <a href="wishlist.html">Wishlist</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+
+      <div class="navbar-actions">
+        <button class="nav-icon-btn" data-open-search aria-label="Search">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+        </button>
+        <button class="theme-toggle nav-icon-btn" data-toggle-theme aria-label="Toggle theme">
+          <span data-theme-icon>◐</span>
+        </button>
+        <a href="wishlist.html" class="nav-icon-btn" aria-label="Wishlist">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+          <span class="nav-badge" data-wishlist-badge style="display:none;">0</span>
+        </a>
+        <button class="nav-icon-btn" data-open-cart aria-label="Cart">
+          <svg width="18" height="18" data-cart-icon viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
+          <span class="nav-badge" data-cart-badge style="display:none;">0</span>
+        </button>
+        <button class="nav-hamburger" aria-label="Open menu"><span></span><span></span><span></span></button>
+      </div>
+    </div>
+  </div>
+</header>
+
+<nav class="mobile-nav" aria-label="Mobile navigation">
+  <a href="index.html">Home</a>
+  <a href="category.html">Shop</a>
+  <a href="search.html">Search</a>
+  <a href="wishlist.html">Wishlist</a>
+  <a href="contact.html">Contact</a>
+</nav>
+
+<section class="page-hero-dark" style="padding-top:calc(var(--nav-h) + var(--space-12));padding-bottom:var(--space-12);overflow:hidden;">
+  <div class="container" style="position:relative;z-index:2;">
+    <nav class="breadcrumb" aria-label="Breadcrumb">
+      <a href="index.html">Home</a>
+      <span class="breadcrumb-sep">/</span>
+      <span class="breadcrumb-current">Checkout</span>
+    </nav>
+
+    <div class="editorial-split" style="align-items:end;gap:var(--space-8);margin-top:var(--space-6);">
+      <div class="reveal-blur-up">
+        <span class="hero-eyebrow">Secure Checkout</span>
+        <h1 class="page-title-dark">Confirm Your <em>Order</em></h1>
+        <p class="luxe-subtext" style="max-width:720px;margin-top:var(--space-4);font-size:var(--text-md);line-height:1.9;">
+          Review your selected products, provide delivery details, choose your payment method, and place your order request with a refined, fast checkout experience.
+        </p>
+      </div>
+
+      <div class="luxe-panel-dark radius-3xl reveal-zoom-soft" style="padding:var(--space-6);">
+        <div class="stat-grid-dark">
+          <div class="stat-block-dark">
+            <strong>Secure</strong>
+            <span>Protected order handling</span>
+          </div>
+          <div class="stat-block-dark">
+            <strong>Fast</strong>
+            <span>Telegram order confirmation</span>
+          </div>
+          <div class="stat-block-dark">
+            <strong>Flexible</strong>
+            <span>COD and digital payment</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<main style="padding:var(--space-12) 0 var(--space-20);">
+  <div class="container">
+    <div style="display:grid;grid-template-columns:minmax(0,1.1fr) 420px;gap:var(--space-8);align-items:start;">
+
+      <section class="luxe-panel-dark radius-3xl reveal-blur-up" style="padding:clamp(1.25rem,2.4vw,2rem);">
+        <div style="display:flex;align-items:center;justify-content:space-between;gap:var(--space-4);margin-bottom:var(--space-6);padding-bottom:var(--space-4);border-bottom:1px solid rgba(255,255,255,0.08);">
+          <div>
+            <div class="luxe-heading" style="font-family:var(--font-display);font-size:var(--text-2xl);font-weight:700;">Delivery Information</div>
+            <div class="luxe-muted" style="margin-top:0.35rem;font-size:var(--text-sm);">Please complete your details carefully for a smooth order process.</div>
+          </div>
+          <a href="category.html" class="btn btn-dark-glass btn-sm">Continue Shopping</a>
+        </div>
+
+        <form id="checkout-form" novalidate>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:var(--space-4);margin-bottom:var(--space-4);">
+            <div>
+              <label for="checkout-name" style="display:block;margin-bottom:0.55rem;color:var(--white);font-size:var(--text-sm);">Full Name</label>
+              <input id="checkout-name" name="name" class="input-luxe luxe-input-dark" type="text" required placeholder="Enter your full name" />
+            </div>
+            <div>
+              <label for="checkout-phone" style="display:block;margin-bottom:0.55rem;color:var(--white);font-size:var(--text-sm);">Phone Number</label>
+              <input id="checkout-phone" name="phone" class="input-luxe luxe-input-dark" type="tel" required placeholder="09xxxxxxxxx" />
+            </div>
+          </div>
+
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:var(--space-4);margin-bottom:var(--space-4);">
+            <div>
+              <label for="checkout-township" style="display:block;margin-bottom:0.55rem;color:var(--white);font-size:var(--text-sm);">Township</label>
+              <input id="checkout-township" name="township" class="input-luxe luxe-input-dark" type="text" placeholder="Township / Area" />
+            </div>
+            <div>
+              <label for="checkout-email" style="display:block;margin-bottom:0.55rem;color:var(--white);font-size:var(--text-sm);">Email</label>
+              <input id="checkout-email" name="email" class="input-luxe luxe-input-dark" type="email" placeholder="Email address (optional)" />
+            </div>
+          </div>
+
+          <div style="margin-bottom:var(--space-4);">
+            <label for="checkout-address" style="display:block;margin-bottom:0.55rem;color:var(--white);font-size:var(--text-sm);">Delivery Address</label>
+            <textarea id="checkout-address" name="address" class="input-luxe luxe-input-dark" rows="5" required placeholder="Building / street / block / detailed address"></textarea>
+          </div>
+
+          <div style="margin-bottom:var(--space-6);">
+            <label for="checkout-note" style="display:block;margin-bottom:0.55rem;color:var(--white);font-size:var(--text-sm);">Order Note</label>
+            <textarea id="checkout-note" name="note" class="input-luxe luxe-input-dark" rows="4" placeholder="Delivery notes, landmark, preferred contact time, or special request"></textarea>
+          </div>
+
+          <div class="luxe-panel-dark luxe-outline-red radius-2xl" style="padding:var(--space-5);margin-bottom:var(--space-6);">
+            <div class="luxe-heading" style="font-family:var(--font-display);font-size:var(--text-xl);font-weight:700;margin-bottom:var(--space-4);">Payment Method</div>
+            <div style="display:grid;gap:var(--space-3);">
+              <label class="luxe-chip-dark" style="justify-content:space-between;padding:1rem 1rem;">
+                <span>Cash on Delivery</span>
+                <input type="radio" name="paymentMethod" value="Cash on Delivery" checked />
+              </label>
+              <label class="luxe-chip-dark" style="justify-content:space-between;padding:1rem 1rem;">
+                <span>Wave Pay</span>
+                <input type="radio" name="paymentMethod" value="Wave Pay" />
+              </label>
+              <label class="luxe-chip-dark" style="justify-content:space-between;padding:1rem 1rem;">
+                <span>KBZ Pay</span>
+                <input type="radio" name="paymentMethod" value="KBZ Pay" />
+              </label>
+              <label class="luxe-chip-dark" style="justify-content:space-between;padding:1rem 1rem;">
+                <span>Bank Transfer</span>
+                <input type="radio" name="paymentMethod" value="Bank Transfer" />
+              </label>
+            </div>
+          </div>
+
+          <div class="cta-row-modern">
+            <button type="submit" class="btn btn-red-luxe btn-lg btn-sheen">Place Order</button>
+            <button type="button" class="btn btn-dark-glass btn-lg" id="checkout-telegram-preview-btn">Preview Telegram Message</button>
+          </div>
+        </form>
+      </section>
+
+      <aside class="luxe-panel-dark radius-3xl reveal-clip" style="padding:clamp(1.2rem,2vw,1.8rem);position:sticky;top:calc(var(--nav-h) + 24px);">
+        <div style="display:flex;align-items:center;justify-content:space-between;gap:var(--space-4);margin-bottom:var(--space-5);padding-bottom:var(--space-4);border-bottom:1px solid rgba(255,255,255,0.08);">
+          <div class="luxe-heading" style="font-family:var(--font-display);font-size:var(--text-2xl);font-weight:700;">Order Summary</div>
+          <span class="luxe-chip-dark"><span id="checkout-summary-count">0</span> Items</span>
+        </div>
+
+        <div id="checkout-cart-items" style="display:grid;gap:var(--space-3);margin-bottom:var(--space-5);">
+          <!-- populated by JS -->
+        </div>
+
+        <div class="luxe-panel-dark radius-2xl" style="padding:var(--space-5);margin-bottom:var(--space-5);">
+          <label for="checkout-promo" style="display:block;margin-bottom:0.55rem;color:var(--white);font-size:var(--text-sm);">Promo Code</label>
+          <div style="display:flex;gap:var(--space-3);">
+            <input id="checkout-promo" class="input-luxe luxe-input-dark" type="text" placeholder="Enter promo code" />
+            <button class="btn btn-dark-glass" id="checkout-promo-btn" type="button">Apply</button>
+          </div>
+          <div id="checkout-promo-msg" class="luxe-muted" style="margin-top:0.75rem;font-size:var(--text-sm);"></div>
+        </div>
+
+        <div class="luxe-panel-dark radius-2xl" style="padding:var(--space-5);">
+          <div style="display:grid;gap:0.85rem;">
+            <div style="display:flex;justify-content:space-between;gap:var(--space-4);">
+              <span class="luxe-muted">Subtotal</span>
+              <strong id="checkout-subtotal" style="color:var(--white);font-weight:600;">—</strong>
+            </div>
+            <div style="display:flex;justify-content:space-between;gap:var(--space-4);">
+              <span class="luxe-muted">Promo Discount</span>
+              <strong id="checkout-discount" style="color:#FF6C8F;font-weight:600;">—</strong>
+            </div>
+            <div style="display:flex;justify-content:space-between;gap:var(--space-4);">
+              <span class="luxe-muted">Shipping</span>
+              <strong id="checkout-shipping" style="color:var(--white);font-weight:600;">—</strong>
+            </div>
+            <div style="height:1px;background:rgba(255,255,255,0.08);margin:0.35rem 0;"></div>
+            <div style="display:flex;justify-content:space-between;gap:var(--space-4);align-items:end;">
+              <span class="luxe-heading" style="font-family:var(--font-display);font-size:var(--text-xl);font-weight:700;">Total</span>
+              <strong id="checkout-total" style="color:var(--white);font-family:var(--font-display);font-size:var(--text-2xl);font-weight:800;">—</strong>
+            </div>
+            <div id="checkout-free-shipping-note" class="luxe-muted" style="font-size:var(--text-sm);"></div>
+          </div>
+        </div>
+      </aside>
+    </div>
+  </div>
+</main>
+
+<footer class="footer footer-dark-luxe" role="contentinfo">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="logo-text" style="font-family:var(--font-display);font-size:var(--text-2xl);font-weight:900;background:linear-gradient(135deg,#FF6C8F,#D21F4C,#A3002A);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;letter-spacing:0.1em;">LUMIÈRE</div>
+        <p class="footer-desc">Refined luxury skincare with a darker, more modern shopping experience.</p>
+        <div class="footer-social">
+          <a href="#" class="social-btn" aria-label="Facebook">Fb</a>
+          <a href="#" class="social-btn" aria-label="Instagram">Ig</a>
+          <a href="https://t.me/your_telegram" class="social-btn" aria-label="Telegram">Tl</a>
+        </div>
+      </div>
+      <div>
+        <div class="footer-heading">Shop</div>
+        <ul class="footer-links">
+          <li><a href="category.html">All Products</a></li>
+          <li><a href="search.html">Search</a></li>
+          <li><a href="wishlist.html">Wishlist</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-heading">Support</div>
+        <ul class="footer-links">
+          <li><a href="contact.html">Contact</a></li>
+          <li><a href="index.html#faq">FAQ</a></li>
+          <li><a href="category.html">Shipping</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-heading">Payment</div>
+        <div class="footer-payments" style="display:flex;flex-wrap:wrap;gap:0.6rem;">
+          <span class="luxe-chip-dark">COD</span>
+          <span class="luxe-chip-dark">Wave Pay</span>
+          <span class="luxe-chip-dark">KBZ Pay</span>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="footer-copy">© 2025 LUMIÈRE Luxury Skincare Myanmar.</div>
+    </div>
+  </div>
+</footer>
+
+<a href="https://t.me/your_telegram" target="_blank" rel="noopener" class="floating-telegram" aria-label="Chat on Telegram">Tl</a>
+<button class="floating-top" aria-label="Back to top">↑</button>
+
+<script src="assets/js/discount.js"></script>
+<script src="assets/js/cart.js"></script>
+<script src="assets/js/wishlist.js"></script>
+<script src="assets/js/products.js"></script>
+<script src="assets/js/search.js"></script>
+<script src="assets/js/app.js"></script>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  const itemsWrap = document.getElementById('checkout-cart-items');
+  const form = document.getElementById('checkout-form');
+  const promoInput = document.getElementById('checkout-promo');
+  const promoBtn = document.getElementById('checkout-promo-btn');
+  const promoMsg = document.getElementById('checkout-promo-msg');
+
+  let activePromo = '';
+
+  function getTotals() {
+    return window.DiscountSystem?.calculateOrderTotal(
+      window.CartSystem?.getItems?.() || [],
+      window._appConfig || {},
+      activePromo
+    );
+  }
+
+  function renderSummary() {
+    const cartItems = window.CartSystem?.getItems?.() || [];
+    const totals = getTotals();
+
+    document.getElementById('checkout-summary-count').textContent = cartItems.reduce((n, i) => n + (i.quantity || 0), 0);
+
+    if (itemsWrap) {
+      if (!cartItems.length) {
+        itemsWrap.innerHTML = `
+          <div class="luxe-panel-dark radius-2xl" style="padding:var(--space-5);text-align:center;">
+            <div class="luxe-heading" style="font-family:var(--font-display);font-size:var(--text-xl);margin-bottom:0.5rem;">Your cart is empty</div>
+            <div class="luxe-muted" style="margin-bottom:var(--space-4);">Add products before continuing to checkout.</div>
+            <a href="category.html" class="btn btn-red-luxe">Browse Products</a>
+          </div>
+        `;
+      } else {
+        itemsWrap.innerHTML = cartItems.map(item => {
+          const product = item.product || {};
+          const priceInfo = DiscountSystem.calculatePrice(product);
+          const img = product.image1 || 'assets/images/placeholder.jpg';
+
+          return `
+            <div class="luxe-panel-dark radius-2xl" style="padding:var(--space-4);display:grid;grid-template-columns:72px 1fr;gap:var(--space-4);align-items:start;">
+              <div style="width:72px;height:88px;border-radius:16px;overflow:hidden;background:rgba(255,255,255,0.04);">
+                <img src="${img}" alt="${product.name_en || ''}" style="width:100%;height:100%;object-fit:cover;" onerror="this.src='assets/images/placeholder.jpg'" />
+              </div>
+              <div>
+                <div style="color:var(--white);font-weight:600;line-height:1.5;">${product.name_en || product.name_mm || 'Product'}</div>
+                <div class="luxe-muted" style="font-size:var(--text-xs);margin-top:0.25rem;">${product.brand || ''} ${product.product_code ? '· ' + product.product_code : ''}</div>
+                <div style="display:flex;align-items:center;justify-content:space-between;gap:var(--space-3);margin-top:var(--space-3);">
+                  <span class="luxe-chip-dark">Qty ${item.quantity}</span>
+                  <strong style="color:var(--white);">${DiscountSystem.formatPrice(priceInfo.final * item.quantity)}</strong>
+                </div>
+              </div>
+            </div>
+          `;
+        }).join('');
+      }
+    }
+
+    document.getElementById('checkout-subtotal').textContent = totals?.subtotalFormatted || '—';
+    document.getElementById('checkout-discount').textContent = totals?.promoDiscountFormatted || 'K 0';
+    document.getElementById('checkout-shipping').textContent = totals?.shippingFormatted || '—';
+    document.getElementById('checkout-total').textContent = totals?.totalFormatted || '—';
+
+    const note = document.getElementById('checkout-free-shipping-note');
+    if (note && totals) {
+      if (totals.freeShippingMet) {
+        note.textContent = 'Free shipping threshold reached.';
+      } else {
+        note.textContent = `Add ${DiscountSystem.formatPrice(totals.freeShippingRemaining)} more to qualify for free shipping.`;
+      }
+    }
+  }
+
+  function applyPromo() {
+    activePromo = (promoInput?.value || '').trim();
+    const totals = getTotals();
+    if (!promoMsg) return;
+    promoMsg.textContent = totals?.promoMessage || totals?.promoMessageMM || '';
+    promoMsg.style.color = totals?.promoValid ? '#FFB4C5' : 'rgba(255,255,255,0.56)';
+    renderSummary();
+  }
+
+  promoBtn?.addEventListener('click', applyPromo);
+  promoInput?.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter') {
+      e.preventDefault();
+      applyPromo();
+    }
+  });
+
+  form?.addEventListener('submit', (e) => {
+    e.preventDefault();
+
+    const cartItems = window.CartSystem?.getItems?.() || [];
+    if (!cartItems.length) {
+      AppUtils?.showToast?.('Your cart is empty.', 'warning');
+      return;
+    }
+
+    const name = document.getElementById('checkout-name')?.value?.trim();
+    const phone = document.getElementById('checkout-phone')?.value?.trim();
+    const township = document.getElementById('checkout-township')?.value?.trim();
+    const email = document.getElementById('checkout-email')?.value?.trim();
+    const address = document.getElementById('checkout-address')?.value?.trim();
+    const note = document.getElementById('checkout-note')?.value?.trim();
+    const paymentMethod = document.querySelector('input[name="paymentMethod"]:checked')?.value || 'Cash on Delivery';
+
+    if (!name || !phone || !address) {
+      AppUtils?.showToast?.('Please complete all required fields.', 'error');
+      return;
+    }
+
+    const totals = getTotals();
+
+    const orderData = {
+      name,
+      phone,
+      township,
+      address: email ? `${address} | Email: ${email}` : address,
+      note,
+      paymentMethod
+    };
+
+    const url = DiscountSystem.buildTelegramOrderURL(orderData, totals, window._appConfig || {});
+    window.open(url, '_blank');
+
+    if (window._appConfig?.features?.confetti_on_order !== false) {
+      AppUtils?.launchConfetti?.(60);
+    }
+
+    AppUtils?.showToast?.('Order request opened in Telegram.', 'success');
+  });
+
+  document.getElementById('checkout-telegram-preview-btn')?.addEventListener('click', () => {
+    const totals = getTotals();
+    if (!totals?.lines?.length) {
+      AppUtils?.showToast?.('Your cart is empty.', 'warning');
+      return;
+    }
+    AppUtils?.showToast?.('Your checkout summary is ready for Telegram order submission.', 'info');
+  });
+
+  function waitForConfig() {
+    if (window.CartSystem && window.DiscountSystem) {
+      window._appConfig = window._appConfig || {};
+      renderSummary();
+      CartSystem.onChange?.(renderSummary);
+      return;
+    }
+    setTimeout(waitForConfig, 300);
+  }
+
+  waitForConfig();
+});
+</script>
+</body>
+</html>
+

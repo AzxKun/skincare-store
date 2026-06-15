@@ -1,449 +1,643 @@
 <!DOCTYPE html>
-<html lang="my" data-theme="light">
+<html lang="my" data-theme="dark">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-  <meta name="theme-color" content="#0D0D0D" />
+  <meta name="theme-color" content="#090909" />
 
   <title>My Wishlist — LUMIÈRE Luxury Skincare</title>
-  <meta name="description" content="Your saved luxury skincare favourites at LUMIÈRE Myanmar." />
+  <meta name="description" content="Your saved luxury skincare selection at LUMIÈRE Myanmar." />
   <meta name="robots" content="noindex" />
 
-  <link rel="manifest"         href="manifest.json" />
+  <link rel="manifest" href="manifest.json" />
   <link rel="apple-touch-icon" href="assets/icons/icon-192.png" />
-  <link rel="icon"             href="assets/icons/favicon.png" />
+  <link rel="icon" href="assets/icons/favicon.png" />
 
   <link rel="stylesheet" href="assets/css/style.css" />
   <link rel="stylesheet" href="assets/css/animations.css" />
   <link rel="stylesheet" href="assets/css/luxury-theme.css" />
 
-  <script>(function(){var t=localStorage.getItem('lumiere_theme')||'light';document.documentElement.setAttribute('data-theme',t);})();</script>
+  <script>
+    (function(){
+      var t = localStorage.getItem('lumiere_theme') || 'dark';
+      document.documentElement.setAttribute('data-theme', t);
+    })();
+  </script>
+
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 
   <style>
-    /* Wishlist-specific grid overrides */
+    .wishlist-shell-dark {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .wishlist-shell-dark::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: -1;
+      background:
+        radial-gradient(circle at 0% 0%, rgba(163,0,42,0.12), transparent 24%),
+        radial-gradient(circle at 100% 100%, rgba(210,31,76,0.10), transparent 24%),
+        linear-gradient(135deg, #050505 0%, #090909 18%, #101012 58%, #18090E 100%);
+    }
+
     .wishlist-grid {
       display: grid;
-      grid-template-columns: repeat(4, 1fr);
+      grid-template-columns: repeat(4, minmax(0, 1fr));
       gap: var(--space-6);
     }
-    @media (max-width: 1100px) { .wishlist-grid { grid-template-columns: repeat(3, 1fr); } }
-    @media (max-width: 768px)  { .wishlist-grid { grid-template-columns: repeat(2, 1fr); gap: var(--space-4); } }
-    @media (max-width: 400px)  { .wishlist-grid { grid-template-columns: 1fr; } }
 
     .wishlist-item {
-      background: var(--surface);
-      border-radius: var(--radius-xl);
+      position: relative;
+      background: linear-gradient(180deg, rgba(255,255,255,0.05), rgba(255,255,255,0.03));
+      border-radius: 28px;
       overflow: hidden;
-      border: 1px solid var(--border-soft);
+      border: 1px solid rgba(255,255,255,0.08);
       transition: all var(--duration) var(--ease);
+      box-shadow:
+        inset 0 1px 0 rgba(255,255,255,0.04),
+        0 18px 48px rgba(0,0,0,0.24),
+        0 0 24px rgba(163,0,42,0.08);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
     }
+
     .wishlist-item:hover {
-      transform: translateY(-4px);
-      box-shadow: var(--shadow-gold);
-      border-color: rgba(212,175,55,0.25);
+      transform: translateY(-6px);
+      box-shadow:
+        inset 0 1px 0 rgba(255,255,255,0.04),
+        0 24px 60px rgba(0,0,0,0.28),
+        0 0 34px rgba(163,0,42,0.16);
+      border-color: rgba(210,31,76,0.22);
     }
+
     .wishlist-item-img-wrap {
       position: relative;
-      aspect-ratio: 3/4;
+      aspect-ratio: 3 / 4;
       overflow: hidden;
-      background: var(--surface-2);
+      background: rgba(255,255,255,0.03);
     }
+
     .wishlist-item-img-wrap img {
       width: 100%;
       height: 100%;
       object-fit: cover;
-      transition: transform 0.6s var(--ease);
+      transition: transform 0.8s var(--ease-out), filter 0.35s var(--ease);
     }
+
     .wishlist-item:hover .wishlist-item-img-wrap img {
-      transform: scale(1.05);
+      transform: scale(1.06);
+      filter: saturate(1.04) contrast(1.02);
     }
+
     .wishlist-item-body {
-      padding: var(--space-4);
+      padding: var(--space-5);
+    }
+
+    .wishlist-header-panel {
+      display: none;
+      margin-bottom: var(--space-8);
+      padding-bottom: var(--space-5);
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .wishlist-actions-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: var(--space-4);
+    }
+
+    .wishlist-title-inline {
+      font-family: var(--font-display);
+      font-size: var(--text-2xl);
+      font-weight: 700;
+      color: var(--white);
+      letter-spacing: -0.02em;
+    }
+
+    .wishlist-title-inline small {
+      font-family: var(--font-ui);
+      font-size: var(--text-sm);
+      font-weight: 400;
+      color: rgba(255,255,255,0.48);
+      margin-left: var(--space-2);
+    }
+
+    .wishlist-action-buttons {
+      display: flex;
+      gap: var(--space-3);
+      flex-wrap: wrap;
+    }
+
+    .wishlist-sort-row {
+      display: flex;
+      align-items: center;
+      gap: var(--space-4);
+      margin-top: var(--space-4);
+      flex-wrap: wrap;
+    }
+
+    .wishlist-sort-label {
+      font-family: var(--font-ui);
+      font-size: var(--text-xs);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.42);
+    }
+
+    .wishlist-sort-select {
+      width: auto;
+      min-width: 220px;
+      background: rgba(255,255,255,0.05);
+      color: var(--white);
+      border: 1px solid rgba(255,255,255,0.10);
+      border-radius: 16px;
+      padding: 0.9rem 1rem;
+      font-family: var(--font-ui);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.03);
+    }
+
+    .wishlist-empty-shell {
+      display: none;
+    }
+
+    .wishlist-empty-card {
+      padding: var(--space-20) var(--space-6);
+      border-radius: 32px;
+      text-align: center;
+      background: linear-gradient(180deg, rgba(255,255,255,0.05), rgba(255,255,255,0.03));
+      border: 1px solid rgba(255,255,255,0.08);
+      box-shadow:
+        inset 0 1px 0 rgba(255,255,255,0.04),
+        0 24px 60px rgba(0,0,0,0.24),
+        0 0 30px rgba(163,0,42,0.08);
+    }
+
+    .wishlist-empty-card .empty-title {
+      color: var(--white);
+      margin-bottom: var(--space-3);
+    }
+
+    .wishlist-empty-card .empty-desc {
+      color: rgba(255,255,255,0.62);
+      line-height: 1.9;
+    }
+
+    .wishlist-shared-banner {
+      display: none;
+      background:
+        linear-gradient(135deg, rgba(111,0,27,0.18), rgba(163,0,42,0.12));
+      border-top: 1px solid rgba(255,255,255,0.04);
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+      box-shadow: 0 0 32px rgba(163,0,42,0.08);
+    }
+
+    .wishlist-shared-banner-inner {
+      padding-top: var(--space-6);
+      padding-bottom: var(--space-6);
+    }
+
+    .wishlist-shared-banner-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: var(--space-4);
+    }
+
+    .wishlist-shared-title {
+      font-family: var(--font-display);
+      font-size: var(--text-2xl);
+      font-weight: 700;
+      color: var(--white);
+      margin-bottom: var(--space-1);
+    }
+
+    .wishlist-shared-sub {
+      font-size: var(--text-sm);
+      color: rgba(255,255,255,0.58);
+    }
+
+    .wishlist-shared-actions {
+      display: flex;
+      gap: var(--space-3);
+      flex-wrap: wrap;
+    }
+
+    .wishlist-shared-grid {
+      margin-top: var(--space-8);
+    }
+
+    .wishlist-section-dark {
+      position: relative;
+      background:
+        radial-gradient(circle at 0% 0%, rgba(163,0,42,0.08), transparent 24%),
+        radial-gradient(circle at 100% 100%, rgba(210,31,76,0.06), transparent 24%),
+        linear-gradient(135deg, #060606 0%, #0C0C0D 35%, #151517 100%);
+      border-top: 1px solid rgba(255,255,255,0.04);
+      border-bottom: 1px solid rgba(255,255,255,0.04);
+    }
+
+    .wishlist-section-dark .section-title,
+    .wishlist-section-dark .eyebrow,
+    .wishlist-section-dark .section-subtitle {
+      color: var(--white);
+    }
+
+    .wishlist-section-dark .section-subtitle {
+      color: rgba(255,255,255,0.56);
+    }
+
+    @media (max-width: 1100px) {
+      .wishlist-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 768px) {
+      .wishlist-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: var(--space-4);
+      }
+
+      .wishlist-sort-select {
+        width: 100%;
+        min-width: 0;
+      }
+    }
+
+    @media (max-width: 460px) {
+      .wishlist-grid {
+        grid-template-columns: 1fr;
+      }
     }
   </style>
 </head>
-<body>
+<body class="page-shell-dark wishlist-shell-dark">
 
-<!-- Loading -->
-<div id="loading-screen" role="status">
-  <div class="loading-logo shimmer-text">LUMIÈRE</div>
-  <div class="loading-bar-track"><div class="loading-bar-fill"></div></div>
-</div>
+  <div id="loading-screen" role="status" aria-label="Loading">
+    <div class="loading-logo shimmer-text">LUMIÈRE</div>
+    <div class="loading-bar-track"><div class="loading-bar-fill"></div></div>
+  </div>
 
-<!-- ════════════════════════════════════════════════
-     NAVBAR
-════════════════════════════════════════════════ -->
-<header class="navbar" role="banner">
-  <div class="container">
-    <div class="navbar-inner">
-      <a href="index.html" class="navbar-logo">
-        <span class="logo-text">LUMIÈRE</span>
-        <span class="logo-sub">Luxury Skincare · MM</span>
-      </a>
-      <nav class="navbar-links" aria-label="Main navigation">
+  <header class="navbar" role="banner">
+    <div class="container">
+      <div class="navbar-inner">
+        <a href="index.html" class="navbar-logo" aria-label="LUMIÈRE Home">
+          <span class="logo-text">LUMIÈRE</span>
+          <span class="logo-sub">Luxury Skincare · MM</span>
+        </a>
+
+        <nav class="navbar-links" aria-label="Main navigation">
+          <a href="index.html">Home</a>
+          <a href="category.html">Shop</a>
+          <a href="category.html?cat=Serum">Serums</a>
+          <a href="category.html?cat=Moisturizer">Moisturizers</a>
+          <a href="category.html?cat=Sunscreen">Sunscreen</a>
+          <a href="contact.html">Contact</a>
+        </nav>
+
+        <div class="navbar-actions">
+          <button class="nav-icon-btn" data-open-search aria-label="Search">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="11" cy="11" r="8"></circle>
+              <path d="m21 21-4.35-4.35"></path>
+            </svg>
+          </button>
+
+          <button class="theme-toggle nav-icon-btn" data-toggle-theme aria-label="Toggle dark mode">
+            <span data-theme-icon>◐</span>
+          </button>
+
+          <a href="wishlist.html" class="nav-icon-btn" aria-label="Wishlist" style="color:#FF6C8F;">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="2">
+              <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+            </svg>
+            <span class="nav-badge" data-wishlist-badge style="display:none;">0</span>
+          </a>
+
+          <button class="nav-icon-btn" data-open-cart aria-label="Cart">
+            <svg width="18" height="18" data-cart-icon viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="9" cy="21" r="1"></circle>
+              <circle cx="20" cy="21" r="1"></circle>
+              <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+            </svg>
+            <span class="nav-badge" data-cart-badge style="display:none;">0</span>
+          </button>
+
+          <button class="nav-hamburger" aria-label="Open menu"><span></span><span></span><span></span></button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <nav class="mobile-nav" aria-label="Mobile navigation">
+    <a href="index.html">Home</a>
+    <a href="category.html">Shop</a>
+    <a href="wishlist.html" style="color:#FF6C8F;">Wishlist</a>
+    <a href="contact.html">Contact</a>
+  </nav>
+
+  <section class="page-hero-dark" style="padding-top:calc(var(--nav-h) + var(--space-12));padding-bottom:var(--space-12);overflow:hidden;">
+    <div class="container" style="position:relative;z-index:2;">
+      <div class="breadcrumb">
         <a href="index.html">Home</a>
-        <a href="category.html">Shop All</a>
-        <a href="category.html?cat=Serum">Serums</a>
-        <a href="category.html?cat=Moisturizer">Moisturizers</a>
-        <a href="category.html?cat=Sunscreen">Sunscreen</a>
-        <a href="contact.html">Contact</a>
-      </nav>
-      <div class="navbar-actions">
-        <button class="nav-icon-btn" data-open-search aria-label="Search">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
-        </button>
-        <button class="theme-toggle nav-icon-btn" data-toggle-theme aria-label="Toggle dark mode">
-          <span data-theme-icon>🌙</span>
-        </button>
-        <a href="wishlist.html" class="nav-icon-btn" aria-label="Wishlist" style="color:var(--rose-gold);">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
-          <span class="nav-badge" data-wishlist-badge style="display:none;">0</span>
-        </a>
-        <button class="nav-icon-btn" data-open-cart aria-label="Cart">
-          <svg width="18" height="18" data-cart-icon viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
-          <span class="nav-badge" data-cart-badge style="display:none;">0</span>
-        </button>
-        <button class="nav-hamburger" aria-label="Open menu"><span></span><span></span><span></span></button>
+        <span class="breadcrumb-sep">/</span>
+        <span class="breadcrumb-current">Wishlist</span>
       </div>
-    </div>
-  </div>
-</header>
 
-<nav class="mobile-nav" aria-label="Mobile navigation">
-  <a href="index.html">🏠 Home</a>
-  <a href="category.html">🛍️ Shop All</a>
-  <a href="wishlist.html" style="color:var(--rose-gold);">❤️ Wishlist</a>
-  <a href="contact.html">✉️ Contact</a>
-</nav>
-
-<!-- ════════════════════════════════════════════════
-     PAGE HERO
-════════════════════════════════════════════════ -->
-<div class="page-hero" style="padding-top:calc(var(--nav-h) + var(--space-10));">
-  <div class="css-particles" aria-hidden="true">
-    <span></span><span></span><span></span><span></span><span></span>
-  </div>
-  <div class="container" style="position:relative;">
-    <div class="breadcrumb">
-      <a href="index.html">Home</a>
-      <span class="breadcrumb-sep">›</span>
-      <span class="breadcrumb-current">Wishlist</span>
-    </div>
-    <h1 class="page-hero-title">
-      My <em style="color:var(--rose-gold);font-style:italic;">Wishlist</em>
-    </h1>
-    <p class="page-hero-sub">
-      <span id="wishlist-count">0</span> saved items ·
-      ကြိုက်နှစ်သက်သော ကုန်ပစ္စည်းများ
-    </p>
-  </div>
-</div>
-
-<!-- ════════════════════════════════════════════════
-     SHARED WISHLIST BANNER
-     (visible only when ?shared= param in URL)
-════════════════════════════════════════════════ -->
-<div id="shared-wishlist-banner" style="display:none;background:linear-gradient(135deg,rgba(212,175,55,0.12),rgba(248,215,230,0.12));border-bottom:1px solid var(--border-soft);">
-  <div class="container" style="padding-top:var(--space-6);padding-bottom:var(--space-6);">
-    <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:var(--space-4);">
-      <div>
-        <div style="font-family:var(--font-display);font-size:var(--text-xl);font-weight:700;margin-bottom:var(--space-1);">
-          💎 Shared Wishlist
-        </div>
-        <div style="font-size:var(--text-sm);color:var(--text-muted);">
-          Someone shared <strong><span data-shared-count>0</span> products</strong> with you from LUMIÈRE
-        </div>
-      </div>
-      <div style="display:flex;gap:var(--space-3);">
-        <button
-          class="btn btn-primary btn-sm"
-          onclick="document.getElementById('shared-wishlist-grid')?.querySelectorAll('.btn-primary').forEach(b=>b.click())"
-        >🛒 Add All to Cart</button>
-        <a href="wishlist.html" class="btn btn-outline btn-sm">View My Wishlist</a>
-      </div>
-    </div>
-
-    <!-- Shared products grid -->
-    <div class="wishlist-grid" id="shared-wishlist-grid" style="margin-top:var(--space-8);">
-      <!-- Populated by WishlistSystem.loadSharedIfPresent -->
-    </div>
-  </div>
-</div>
-
-<!-- ════════════════════════════════════════════════
-     WISHLIST MAIN
-════════════════════════════════════════════════ -->
-<main class="wishlist-page">
-  <div class="container">
-
-    <!-- ── Actions Header ───────────────────────── -->
-    <div id="wishlist-header-section" style="display:none;margin-bottom:var(--space-8);">
-      <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:var(--space-4);padding-bottom:var(--space-5);border-bottom:1px solid var(--border-soft);">
-
-        <div style="font-family:var(--font-display);font-size:var(--text-xl);font-weight:700;">
-          ❤️ Saved Items
-          <span style="font-family:var(--font-ui);font-size:var(--text-sm);font-weight:400;color:var(--text-muted);margin-left:var(--space-2);">
-            (<span id="wishlist-count-inline">0</span>)
-          </span>
+      <div class="editorial-split" style="align-items:end;gap:var(--space-8);margin-top:var(--space-6);">
+        <div class="reveal-blur-up">
+          <span class="hero-eyebrow">Saved Selection</span>
+          <h1 class="page-title-dark">Your <em>Wishlist</em></h1>
+          <p class="luxe-subtext" style="max-width:700px;margin-top:var(--space-4);font-size:var(--text-md);line-height:1.9;">
+            Review saved products, compare future purchases, and build a refined shortlist before moving selected items to your cart.
+          </p>
         </div>
 
-        <div style="display:flex;gap:var(--space-3);flex-wrap:wrap;">
+        <div class="luxe-panel-dark radius-3xl reveal-zoom-soft" style="padding:var(--space-6);min-width:min(100%,380px);">
+          <div class="stat-grid-dark">
+            <div class="stat-block-dark">
+              <strong id="wishlist-count">0</strong>
+              <span>Saved Items</span>
+            </div>
+            <div class="stat-block-dark">
+              <strong>Personal</strong>
+              <span>Curated Selection</span>
+            </div>
+            <div class="stat-block-dark">
+              <strong>Fast</strong>
+              <span>Move to Cart</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div id="shared-wishlist-banner" class="wishlist-shared-banner">
+    <div class="container wishlist-shared-banner-inner">
+      <div class="wishlist-shared-banner-head">
+        <div>
+          <div class="wishlist-shared-title">Shared Wishlist</div>
+          <div class="wishlist-shared-sub">
+            Someone shared <strong><span data-shared-count>0</span> products</strong> with you from LUMIÈRE
+          </div>
+        </div>
+
+        <div class="wishlist-shared-actions">
           <button
-            id="wishlist-add-all-btn"
-            class="btn btn-primary btn-sm"
-          >🛒 Add All to Cart</button>
-
-          <button
-            id="wishlist-share-btn"
-            class="btn btn-outline btn-sm"
-          >🔗 Share Wishlist</button>
-
-          <button
-            id="wishlist-clear-btn"
-            class="btn btn-ghost btn-sm"
-            style="color:var(--text-muted);"
-          >🗑️ Clear All</button>
+            class="btn btn-red-luxe btn-sm"
+            onclick="document.getElementById('shared-wishlist-grid')?.querySelectorAll('.btn-primary, .btn-red-luxe').forEach(b=>b.click())"
+          >Add All to Cart</button>
+          <a href="wishlist.html" class="btn btn-dark-glass btn-sm">View My Wishlist</a>
         </div>
       </div>
 
-      <!-- Sort / filter row -->
-      <div style="display:flex;align-items:center;gap:var(--space-4);margin-top:var(--space-4);flex-wrap:wrap;">
-        <label for="wishlist-sort" style="font-family:var(--font-ui);font-size:var(--text-xs);letter-spacing:0.1em;text-transform:uppercase;color:var(--text-muted);">Sort:</label>
-        <select id="wishlist-sort" class="sort-select" style="width:auto;">
-          <option value="newest">Newest First</option>
-          <option value="oldest">Oldest First</option>
-          <option value="price_asc">Price: Low → High</option>
-          <option value="price_desc">Price: High → Low</option>
-        </select>
+      <div class="wishlist-grid wishlist-shared-grid" id="shared-wishlist-grid">
       </div>
     </div>
+  </div>
 
-    <!-- ── Wishlist Grid ─────────────────────────── -->
-    <div class="wishlist-grid" id="wishlist-grid" role="list" aria-label="Wishlist items" aria-live="polite">
-      <!-- Populated by WishlistSystem -->
-    </div>
+  <main class="wishlist-page" style="padding-bottom:var(--space-18);">
+    <div class="container">
 
-    <!-- ── Empty State ───────────────────────────── -->
-    <div id="wishlist-empty" style="display:none;">
-      <div class="empty-state">
-        <span class="empty-icon">🤍</span>
-        <h2 class="empty-title">Your Wishlist is Empty</h2>
-        <p class="empty-desc">
-          Save your favourite products and find them here anytime.<br />
-          ကြိုက်နှစ်သက်သော ကုန်ပစ္စည်းများကို သိမ်းဆည်းထားပါ
-        </p>
-        <a href="category.html" class="btn btn-primary btn-lg">
-          💎 Start Shopping
-        </a>
-      </div>
+      <div id="wishlist-header-section" class="wishlist-header-panel">
+        <div class="wishlist-actions-row">
+          <div class="wishlist-title-inline">
+            Saved Items
+            <small>(<span id="wishlist-count-inline">0</span>)</small>
+          </div>
 
-      <!-- Show popular products as inspiration -->
-      <div style="margin-top:var(--space-12);">
-        <div class="section-header reveal">
-          <span class="eyebrow">Get Inspired</span>
-          <h2 class="section-title">Popular Products</h2>
-          <p class="section-subtitle">လူကြိုက်များသော ကုန်ပစ္စည်းများ</p>
+          <div class="wishlist-action-buttons">
+            <button id="wishlist-add-all-btn" class="btn btn-red-luxe btn-sm">Add All to Cart</button>
+            <button id="wishlist-share-btn" class="btn btn-dark-glass btn-sm">Share Wishlist</button>
+            <button id="wishlist-clear-btn" class="btn btn-dark-glass btn-sm" style="color:rgba(255,255,255,0.66);">Clear All</button>
+          </div>
         </div>
-        <div class="grid-products reveal-stagger" id="wishlist-popular-grid"></div>
-      </div>
-    </div>
 
-  </div><!-- /container -->
-</main>
-
-<!-- ════════════════════════════════════════════════
-     RECENTLY VIEWED
-════════════════════════════════════════════════ -->
-<section
-  class="section recently-viewed-section"
-  id="recently-viewed-section"
-  style="display:none;"
-  aria-label="Recently viewed"
->
-  <div class="container">
-    <div class="section-header reveal">
-      <span class="eyebrow">Continue Browsing</span>
-      <h2 class="section-title">Recently Viewed</h2>
-    </div>
-    <div class="grid-products" id="recently-viewed-products"></div>
-  </div>
-</section>
-
-<!-- ════════════════════════════════════════════════
-     YOU MAY ALSO LIKE
-════════════════════════════════════════════════ -->
-<section class="section" style="background:var(--bg-2);" aria-label="Recommendations">
-  <div class="container">
-    <div class="section-header reveal">
-      <span class="eyebrow">Recommended For You</span>
-      <h2 class="section-title">You May Also Like</h2>
-      <p class="section-subtitle">သင်ကြိုက်နှစ်သက်နိုင်သော ကုန်ပစ္စည်းများ</p>
-    </div>
-    <div class="grid-products" id="wishlist-recommended-grid"></div>
-  </div>
-</section>
-
-<!-- ════════════════════════════════════════════════
-     FOOTER
-════════════════════════════════════════════════ -->
-<footer class="footer" role="contentinfo">
-  <div class="container">
-    <div class="footer-grid">
-      <div class="footer-brand">
-        <div class="logo-text" style="font-family:var(--font-display);font-size:var(--text-2xl);font-weight:900;background:linear-gradient(135deg,var(--rose-gold),var(--rose-light));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;letter-spacing:0.1em;">LUMIÈRE</div>
-        <p class="footer-desc">Myanmar's premier luxury skincare destination.</p>
-        <div class="footer-social">
-          <a href="#" class="social-btn">f</a>
-          <a href="#" class="social-btn">📷</a>
-          <a href="#" class="social-btn">✈️</a>
+        <div class="wishlist-sort-row">
+          <label for="wishlist-sort" class="wishlist-sort-label">Sort</label>
+          <select id="wishlist-sort" class="wishlist-sort-select sort-select">
+            <option value="newest">Newest First</option>
+            <option value="oldest">Oldest First</option>
+            <option value="price_asc">Price: Low to High</option>
+            <option value="price_desc">Price: High to Low</option>
+          </select>
         </div>
       </div>
-      <div>
-        <div class="footer-heading">Shop</div>
-        <ul class="footer-links">
-          <li><a href="category.html">All Products</a></li>
-          <li><a href="category.html?cat=Serum">Serums</a></li>
-          <li><a href="category.html?cat=Moisturizer">Moisturizers</a></li>
-        </ul>
+
+      <div class="wishlist-grid" id="wishlist-grid" role="list" aria-label="Wishlist items" aria-live="polite">
       </div>
-      <div>
-        <div class="footer-heading">Help</div>
-        <ul class="footer-links">
-          <li><a href="contact.html">Contact</a></li>
-          <li><a href="index.html#faq">FAQ</a></li>
-        </ul>
+
+      <div id="wishlist-empty" class="wishlist-empty-shell">
+        <div class="wishlist-empty-card">
+          <h2 class="empty-title">Your Wishlist is Empty</h2>
+          <p class="empty-desc">
+            Save products to build your shortlist and return to them anytime.
+            Browse the collection to begin curating your selection.
+          </p>
+          <a href="category.html" class="btn btn-red-luxe btn-lg">Start Shopping</a>
+        </div>
+
+        <div style="margin-top:var(--space-12);">
+          <div class="section-header reveal">
+            <span class="eyebrow">Get Inspired</span>
+            <h2 class="section-title">Popular Products</h2>
+            <p class="section-subtitle">Discover top-viewed products while building your selection.</p>
+          </div>
+          <div class="grid-products reveal-stagger" id="wishlist-popular-grid"></div>
+        </div>
       </div>
-      <div>
-        <div class="footer-heading">Contact</div>
-        <ul class="footer-links">
-          <li><a href="https://t.me/your_telegram" target="_blank">✈️ Telegram</a></li>
-          <li><a href="https://facebook.com/yourpage" target="_blank">👤 Facebook</a></li>
-        </ul>
+
+    </div>
+  </main>
+
+  <section
+    class="section wishlist-section-dark recently-viewed-section"
+    id="recently-viewed-section"
+    style="display:none;"
+    aria-label="Recently viewed"
+  >
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="eyebrow">Continue Browsing</span>
+        <h2 class="section-title">Recently Viewed</h2>
+      </div>
+      <div class="grid-products" id="recently-viewed-products"></div>
+    </div>
+  </section>
+
+  <section class="section wishlist-section-dark" aria-label="Recommendations">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="eyebrow">Recommended For You</span>
+        <h2 class="section-title">You May Also Like</h2>
+        <p class="section-subtitle">More products aligned with your saved selections.</p>
+      </div>
+      <div class="grid-products" id="wishlist-recommended-grid"></div>
+    </div>
+  </section>
+
+  <footer class="footer footer-dark-luxe" role="contentinfo">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <div class="logo-text" style="font-family:var(--font-display);font-size:var(--text-2xl);font-weight:900;background:linear-gradient(135deg,#FF6C8F,#D21F4C,#A3002A);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;letter-spacing:0.1em;">
+            LUMIÈRE
+          </div>
+          <p class="footer-desc">Luxury skincare with a sharper, darker, and more modern wishlist experience.</p>
+          <div class="footer-social">
+            <a href="#" class="social-btn" aria-label="Facebook">Fb</a>
+            <a href="#" class="social-btn" aria-label="Instagram">Ig</a>
+            <a href="https://t.me/your_telegram" class="social-btn" aria-label="Telegram">Tl</a>
+          </div>
+        </div>
+
+        <div>
+          <div class="footer-heading">Shop</div>
+          <ul class="footer-links">
+            <li><a href="category.html">All Products</a></li>
+            <li><a href="category.html?cat=Serum">Serums</a></li>
+            <li><a href="category.html?cat=Moisturizer">Moisturizers</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <div class="footer-heading">Support</div>
+          <ul class="footer-links">
+            <li><a href="contact.html">Contact</a></li>
+            <li><a href="index.html#faq">FAQ</a></li>
+            <li><a href="checkout.html">Checkout</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <div class="footer-heading">Connect</div>
+          <ul class="footer-links">
+            <li><a href="https://t.me/your_telegram" target="_blank" rel="noopener">Telegram</a></li>
+            <li><a href="https://facebook.com/yourpage" target="_blank" rel="noopener">Facebook</a></li>
+            <li><a href="mailto:hello@lumiere.com.mm">Email</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <div class="footer-copy">© 2025 LUMIÈRE Luxury Skincare Myanmar.</div>
       </div>
     </div>
-    <div class="footer-bottom">
-      <div class="footer-copy">© 2025 LUMIÈRE Luxury Skincare Myanmar.</div>
-    </div>
-  </div>
-</footer>
+  </footer>
 
-<a href="https://t.me/your_telegram" target="_blank" rel="noopener" class="floating-telegram" aria-label="Chat on Telegram">✈️</a>
-<button class="floating-top" aria-label="Back to top">↑</button>
+  <a href="https://t.me/your_telegram" target="_blank" rel="noopener" class="floating-telegram" aria-label="Chat on Telegram">Tl</a>
+  <button class="floating-top" aria-label="Back to top">↑</button>
 
-<!-- ════════════════════════════════════════════════
-     SCRIPTS
-════════════════════════════════════════════════ -->
-<script src="assets/js/discount.js"></script>
-<script src="assets/js/cart.js"></script>
-<script src="assets/js/wishlist.js"></script>
-<script src="assets/js/products.js"></script>
-<script src="assets/js/search.js"></script>
-<script src="assets/js/app.js"></script>
+  <script src="assets/js/discount.js"></script>
+  <script src="assets/js/cart.js"></script>
+  <script src="assets/js/wishlist.js"></script>
+  <script src="assets/js/products.js"></script>
+  <script src="assets/js/search.js"></script>
+  <script src="assets/js/app.js"></script>
 
-<script>
-/* ── Wishlist page extras ──────────────────────── */
-document.addEventListener('DOMContentLoaded', () => {
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
 
-  /* Sync inline count badge */
-  function syncCount() {
-    const c = WishlistSystem.getCount();
-    const inlineEl = document.getElementById('wishlist-count-inline');
-    const heroEl   = document.getElementById('wishlist-count');
-    if (inlineEl) inlineEl.textContent = c;
-    if (heroEl)   heroEl.textContent   = c;
-  }
-
-  WishlistSystem.onChange(syncCount);
-  syncCount();
-
-  /* Recently viewed */
-  const viewed = JSON.parse(localStorage.getItem('lumiere_viewed') || '[]');
-  if (viewed.length) {
-    const sec = document.getElementById('recently-viewed-section');
-    if (sec) sec.style.display = '';
-    WishlistSystem.renderRecentlyViewed('#recently-viewed-products');
-  }
-
-  /* Wishlist sort */
-  document.getElementById('wishlist-sort')?.addEventListener('change', e => {
-    const grid  = document.getElementById('wishlist-grid');
-    if (!grid) return;
-    const items = WishlistSystem.getItems();
-
-    const sorted = [...items].sort((a, b) => {
-      switch (e.target.value) {
-        case 'oldest':
-          return a.addedAt - b.addedAt;
-        case 'price_asc': {
-          const pa = DiscountSystem.calculatePrice(a.product).final;
-          const pb = DiscountSystem.calculatePrice(b.product).final;
-          return pa - pb;
-        }
-        case 'price_desc': {
-          const pa = DiscountSystem.calculatePrice(a.product).final;
-          const pb = DiscountSystem.calculatePrice(b.product).final;
-          return pb - pa;
-        }
-        default: // newest
-          return b.addedAt - a.addedAt;
+      function syncCount() {
+        const c = WishlistSystem.getCount();
+        const inlineEl = document.getElementById('wishlist-count-inline');
+        const heroEl = document.getElementById('wishlist-count');
+        if (inlineEl) inlineEl.textContent = c;
+        if (heroEl) heroEl.textContent = c;
       }
-    });
 
-    /* Re-render in sorted order */
-    const keys = sorted.map(i => i.product.product_code || i.product.id);
-    const children = [...grid.children];
-    children.sort((a, b) =>
-      keys.indexOf(a.dataset.wishlistKey) - keys.indexOf(b.dataset.wishlistKey)
-    );
-    children.forEach(el => grid.appendChild(el));
-  });
+      WishlistSystem.onChange(syncCount);
+      syncCount();
 
-  /* Populate popular grid (empty state) */
-  function buildPopular() {
-    const all = window._productsCache || [];
-    if (!all.length) { setTimeout(buildPopular, 400); return; }
-
-    const popularGrid = document.getElementById('wishlist-popular-grid');
-    if (popularGrid && WishlistSystem.getCount() === 0) {
-      ProductsSystem.renderProducts(popularGrid, ProductsSystem.getPopular(8));
-    }
-
-    /* Recommended grid — related to wishlisted items */
-    const recGrid = document.getElementById('wishlist-recommended-grid');
-    if (recGrid) {
-      const wishItems = WishlistSystem.getItems();
-      if (wishItems.length) {
-        /* Get related to first wishlisted product */
-        const related = ProductsSystem.getRelated(wishItems[0].product, 8);
-        /* Filter out items already in wishlist */
-        const wishKeys = new Set(wishItems.map(i => i.product.product_code || i.product.id));
-        const filtered = related.filter(p => !wishKeys.has(p.product_code || p.id));
-        ProductsSystem.renderProducts(recGrid, filtered.length ? filtered : ProductsSystem.getPopular(8));
-      } else {
-        ProductsSystem.renderProducts(recGrid, ProductsSystem.getPopular(8));
+      const viewed = JSON.parse(localStorage.getItem('lumiere_viewed') || '[]');
+      if (viewed.length) {
+        const sec = document.getElementById('recently-viewed-section');
+        if (sec) sec.style.display = '';
+        WishlistSystem.renderRecentlyViewed('#recently-viewed-products');
       }
-    }
 
-    AppUtils.initScrollReveal();
-  }
-  buildPopular();
+      document.getElementById('wishlist-sort')?.addEventListener('change', e => {
+        const grid = document.getElementById('wishlist-grid');
+        if (!grid) return;
+        const items = WishlistSystem.getItems();
 
-  /* Data attribute for sort (add to each wishlist card as it renders) */
-  const grid = document.getElementById('wishlist-grid');
-  if (grid) {
-    const observer = new MutationObserver(() => {
-      grid.querySelectorAll('.wishlist-item').forEach(item => {
-        const key = item.querySelector('[data-wishlist-toggle]')?.dataset?.wishlistToggle;
-        if (key && !item.dataset.wishlistKey) item.dataset.wishlistKey = key;
+        const sorted = [...items].sort((a, b) => {
+          switch (e.target.value) {
+            case 'oldest':
+              return a.addedAt - b.addedAt;
+            case 'price_asc': {
+              const pa = DiscountSystem.calculatePrice(a.product).final;
+              const pb = DiscountSystem.calculatePrice(b.product).final;
+              return pa - pb;
+            }
+            case 'price_desc': {
+              const pa = DiscountSystem.calculatePrice(a.product).final;
+              const pb = DiscountSystem.calculatePrice(b.product).final;
+              return pb - pa;
+            }
+            default:
+              return b.addedAt - a.addedAt;
+          }
+        });
+
+        const keys = sorted.map(i => i.product.product_code || i.product.id);
+        const children = [...grid.children];
+        children.sort((a, b) =>
+          keys.indexOf(a.dataset.wishlistKey) - keys.indexOf(b.dataset.wishlistKey)
+        );
+        children.forEach(el => grid.appendChild(el));
       });
-    });
-    observer.observe(grid, { childList: true, subtree: true });
-  }
-});
-</script>
 
+      function buildPopular() {
+        const all = window._productsCache || [];
+        if (!all.length) {
+          setTimeout(buildPopular, 400);
+          return;
+        }
+
+        const popularGrid = document.getElementById('wishlist-popular-grid');
+        if (popularGrid && WishlistSystem.getCount() === 0) {
+          ProductsSystem.renderProducts(popularGrid, ProductsSystem.getPopular(8));
+        }
+
+        const recGrid = document.getElementById('wishlist-recommended-grid');
+        if (recGrid) {
+          const wishItems = WishlistSystem.getItems();
+          if (wishItems.length) {
+            const related = ProductsSystem.getRelated(wishItems[0].product, 8);
+            const wishKeys = new Set(wishItems.map(i => i.product.product_code || i.product.id));
+            const filtered = related.filter(p => !wishKeys.has(p.product_code || p.id));
+            ProductsSystem.renderProducts(recGrid, filtered.length ? filtered : ProductsSystem.getPopular(8));
+          } else {
+            ProductsSystem.renderProducts(recGrid, ProductsSystem.getPopular(8));
+          }
+        }
+
+        AppUtils.initScrollReveal();
+      }
+      buildPopular();
+
+      const grid = document.getElementById('wishlist-grid');
+      if (grid) {
+        const observer = new MutationObserver(() => {
+          grid.querySelectorAll('.wishlist-item').forEach(item => {
+            const key = item.querySelector('[data-wishlist-toggle]')?.dataset?.wishlistToggle;
+            if (key && !item.dataset.wishlistKey) item.dataset.wishlistKey = key;
+          });
+        });
+        observer.observe(grid, { childList: true, subtree: true });
+      }
+    });
+  </script>
 </body>
 </html>
 

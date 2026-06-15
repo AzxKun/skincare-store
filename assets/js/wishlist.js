@@ -755,3 +755,93 @@ const WishlistSystem = (() => {
 
 window.WishlistSystem = WishlistSystem;
 
+/* ============================================================
+   PHASE 2 ENHANCEMENTS — WISHLIST PREMIUM UX
+   Append only
+   ============================================================ */
+
+(function () {
+  'use strict';
+
+  if (!window.WishlistSystem) return;
+
+  const _wishlist = window.WishlistSystem;
+
+  function _pulseWishlistBadges() {
+    document.querySelectorAll('[data-wishlist-count], .wishlist-count, .wishlist-badge, .nav-wishlist-count').forEach(el => {
+      el.classList.remove('wishlist-badge-pulse');
+      void el.offsetWidth;
+      el.classList.add('wishlist-badge-pulse');
+    });
+  }
+
+  function _animateHeartForProduct(product) {
+    const key = product?.product_code || product?.id || product?.name_en || '';
+    if (!key) return;
+
+    document.querySelectorAll(`[data-product-key="${CSS.escape(key)}"] .wishlist-btn, [data-product-key="${CSS.escape(key)}"] .card-action-btn-wishlist`).forEach(btn => {
+      btn.classList.remove('wishlist-heart-pop');
+      void btn.offsetWidth;
+      btn.classList.add('wishlist-heart-pop');
+    });
+  }
+
+  const _originalAdd = _wishlist.add;
+  if (typeof _originalAdd === 'function') {
+    _wishlist.add = function enhancedWishlistAdd(product) {
+      const result = _originalAdd.apply(this, arguments);
+      try {
+        if (result) {
+          _pulseWishlistBadges();
+          _animateHeartForProduct(product);
+          if (window.AppUtils?.showToast) {
+            AppUtils.showToast(`♡ ${(product?.name_en || product?.name_mm || 'Product')} saved to wishlist`, 'success');
+          }
+        }
+      } catch {}
+      return result;
+    };
+  }
+
+  const _originalRemove = _wishlist.remove;
+  if (typeof _originalRemove === 'function') {
+    _wishlist.remove = function enhancedWishlistRemove(product) {
+      const result = _originalRemove.apply(this, arguments);
+      try {
+        if (result) {
+          _pulseWishlistBadges();
+          _animateHeartForProduct(product);
+          if (window.AppUtils?.showToast) {
+            AppUtils.showToast(`Removed ${(product?.name_en || product?.name_mm || 'product')} from wishlist`, 'info');
+          }
+        }
+      } catch {}
+      return result;
+    };
+  }
+
+  const _originalToggle = _wishlist.toggle;
+  if (typeof _originalToggle === 'function') {
+    _wishlist.toggle = function enhancedWishlistToggle(product) {
+      const result = _originalToggle.apply(this, arguments);
+      try {
+        _pulseWishlistBadges();
+        _animateHeartForProduct(product);
+      } catch {}
+      return result;
+    };
+  }
+
+  const _originalMoveToCart = _wishlist.moveToCart;
+  if (typeof _originalMoveToCart === 'function') {
+    _wishlist.moveToCart = function enhancedMoveToCart() {
+      const result = _originalMoveToCart.apply(this, arguments);
+      try {
+        _pulseWishlistBadges();
+        document.dispatchEvent(new CustomEvent('wishlist:moved-to-cart'));
+      } catch {}
+      return result;
+    };
+  }
+})();
+

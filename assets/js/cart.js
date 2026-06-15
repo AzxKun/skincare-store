@@ -768,3 +768,163 @@ const CartSystem = (() => {
 
 window.CartSystem = CartSystem;
 
+/* ============================================================
+   PHASE 2 ENHANCEMENTS — CART PREMIUM UX
+   Append only
+   ============================================================ */
+
+(function () {
+  'use strict';
+
+  if (!window.CartSystem) return;
+
+  const _cart = window.CartSystem;
+
+  function _getCartBadgeTargets() {
+    return document.querySelectorAll(
+      '[data-cart-count], .cart-count, .cart-badge, .nav-cart-count, .floating-cart-count'
+    );
+  }
+
+  function _pulseCartBadges() {
+    _getCartBadgeTargets().forEach(el => {
+      el.classList.remove('cart-badge-pulse');
+      void el.offsetWidth;
+      el.classList.add('cart-badge-pulse');
+    });
+  }
+
+  function _findCartIcon() {
+    return document.querySelector(
+      '[data-open-cart], .cart-toggle, .nav-cart, .header-cart, .cart-icon, a[href*="checkout"], a[href*="cart"]'
+    );
+  }
+
+  function _flyToCart(sourceEl, product = {}) {
+    if (!sourceEl) return;
+    const cartEl = _findCartIcon();
+    if (!cartEl) return;
+
+    const sourceRect = sourceEl.getBoundingClientRect();
+    const cartRect = cartEl.getBoundingClientRect();
+
+    const flyer = document.createElement('div');
+    flyer.className = 'fly-to-cart-orb';
+    Object.assign(flyer.style, {
+      position: 'fixed',
+      left: `${sourceRect.left + sourceRect.width / 2}px`,
+      top: `${sourceRect.top + sourceRect.height / 2}px`,
+      width: '18px',
+      height: '18px',
+      borderRadius: '50%',
+      background: 'linear-gradient(135deg, #D4AF37, #F8D7E6)',
+      boxShadow: '0 10px 28px rgba(212,175,55,0.35)',
+      zIndex: '9999',
+      pointerEvents: 'none',
+      transition: 'transform 700ms cubic-bezier(0.22, 1, 0.36, 1), opacity 700ms ease, width 700ms ease, height 700ms ease'
+    });
+
+    document.body.appendChild(flyer);
+
+    requestAnimationFrame(() => {
+      const x = cartRect.left + cartRect.width / 2 - (sourceRect.left + sourceRect.width / 2);
+      const y = cartRect.top + cartRect.height / 2 - (sourceRect.top + sourceRect.height / 2);
+      flyer.style.transform = `translate(${x}px, ${y}px) scale(0.4)`;
+      flyer.style.opacity = '0.35';
+      flyer.style.width = '10px';
+      flyer.style.height = '10px';
+    });
+
+    setTimeout(() => {
+      flyer.remove();
+      _pulseCartBadges();
+      cartEl.classList.remove('cart-icon-bump');
+      void cartEl.offsetWidth;
+      cartEl.classList.add('cart-icon-bump');
+    }, 760);
+  }
+
+  function _showUndoToast(product) {
+    if (!product || !window.AppUtils?.showToast) return;
+    const name = product.name_en || product.name_mm || 'Product';
+    AppUtils.showToast(`Removed ${name} — tap cart to review items`, 'warning', 3600);
+  }
+
+  const _originalQuickAdd = _cart.quickAdd;
+  if (typeof _originalQuickAdd === 'function') {
+    _cart.quickAdd = function enhancedQuickAdd(product, btnEl) {
+      const result = _originalQuickAdd.apply(this, arguments);
+
+      try {
+        if (result !== false) {
+          const source = btnEl?.closest?.('.product-card')?.querySelector?.('img') || btnEl;
+          _flyToCart(source, product);
+        }
+      } catch {}
+
+      return result;
+    };
+  }
+
+  const _originalRemoveFromCart = _cart.removeFromCart;
+  if (typeof _originalRemoveFromCart === 'function') {
+    _cart.removeFromCart = function enhancedRemoveFromCart() {
+      const itemsBefore = typeof _cart.getItems === 'function' ? _cart.getItems() : [];
+      let removedProduct = null;
+
+      try {
+        const arg = arguments[0];
+        if (typeof arg === 'string') {
+          removedProduct = itemsBefore.find(item =>
+            (item?.product?.product_code || item?.product?.id || item?.product?.name_en) === arg
+          )?.product || null;
+        } else if (arg && arg.product) {
+          removedProduct = arg.product;
+        } else if (arg) {
+          removedProduct = arg;
+        }
+      } catch {}
+
+      const result = _originalRemoveFromCart.apply(this, arguments);
+
+      try {
+        _pulseCartBadges();
+        _showUndoToast(removedProduct);
+      } catch {}
+
+      return result;
+    };
+  }
+
+  const _originalAddToCart = _cart.addToCart;
+  if (typeof _originalAddToCart === 'function') {
+    _cart.addToCart = function enhancedAddToCart() {
+      const result = _originalAddToCart.apply(this, arguments);
+      try {
+        if (result?.success) _pulseCartBadges();
+      } catch {}
+      return result;
+    };
+  }
+
+  const _originalOpenDrawer = _cart.openDrawer;
+  if (typeof _originalOpenDrawer === 'function') {
+    _cart.openDrawer = function enhancedOpenDrawer() {
+      const result = _originalOpenDrawer.apply(this, arguments);
+      try {
+        const drawer = document.querySelector('.cart-drawer, #cart-drawer, [data-cart-drawer]');
+        if (drawer) {
+          drawer.classList.add('surface-rise', 'revealed');
+        }
+      } catch {}
+      return result;
+    };
+  }
+
+  document.addEventListener('click', (e) => {
+    const btn = e.target.closest('.product-card-quick-add, [data-add-to-cart], .add-to-cart-btn');
+    if (!btn) return;
+    setTimeout(() => _pulseCartBadges(), 180);
+  });
+})();
+

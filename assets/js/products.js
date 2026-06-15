@@ -1023,3 +1023,129 @@ const ProductsSystem = (() => {
 
 window.ProductsSystem = ProductsSystem;
 
+/* ============================================================
+   PHASE 2 ENHANCEMENTS — PRODUCTS RENDER / CARD POLISH
+   Append only
+   ============================================================ */
+
+(function () {
+  'use strict';
+
+  if (!window.ProductsSystem) return;
+
+  const _products = window.ProductsSystem;
+
+  function _dispatchRendered(target, products) {
+    document.dispatchEvent(new CustomEvent('products:rendered', {
+      detail: {
+        target,
+        count: Array.isArray(products) ? products.length : 0
+      }
+    }));
+  }
+
+  function _enhanceRenderedCards(scope = document) {
+    scope.querySelectorAll('.product-card').forEach(card => {
+      card.classList.add(
+        'card-luxe',
+        'card-hover-lift',
+        'card-hover-depth',
+        'card-shine'
+      );
+
+      if (!window.matchMedia('(pointer: coarse)').matches) {
+        card.classList.add('card-hover-tilt');
+      }
+
+      const body = card.querySelector('.product-card-body');
+      if (body && !body.querySelector('.product-card-meta-enhanced')) {
+        const brand = card.dataset.brand || '';
+        const category = card.dataset.category || '';
+        const skin = card.dataset.skinType || card.getAttribute('data-skin-type') || '';
+
+        const meta = document.createElement('div');
+        meta.className = 'product-card-meta-enhanced';
+        meta.style.cssText = 'display:flex;flex-wrap:wrap;gap:0.45rem;margin-top:0.75rem;';
+        meta.innerHTML = `
+          ${category ? `<span class="badge-soft badge-gold">${category}</span>` : ''}
+          ${brand ? `<span class="badge-soft badge-blush">${brand}</span>` : ''}
+          ${skin ? `<span class="badge-soft">${skin}</span>` : ''}
+        `;
+        body.appendChild(meta);
+      }
+    });
+
+    window.AppUtils?.initScrollReveal?.();
+    window.WishlistSystem?.refreshHearts?.();
+  }
+
+  const _originalRenderProducts = _products.renderProducts;
+  if (typeof _originalRenderProducts === 'function') {
+    _products.renderProducts = function enhancedRenderProducts(target, products, options = {}) {
+      const result = _originalRenderProducts.apply(this, arguments);
+
+      try {
+        const el = typeof target === 'string' ? document.querySelector(target) : target;
+        if (el) _enhanceRenderedCards(el);
+        _dispatchRendered(target, products);
+      } catch (err) {
+        console.warn('[ProductsEnhancer] renderProducts hook failed:', err);
+      }
+
+      return result;
+    };
+  }
+
+  const _originalBuildCardHTML = _products.buildCardHTML;
+  if (typeof _originalBuildCardHTML === 'function') {
+    _products.buildCardHTML = function enhancedBuildCardHTML(product, options = {}) {
+      let html = _originalBuildCardHTML.apply(this, arguments);
+
+      try {
+        html = html
+          .replace('class="product-card shimmer-hover reveal"', 'class="product-card shimmer-hover reveal reveal-blur-up card-luxe card-shine card-hover-depth"')
+          .replace('<div class="product-card-image">', '<div class="product-card-image media-zoom">');
+      } catch {}
+
+      return html;
+    };
+  }
+
+  const _originalOpenQuickView = _products.openQuickView;
+  if (typeof _originalOpenQuickView === 'function') {
+    _products.openQuickView = function enhancedOpenQuickView(key) {
+      const result = _originalOpenQuickView.apply(this, arguments);
+
+      try {
+        const modal = document.getElementById('quick-view-modal');
+        const inner = document.getElementById('quick-view-inner');
+        if (modal) modal.classList.add('modal-luxe');
+        if (inner) {
+          inner.classList.add('reveal-blur-up', 'revealed');
+          const media = inner.querySelector('img');
+          if (media) media.classList.add('image-hover-zoom');
+        }
+      } catch {}
+
+      return result;
+    };
+  }
+
+  const _originalShowSkeletons = _products.showSkeletons;
+  if (typeof _originalShowSkeletons === 'function') {
+    _products.showSkeletons = function enhancedShowSkeletons() {
+      const result = _originalShowSkeletons.apply(this, arguments);
+      try {
+        document.querySelectorAll('.skeleton-card').forEach(el => {
+          el.classList.add('surface-rise', 'revealed');
+        });
+      } catch {}
+      return result;
+    };
+  }
+
+  document.addEventListener('DOMContentLoaded', () => {
+    _enhanceRenderedCards(document);
+  });
+})();
+
