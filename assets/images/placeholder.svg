@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="1000" viewBox="0 0 800 1000">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0A0A0A"/>
+      <stop offset="50%" stop-color="#141414"/>
+      <stop offset="100%" stop-color="#1A1A1A"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="50%" cy="34%" r="48%">
+      <stop offset="0%" stop-color="#FF0040" stop-opacity="0.34"/>
+      <stop offset="100%" stop-color="#FF0040" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="800" height="1000" fill="url(#bg)"/>
+  <rect width="800" height="1000" fill="url(#glow)"/>
+  <rect x="110" y="120" width="580" height="760" rx="36" fill="#111111" stroke="#FF0040" stroke-opacity="0.5"/>
+  <circle cx="400" cy="390" r="110" fill="#1F1F1F" stroke="#D4AF37" stroke-opacity="0.7"/>
+  <rect x="315" y="260" width="170" height="250" rx="24" fill="#2A2A2A" stroke="#FFFFFF" stroke-opacity="0.2"/>
+  <rect x="220" y="630" width="360" height="24" rx="12" fill="#D4AF37" fill-opacity="0.85"/>
+  <rect x="270" y="680" width="260" height="18" rx="9" fill="#FFFFFF" fill-opacity="0.6"/>
+  <text x="400" y="760" fill="#FFFFFF" font-size="34" text-anchor="middle" font-family="Arial, sans-serif" letter-spacing="4">ÉCLAT NOIR</text>
+  <text x="400" y="805" fill="#CFCFCF" font-size="22" text-anchor="middle" font-family="Arial, sans-serif" letter-spacing="3">PRODUCT IMAGE</text>
+</svg>

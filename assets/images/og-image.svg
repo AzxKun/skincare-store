@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <defs>
+    <linearGradient id="ogbg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#050505"/>
+      <stop offset="50%" stop-color="#111111"/>
+      <stop offset="100%" stop-color="#18090E"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="630" fill="url(#ogbg)"/>
+  <circle cx="180" cy="120" r="160" fill="#FF0040" fill-opacity="0.14"/>
+  <circle cx="1030" cy="510" r="180" fill="#D4AF37" fill-opacity="0.10"/>
+  <text x="90" y="270" fill="#FFFFFF" font-size="74" font-family="Georgia, serif">ÉCLAT NOIR</text>
+  <text x="95" y="340" fill="#D4AF37" font-size="28" font-family="Arial, sans-serif" letter-spacing="5">LUXURY SKINCARE MYANMAR</text>
+  <text x="95" y="400" fill="#D0D0D0" font-size="22" font-family="Arial, sans-serif">Dark modern premium beauty storefront</text>
+</svg>

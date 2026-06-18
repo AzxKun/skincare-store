@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900">
+  <defs>
+    <linearGradient id="bg3" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#050505"/>
+      <stop offset="50%" stop-color="#120A0D"/>
+      <stop offset="100%" stop-color="#1A1A1A"/>
+    </linearGradient>
+  </defs>
+  <rect width="1600" height="900" fill="url(#bg3)"/>
+  <circle cx="330" cy="220" r="220" fill="#D4AF37" fill-opacity="0.10"/>
+  <circle cx="1260" cy="700" r="260" fill="#FF0040" fill-opacity="0.10"/>
+  <rect x="1080" y="180" width="240" height="240" rx="28" fill="#FF0040" fill-opacity="0.12" stroke="#FF0040" stroke-opacity="0.36"/>
+  <text x="140" y="390" fill="#FFFFFF" font-size="86" font-family="Georgia, serif">Flash Sale</text>
+  <text x="145" y="470" fill="#FF0040" font-size="34" font-family="Arial, sans-serif" letter-spacing="6">LIMITED TIME OFFERS</text>
+  <text x="145" y="530" fill="#CFCFCF" font-size="24" font-family="Arial, sans-serif">Highlight premium discounts with a bold luxury presentation</text>
+</svg>

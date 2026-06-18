@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900">
+  <defs>
+    <linearGradient id="bg1" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#050505"/>
+      <stop offset="50%" stop-color="#111111"/>
+      <stop offset="100%" stop-color="#18090E"/>
+    </linearGradient>
+  </defs>
+  <rect width="1600" height="900" fill="url(#bg1)"/>
+  <circle cx="300" cy="220" r="220" fill="#FF0040" fill-opacity="0.12"/>
+  <circle cx="1220" cy="180" r="180" fill="#D4AF37" fill-opacity="0.08"/>
+  <circle cx="1180" cy="720" r="240" fill="#FF2060" fill-opacity="0.08"/>
+  <text x="140" y="420" fill="#FFFFFF" font-size="88" font-family="Georgia, serif">Luxury Skincare</text>
+  <text x="145" y="505" fill="#D4AF37" font-size="34" font-family="Arial, sans-serif" letter-spacing="6">ÉCLAT NOIR</text>
+  <text x="145" y="565" fill="#CFCFCF" font-size="24" font-family="Arial, sans-serif">Curated premium skincare for Myanmar</text>
+</svg>
